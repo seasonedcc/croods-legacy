@@ -1,6 +1,6 @@
 {
   "name": "croods",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A React + Redux framework for creating CRUDs",
   "author": "danielweinmann",
   "license": "MIT",
@@ -17,11 +17,17 @@
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "dev": "^0.1.3"
+  },
   "peerDependencies": {
+    "lodash": "^4.17.10",
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -32,13 +38,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "cross-env": "^5.1.4",
     "eslint": "^4.19.1",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-config-standard-react": "^6.0.0",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-react": "^7.7.0",
-    "eslint-plugin-standard": "^3.0.1",
+    "eslint-config-universe": "^1.0.7",
     "gh-pages": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

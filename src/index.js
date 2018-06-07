@@ -1,26 +1,9 @@
-/**
- * @class ExampleComponent
- */
+import React from 'react'
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import ImportedProvider from './Provider'
+import ImportedList from './List'
+import importedCreateReducer from './createReducer'
 
-import styles from './styles.css'
-
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
-
-  render() {
-    const {
-      text
-    } = this.props
-
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
-}
+export const Provider = ImportedProvider
+export const List = ImportedList
+export const createReducer = importedCreateReducer
