@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import * as actions from './actions'
+import createActions from './createActions'
 import { Consumer } from './Context'
 
 @connect(
   (state, { name }) => ({ ...state[name] }),
-  dispatch => ({ actions: bindActionCreators(actions, dispatch) }),
+  (dispatch, { name }) => ({
+    actions: bindActionCreators(createActions(name), dispatch),
+  }),
 )
 export default class extends Component {
   componentWillMount() {
