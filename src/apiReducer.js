@@ -1,4 +1,10 @@
-import { split, first, last, includes, initial, join } from 'lodash'
+import split from 'lodash/split'
+import first from 'lodash/first'
+import last from 'lodash/last'
+import includes from 'lodash/includes'
+import initial from 'lodash/initial'
+import join from 'lodash/join'
+
 import { parseType } from './prefixedReducer'
 
 export const parseApiType = type => {

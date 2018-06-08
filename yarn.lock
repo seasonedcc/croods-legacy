@@ -1132,7 +1132,7 @@ babel-plugin-transform-react-jsx@6.24.1, babel-plugin-transform-react-jsx@^6.24.
     babel-plugin-syntax-jsx "^6.8.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-regenerator@6.26.0, babel-plugin-transform-regenerator@^6.22.0:
+babel-plugin-transform-regenerator@6.26.0, babel-plugin-transform-regenerator@^6.22.0, babel-plugin-transform-regenerator@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-regenerator/-/babel-plugin-transform-regenerator-6.26.0.tgz#e0703696fbde27f0a3efcacf8b4dca2f7b3a8f2f"
   dependencies:
@@ -4841,6 +4841,12 @@ locate-path@^2.0.0:
   dependencies:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
+
+lodash-humps@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/lodash-humps/-/lodash-humps-3.1.2.tgz#08dccb76d89ba49ed74b22641084f847cc9e89e8"
+  dependencies:
+    lodash "^4.17.4"
 
 lodash._reinterpolate@~3.0.0:
   version "3.0.0"

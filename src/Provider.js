@@ -1,5 +1,23 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import { Provider } from './Context'
+import { Provider as ContextProvider } from './Context'
 
-export default ({ options, ...props }) => <Provider value={options} {...props} />
+const Provider = ({ children, ...options }) => (
+  <ContextProvider value={options}>{children}</ContextProvider>
+)
+
+Provider.propTypes = {
+  baseUrl: PropTypes.string.isRequired,
+  credentials: PropTypes.string,
+  headers: PropTypes.object,
+  renderLoading: PropTypes.func,
+  renderError: PropTypes.func,
+}
+
+Provider.defaultProps = {
+  renderLoading: () => <div>Loading...</div>,
+  renderError: error => <div style={{ color: 'red' }}>{error}</div>,
+}
+
+export default Provider

@@ -1,4 +1,5 @@
-import { split, last } from 'lodash'
+import split from 'lodash/split'
+import last from 'lodash/last'
 
 export const parseType = type => split(type, '/')
 export const suffix = type => last(parseType(type))

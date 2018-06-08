@@ -1,14 +1,18 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import createActions from './createActions'
-import { Consumer } from './Context'
+import withOptions from './withOptions'
 
+@withOptions
 @connect(
   (state, { name }) => ({ ...state[name] }),
-  (dispatch, { name }) => ({
-    actions: bindActionCreators(createActions(name), dispatch),
+  (dispatch, { name, parseResponse, options }) => ({
+    actions: bindActionCreators(
+      createActions({ ...options, name, parseResponse }),
+      dispatch,
+    ),
   }),
 )
 export default class extends Component {
@@ -21,24 +25,18 @@ export default class extends Component {
   }
 
   render() {
-    const { render, list, listing, listError } = this.props
+    const { options, ...props } = this.props
+    const { render, list, listing, listError } = props
+    const { renderLoading, renderError } = options
 
-    return (
-      <Consumer>
-        {options => {
-          const { renderLoading, renderError } = options
+    if (listError) {
+      return renderError(listError)
+    }
 
-          if (!list || listing) {
-            return renderLoading()
-          }
+    if (!list || listing) {
+      return renderLoading()
+    }
 
-          if (listError) {
-            return renderError(listError)
-          }
-
-          return render(this.props)
-        }}
-      </Consumer>
-    )
+    return render(props)
   }
 }
