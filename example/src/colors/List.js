@@ -8,7 +8,7 @@ export default props => (
   <List
     name="colors"
     parseResponse={({ data: list }) => ({ list })}
-    render={({ list }) => (
+    render={list => (
       <Children>
         <h1>Colors</h1>
         {list.map(({ id, name }) => (

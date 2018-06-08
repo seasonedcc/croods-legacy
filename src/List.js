@@ -37,6 +37,6 @@ export default class extends Component {
       return renderLoading()
     }
 
-    return render(props)
+    return render(list)
   }
 }
