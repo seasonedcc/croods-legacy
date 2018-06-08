@@ -5,22 +5,22 @@ export default (state, action = {}) => {
     case 'REQUEST': {
       return {
         ...state,
-        fetchingList: true,
-        listError: null,
+        fetchingInfo: true,
+        infoError: null,
       }
     }
     case 'FAILURE': {
       return {
         ...state,
-        fetchingList: false,
-        listError: action.error.message,
+        fetchingInfo: false,
+        infoError: action.error.message,
       }
     }
     case 'SUCCESS': {
       return {
         ...state,
-        fetchingList: false,
-        list: action.list,
+        fetchingInfo: false,
+        info: action.info,
       }
     }
     default:

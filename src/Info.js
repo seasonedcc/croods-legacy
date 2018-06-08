@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import find from 'lodash/find'
 
 import createActions from './createActions'
 import withOptions from './withOptions'
@@ -17,26 +18,43 @@ import withOptions from './withOptions'
 )
 export default class extends Component {
   componentWillMount() {
-    const { list, actions } = this.props
+    this.setOrFechInfo()
+  }
 
-    if (!list) {
-      actions.fetchList()
+  componentWillReceiveProps(nextProps) {
+    const { id } = nextProps
+    const { id: oldId } = this.props
+
+    if (id.toString() !== oldId.toString()) {
+      this.setOrFechInfo(nextProps)
+    }
+  }
+
+  setOrFechInfo(props) {
+    const { id, list, actions } = props || this.props
+
+    const item = find(list || {}, item => item.id.toString() === id.toString())
+
+    if (item) {
+      actions.setInfo(item)
+    } else {
+      actions.fetchInfo(id)
     }
   }
 
   render() {
     const { options, ...props } = this.props
-    const { render, list, fetchingList, listError } = props
+    const { render, info, fetchingInfo, infoError } = props
     const { renderLoading, renderError } = options
 
-    if (listError) {
-      return renderError(listError)
+    if (infoError) {
+      return renderError(infoError)
     }
 
-    if (!list || fetchingList) {
+    if (!info || fetchingInfo) {
       return renderLoading()
     }
 
-    return render(props)
+    return render(info)
   }
 }

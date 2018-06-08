@@ -1,5 +1,8 @@
 export default {
   list: null,
-  listing: false,
+  fetchingList: false,
   listError: null,
+  info: null,
+  fetchingInfo: false,
+  infoError: null,
 }
