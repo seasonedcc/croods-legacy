@@ -1,20 +1,15 @@
 import { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import find from 'lodash/find'
 
-import createActions from './createActions'
 import withOptions from './withOptions'
+import mapStateToProps from './mapStateToProps'
+import mapDispatchToProps from './mapDispatchToProps'
 
 @withOptions
 @connect(
-  (state, { name }) => ({ ...state[name] }),
-  (dispatch, { name, parseResponse, options }) => ({
-    actions: bindActionCreators(
-      createActions({ ...options, name, parseResponse }),
-      dispatch,
-    ),
-  }),
+  mapStateToProps,
+  mapDispatchToProps,
 )
 export default class extends Component {
   componentWillMount() {
@@ -31,13 +26,13 @@ export default class extends Component {
   }
 
   setOrFechInfo(props) {
-    const { id, list, actions } = props || this.props
+    const { id, info, list, actions } = props || this.props
 
     const item = find(list || {}, item => item.id.toString() === id.toString())
 
     if (item) {
       actions.setInfo(item)
-    } else {
+    } else if (!info || info.id.toString() !== id.toString()) {
       actions.fetchInfo(id)
     }
   }

@@ -5,4 +5,7 @@ export default {
   info: null,
   fetchingInfo: false,
   infoError: null,
+  created: null,
+  creating: false,
+  createError: null,
 }

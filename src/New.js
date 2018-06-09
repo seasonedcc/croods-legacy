@@ -12,25 +12,19 @@ import mapDispatchToProps from './mapDispatchToProps'
 )
 export default class extends Component {
   componentWillMount() {
-    const { list, actions } = this.props
-
-    if (!list) {
-      actions.fetchList()
-    }
+    const { actions } = this.props
+    actions.new()
   }
 
   render() {
-    const { options, render, list, fetchingList, listError } = this.props
-    const { renderLoading, renderError } = options
+    const { render, renderCreated, actions, created, creating } = this.props
+    const { createError: error } = this.props
+    const { create } = actions
 
-    if (listError) {
-      return renderError(listError)
+    if (created) {
+      return renderCreated(created)
     }
 
-    if (!list || fetchingList) {
-      return renderLoading()
-    }
-
-    return render(list)
+    return render({ create, creating, error })
   }
 }

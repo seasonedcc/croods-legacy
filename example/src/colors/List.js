@@ -16,6 +16,7 @@ export default props => (
             <Link to={`/${id}`}>{name}</Link>
           </h3>
         ))}
+        <Link to="/new">New</Link>
       </Children>
     )}
   />

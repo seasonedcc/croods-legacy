@@ -7,10 +7,10 @@ import api from './reducer/api'
 const reducer = (state = initialState, action = {}) => {
   switch (suffix(action.type)) {
     case 'SET_INFO': {
-      return {
-        ...state,
-        info: action.info,
-      }
+      return { ...state, info: action.info }
+    }
+    case 'NEW': {
+      return { ...state, created: null }
     }
     default:
       return state
