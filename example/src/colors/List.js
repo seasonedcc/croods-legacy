@@ -11,12 +11,19 @@ export default props => (
     render={list => (
       <Children>
         <h1>Colors</h1>
-        {list.map(({ id, name }) => (
-          <h3 key={id}>
-            <Link to={`/${id}`}>{name}</Link>
-          </h3>
+        {list.map(({ id, name, color }) => (
+          <div key={id}>
+            <h2 style={{ display: 'inline-block' }}>
+              <Link to={`/${id}`} style={{ color }}>
+                {name}
+              </Link>
+            </h2>{' '}
+            <Link to={`/${id}/edit`}>Edit</Link>
+          </div>
         ))}
-        <Link to="/new">New</Link>
+        <Link to="/new" style={{ display: 'block', marginTop: 20 }}>
+          New
+        </Link>
       </Children>
     )}
   />

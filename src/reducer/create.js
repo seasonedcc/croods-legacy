@@ -1,3 +1,4 @@
+import concat from 'lodash/concat'
 import { apiSuffix } from '../apiReducer'
 
 export default (state, action = {}) => {
@@ -22,6 +23,7 @@ export default (state, action = {}) => {
         creating: false,
         created: action.created,
         info: action.created,
+        list: state.list ? concat(state.list, [action.created]) : null,
       }
     }
     default:

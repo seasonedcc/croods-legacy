@@ -8,4 +8,7 @@ export default {
   created: null,
   creating: false,
   createError: null,
+  updated: null,
+  updating: false,
+  updateError: null,
 }

@@ -26,8 +26,20 @@ export default class extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { actions, updated } = this.props
+    const { updated: oldUpdated } = prevProps
+
+    if (updated && !oldUpdated) {
+      actions.resetUpdated()
+    }
+  }
+
   render() {
-    const { render, info, fetchingInfo, infoError, options } = this.props
+    const { render, renderUpdated, actions, info, fetchingInfo } = this.props
+    const { infoError, updated, updating, updateError: error } = this.props
+    const { options } = this.props
+    const { update } = actions
     const { renderLoading, renderError } = options
 
     if (infoError) {
@@ -38,6 +50,10 @@ export default class extends Component {
       return renderLoading()
     }
 
-    return render(info)
+    if (updated) {
+      return renderUpdated(updated)
+    }
+
+    return render({ info, update, updating, error })
   }
 }

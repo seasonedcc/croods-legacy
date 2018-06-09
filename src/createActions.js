@@ -19,10 +19,9 @@ export default options => ({
       ...options,
       id,
       prefix: 'INFO',
-      defaultResponse: info => ({ info }),
+      defaultResponse: options.parseInfoResponse || (info => ({ info })),
     }),
   setInfo: info => ({ type: `@${options.name}/SET_INFO`, info }),
-  new: () => ({ type: `@${options.name}/NEW` }),
   create: params =>
     action({
       ...options,
@@ -31,4 +30,16 @@ export default options => ({
       prefix: 'CREATE',
       defaultResponse: created => ({ created }),
     }),
+  resetCreated: () => ({ type: `@${options.name}/RESET_CREATED` }),
+  update: ({ id, ...params }) =>
+    action({
+      ...options,
+      id,
+      params,
+      method: 'put',
+      prefix: 'UPDATE',
+      defaultResponse:
+        options.parseUpdateResponse || (updated => ({ updated })),
+    }),
+  resetUpdated: () => ({ type: `@${options.name}/RESET_UPDATED` }),
 })

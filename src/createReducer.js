@@ -9,8 +9,11 @@ const reducer = (state = initialState, action = {}) => {
     case 'SET_INFO': {
       return { ...state, info: action.info }
     }
-    case 'NEW': {
+    case 'RESET_CREATED': {
       return { ...state, created: null }
+    }
+    case 'RESET_UPDATED': {
+      return { ...state, updated: null }
     }
     default:
       return state

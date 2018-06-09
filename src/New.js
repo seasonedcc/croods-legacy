@@ -11,9 +11,13 @@ import mapDispatchToProps from './mapDispatchToProps'
   mapDispatchToProps,
 )
 export default class extends Component {
-  componentWillMount() {
-    const { actions } = this.props
-    actions.new()
+  componentDidUpdate(prevProps) {
+    const { actions, created } = this.props
+    const { created: oldCreated } = prevProps
+
+    if (created && !oldCreated) {
+      actions.resetCreated()
+    }
   }
 
   render() {
