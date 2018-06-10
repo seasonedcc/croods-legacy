@@ -8,6 +8,14 @@ export default (state, action = {}) => {
         ...state,
         updating: true,
         updateError: null,
+        list: state.list
+          ? map(state.list, item => {
+              if (item.id.toString() === action.id.toString()) {
+                return { ...item, updating: true }
+              }
+              return item
+            })
+          : null,
       }
     }
     case 'FAILURE': {
@@ -15,6 +23,18 @@ export default (state, action = {}) => {
         ...state,
         updating: false,
         updateError: action.error.message,
+        list: state.list
+          ? map(state.list, item => {
+              if (item.id.toString() === action.id.toString()) {
+                return {
+                  ...item,
+                  updating: false,
+                  updateError: action.error.message,
+                }
+              }
+              return item
+            })
+          : null,
       }
     }
     case 'SUCCESS': {

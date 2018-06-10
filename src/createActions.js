@@ -1,3 +1,5 @@
+import omit from 'lodash/omit'
+
 import apiAction from './apiAction'
 
 const action = options => {
@@ -31,15 +33,19 @@ export default options => ({
       defaultResponse: created => ({ created }),
     }),
   resetCreated: () => ({ type: `@${options.name}/RESET_CREATED` }),
-  update: ({ id, ...params }) =>
-    action({
+  update: ({ id, ...attributes }) => {
+    const params = omit(attributes, ['updating', 'updateError'])
+
+    return action({
       ...options,
       id,
       params,
       method: 'put',
       prefix: 'UPDATE',
+      requestAttributes: { id, params },
       defaultResponse:
         options.parseUpdateResponse || (updated => ({ updated })),
-    }),
+    })
+  },
   resetUpdated: () => ({ type: `@${options.name}/RESET_UPDATED` }),
 })
