@@ -58,7 +58,8 @@ const dispatchResponse = (dispatch, options) => async response => {
   if (response.ok) {
     dispatch({
       type: `${prefix}_SUCCESS`,
-      ...(parseResponse && (await parseResponse(json, response))),
+      ...(parseResponse &&
+        (await parseResponse(json, response, requestAttributes))),
     })
   } else {
     dispatch({

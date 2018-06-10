@@ -14,7 +14,14 @@ import Edit from './colors/Edit'
 
 export default props => (
   <ReduxProvider store={store}>
-    <CroodsProvider baseUrl="https://reqres.in/api">
+    <CroodsProvider
+      baseUrl="https://reqres.in/api"
+      parseListResponse={({ data: list }) => ({ list })}
+      parseInfoResponse={({ data: info }) => ({ info })}
+      parseUpdateResponse={(updated, response, { id }) => ({
+        updated: { id, ...updated },
+      })}
+    >
       <Router>
         <Switch>
           <Route exact path="/" component={List} />

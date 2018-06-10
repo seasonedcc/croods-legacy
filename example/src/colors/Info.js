@@ -8,7 +8,6 @@ export default ({ match }) => (
   <Info
     id={match.params.id}
     name="colors"
-    parseResponse={({ data: info }) => ({ info })}
     render={({ name, color }) => (
       <Children>
         <h1 style={{ color }}>{name}</h1>

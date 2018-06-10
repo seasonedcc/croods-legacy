@@ -13,8 +13,6 @@ export default ({ match: { params } }) => {
     <Edit
       id={id}
       name="colors"
-      parseInfoResponse={({ data: info }) => ({ info })}
-      parseUpdateResponse={updated => ({ updated: { id, ...updated } })}
       render={({ info, update, updating, error }) => {
         const { name } = info
 

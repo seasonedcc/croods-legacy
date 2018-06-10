@@ -9,7 +9,6 @@ export default props => {
       id={id}
       attributes={attributes}
       name="colors"
-      parseResponse={updated => ({ updated: { id, ...updated } })}
       render={update => {
         const onClick = event => {
           event.preventDefault()

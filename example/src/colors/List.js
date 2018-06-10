@@ -9,7 +9,6 @@ import Darken from './Darken'
 export default props => (
   <List
     name="colors"
-    parseResponse={({ data: list }) => ({ list })}
     render={list => (
       <Children>
         <h1>Colors</h1>
