@@ -7,7 +7,7 @@ export default options => {
   return apiAction({
     ...options,
     prefix: `@${name}/${prefix}`,
-    path: `${path || `/${name}`}${id ? `/${id}` : ''}`,
+    path: path || `/${name}${id ? `/${id}` : ''}`,
     parseResponse: customParse || parseResponse || defaultParse,
   })
 }
