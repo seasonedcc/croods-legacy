@@ -30,6 +30,8 @@ const parseObject = error => {
   if (!id) {
     return { id: message, message }
   }
+
+  return error
 }
 
 const parseError = error => {

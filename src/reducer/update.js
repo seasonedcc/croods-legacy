@@ -8,6 +8,11 @@ export default (state, action = {}) => {
         ...state,
         updating: true,
         updateError: null,
+        info: state.info
+          ? state.info.id.toString() === action.id.toString()
+            ? { ...state.info, updating: true }
+            : state.info
+          : null,
         list: state.list
           ? map(state.list, item => {
               if (item.id.toString() === action.id.toString()) {
@@ -23,6 +28,15 @@ export default (state, action = {}) => {
         ...state,
         updating: false,
         updateError: action.error.message,
+        info: state.info
+          ? state.info.id.toString() === action.id.toString()
+            ? {
+                ...state.info,
+                updating: false,
+                updateError: action.error.message,
+              }
+            : state.info
+          : null,
         list: state.list
           ? map(state.list, item => {
               if (item.id.toString() === action.id.toString()) {
