@@ -12,17 +12,17 @@ export default {
   output: [
     {
       file: pkg.main,
-      format: 'cjs'
+      format: 'cjs',
     },
     {
       file: pkg.module,
-      format: 'es'
-    }
+      format: 'es',
+    },
   ],
   plugins: [
     external(),
     postcss({
-      modules: true
+      modules: true,
     }),
     url(),
     babel({
@@ -30,6 +30,6 @@ export default {
       runtimeHelpers: true,
     }),
     resolve(),
-    commonjs()
-  ]
+    commonjs(),
+  ],
 }
