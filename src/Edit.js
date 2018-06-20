@@ -6,12 +6,7 @@ import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
 import setOrFetchInfo from './setOrFetchInfo'
 
-@withOptions
-@connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)
-export default class extends Component {
+class Edit extends Component {
   constructor(props) {
     super(props)
     setOrFetchInfo(props)
@@ -57,3 +52,10 @@ export default class extends Component {
     return render({ info, update, updating, error })
   }
 }
+
+export default withOptions(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Edit),
+)

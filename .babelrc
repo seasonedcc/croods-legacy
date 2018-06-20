@@ -12,7 +12,6 @@
     "transform-async-to-generator",
     "transform-regenerator",
     "transform-runtime",
-    "external-helpers",
-    "transform-decorators-legacy"
+    "external-helpers"
   ]
 }

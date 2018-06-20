@@ -5,12 +5,7 @@ import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
 
-@withOptions
-@connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)
-export default class extends Component {
+class New extends Component {
   componentDidUpdate(prevProps) {
     const { actions, created } = this.props
     const { created: oldCreated } = prevProps
@@ -32,3 +27,10 @@ export default class extends Component {
     return render({ create, creating, error })
   }
 }
+
+export default withOptions(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(New),
+)
