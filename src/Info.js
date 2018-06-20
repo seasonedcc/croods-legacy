@@ -12,24 +12,24 @@ class Info extends Component {
     setOrFetchInfo(props)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { id } = nextProps
-    const { id: oldId } = this.props
+  componentDidUpdate(prevProps) {
+    const { id } = this.props
+    const { id: oldId } = prevProps
 
     if (id.toString() !== oldId.toString()) {
-      setOrFetchInfo(nextProps)
+      setOrFetchInfo(this.props)
     }
   }
 
   render() {
-    const { render, info, fetchingInfo, infoError, options } = this.props
-    const { renderLoading, renderError } = options
+    const { render, info, fetchingInfo, infoError } = this.props
+    const { renderLoading, renderError } = this.props
 
-    if (infoError) {
+    if (renderError && infoError) {
       return renderError(infoError)
     }
 
-    if (!info || fetchingInfo) {
+    if (renderLoading && (!info || fetchingInfo)) {
       return renderLoading()
     }
 

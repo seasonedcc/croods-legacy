@@ -15,18 +15,18 @@ class List extends Component {
   }
 
   render() {
-    const { options, render, list, fetchingList, listError } = this.props
-    const { renderLoading, renderError } = options
+    const { render, list, fetchingList, listError, renderLoading } = this.props
+    const { renderError } = this.props
 
-    if (listError) {
+    if (renderError && listError) {
       return renderError(listError)
     }
 
-    if (!list || fetchingList) {
+    if (renderLoading && (!list || fetchingList)) {
       return renderLoading()
     }
 
-    return render(list)
+    return render(list, this.props)
   }
 }
 

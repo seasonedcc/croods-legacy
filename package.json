@@ -10,7 +10,7 @@
   "jsnext:main": "dist/index.es.js",
   "scripts": {
     "lint": "node_modules/.bin/eslint --max-warnings 0 .",
-    "test": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test": "cross-env react-scripts test --no-cache --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
     "start": "rollup -c -w",
@@ -19,9 +19,9 @@
     "deploy": "gh-pages -d example/build"
   },
   "dependencies": {
-    "nodemon": "^1.17.5",
     "lodash": "^4.17.10",
-    "lodash-humps": "^3.1.2"
+    "lodash-humps": "^3.1.2",
+    "nodemon": "^1.17.5"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -47,7 +47,10 @@
     "gh-pages": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
     "react-scripts": "^1.1.1",
+    "react-test-renderer": "^16.4.1",
+    "redux": "^4.0.0",
     "rollup": "^0.54.0",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.1",

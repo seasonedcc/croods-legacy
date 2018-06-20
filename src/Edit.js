@@ -33,9 +33,8 @@ class Edit extends Component {
   render() {
     const { render, renderUpdated, actions, info, fetchingInfo } = this.props
     const { infoError, updated, updating, updateError: error } = this.props
-    const { options } = this.props
+    const { renderLoading, renderError } = this.props
     const { update } = actions
-    const { renderLoading, renderError } = options
 
     if (infoError) {
       return renderError(infoError)
