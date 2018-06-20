@@ -20,11 +20,11 @@ class New extends Component {
     const { createError: error } = this.props
     const { create } = actions
 
-    if (created) {
+    if (renderCreated && created) {
       return renderCreated(created)
     }
 
-    return render({ create, creating, error })
+    return render({ create, creating, error }, this.props)
   }
 }
 

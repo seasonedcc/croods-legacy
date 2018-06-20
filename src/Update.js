@@ -28,7 +28,7 @@ class Update extends Component {
     const { render, id, attributes, actions } = this.props
     const update = () => actions.update({ id, ...attributes })
 
-    return render(update)
+    return render(update, this.props)
   }
 }
 

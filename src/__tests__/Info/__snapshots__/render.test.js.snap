@@ -3,6 +3,7 @@
 exports[`renders correctly 1`] = `
 <div
   info={undefined}
+  render={[Function]}
 >
   Info
 </div>
@@ -18,6 +19,8 @@ exports[`with renderError and infoError renders error 1`] = `
 exports[`with renderError and without infoError renders Info 1`] = `
 <div
   info={undefined}
+  render={[Function]}
+  renderError={[Function]}
 >
   Info
 </div>
@@ -36,6 +39,8 @@ exports[`with renderLoading and info renders info correctly 1`] = `
       "foo": "bar",
     }
   }
+  render={[Function]}
+  renderLoading={[Function]}
 >
   Info
 </div>
@@ -49,7 +54,9 @@ exports[`with renderLoading, fetchingInfo and info renders loading 1`] = `
 
 exports[`without renderLoading and with fetchingInfo renders info correctly 1`] = `
 <div
+  fetchingInfo={true}
   info={undefined}
+  render={[Function]}
 >
   Info
 </div>

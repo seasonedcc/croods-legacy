@@ -12,18 +12,13 @@ class Edit extends Component {
     setOrFetchInfo(props)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { id } = nextProps
-    const { id: oldId } = this.props
+  componentDidUpdate(prevProps) {
+    const { actions, updated, id } = this.props
+    const { updated: oldUpdated, id: oldId } = prevProps
 
     if (id.toString() !== oldId.toString()) {
-      setOrFetchInfo(nextProps)
+      setOrFetchInfo(this.props)
     }
-  }
-
-  componentDidUpdate(prevProps) {
-    const { actions, updated } = this.props
-    const { updated: oldUpdated } = prevProps
 
     if (updated && !oldUpdated) {
       actions.resetUpdated()
@@ -36,19 +31,19 @@ class Edit extends Component {
     const { renderLoading, renderError } = this.props
     const { update } = actions
 
-    if (infoError) {
+    if (renderError && infoError) {
       return renderError(infoError)
     }
 
-    if (!info || fetchingInfo) {
+    if (renderLoading && (!info || fetchingInfo)) {
       return renderLoading()
     }
 
-    if (updated) {
+    if (renderUpdated && updated) {
       return renderUpdated(updated)
     }
 
-    return render({ info, update, updating, error })
+    return render({ info, update, updating, error }, this.props)
   }
 }
 

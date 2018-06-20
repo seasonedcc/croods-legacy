@@ -33,7 +33,7 @@ class Info extends Component {
       return renderLoading()
     }
 
-    return render(info)
+    return render(info, this.props)
   }
 }
 

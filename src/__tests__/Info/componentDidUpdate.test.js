@@ -37,8 +37,8 @@ describe('when id is different', () => {
   it('sets or fetches info', () => {
     const props = { render, id: 123 }
     const rendered = renderer.create(<Info {...props} />)
-    rendered.update(<Info {...props} foo="bar" id="321" />)
-    expect(setOrFetchInfo).toHaveBeenCalledWith(props)
-    expect(setOrFetchInfo).toHaveBeenCalledTimes(2)
+    setOrFetchInfo.mockClear()
+    rendered.update(<Info {...props} id="321" />)
+    expect(setOrFetchInfo).toHaveBeenCalledWith({ ...props, id: '321' })
   })
 })
