@@ -6,6 +6,7 @@ import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
 import setOrFetchInfo from './setOrFetchInfo'
 import renderIfPresent from './renderIfPresent'
+import renderInfoLoading from './renderInfoLoading'
 
 class Edit extends Component {
   constructor(props) {
@@ -26,14 +27,6 @@ class Edit extends Component {
     }
   }
 
-  renderLoading() {
-    const { renderLoading, info, fetchingInfo } = this.props
-
-    if (renderLoading && (!info || fetchingInfo)) {
-      return renderLoading()
-    }
-  }
-
   render() {
     const { render, actions, info, renderError, infoError } = this.props
     const { updating, updateError: error, renderUpdated, updated } = this.props
@@ -41,7 +34,7 @@ class Edit extends Component {
 
     return (
       renderIfPresent(renderError, infoError) ||
-      this.renderLoading() ||
+      renderInfoLoading(this.props) ||
       renderIfPresent(renderUpdated, updated) ||
       render({ info, update, updating, error }, this.props)
     )
