@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
+import renderIfPresent from './renderIfPresent'
 
 class List extends Component {
   componentWillMount() {
@@ -14,19 +15,22 @@ class List extends Component {
     }
   }
 
-  render() {
-    const { options, render, list, fetchingList, listError } = this.props
-    const { renderLoading, renderError } = options
+  renderLoading() {
+    const { renderLoading, list, fetchingList } = this.props
 
-    if (listError) {
-      return renderError(listError)
-    }
-
-    if (!list || fetchingList) {
+    if (renderLoading && (!list || fetchingList)) {
       return renderLoading()
     }
+  }
 
-    return render(list)
+  render() {
+    const { render, list, listError, renderError } = this.props
+
+    return (
+      renderIfPresent(renderError, listError) ||
+      this.renderLoading() ||
+      render(list, this.props)
+    )
   }
 }
 

@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  actions={
+    Object {
+      "fetchList": [Function],
+    }
+  }
+  list={undefined}
+  render={[Function]}
+>
+  List
+</div>
+`;
+
+exports[`renders correctly with a previous list 1`] = `
+<div
+  actions={
+    Object {
+      "fetchList": [Function],
+    }
+  }
+  list={
+    Array [
+      "foo",
+      "bar",
+    ]
+  }
+  render={[Function]}
+>
+  List
+</div>
+`;
+
+exports[`with errors with renderError, renders error correctly 1`] = `
+<div>
+  Error: 
+  foo
+</div>
+`;
+
+exports[`with errors without renderError, renders list 1`] = `
+<div
+  actions={
+    Object {
+      "fetchList": [Function],
+    }
+  }
+  list={undefined}
+  listError="foo"
+  render={[Function]}
+>
+  List
+</div>
+`;
+
+exports[`with renderLoading and fetchingList renders loading correctly 1`] = `
+<div>
+  Loading
+</div>
+`;
+
+exports[`with renderLoading and list renders list correctly 1`] = `
+<div
+  actions={
+    Object {
+      "fetchList": [Function],
+    }
+  }
+  list={
+    Array [
+      1,
+      2,
+      3,
+    ]
+  }
+  render={[Function]}
+  renderLoading={[Function]}
+>
+  List
+</div>
+`;
+
+exports[`with renderLoading, fetchingList and list renders loading 1`] = `
+<div>
+  Loading
+</div>
+`;
+
+exports[`without renderLoading and with fetchingList renders list correctly 1`] = `
+<div
+  actions={
+    Object {
+      "fetchList": [Function],
+    }
+  }
+  fetchingList={true}
+  list={undefined}
+  render={[Function]}
+>
+  List
+</div>
+`;

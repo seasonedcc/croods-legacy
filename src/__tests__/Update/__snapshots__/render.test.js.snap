@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  actions={
+    Object {
+      "resetUpdated": [Function],
+      "update": [Function],
+    }
+  }
+  id={123}
+  render={[Function]}
+  update={[Function]}
+>
+  Update
+</div>
+`;
+
+exports[`when updated resets updated 1`] = `
+<div
+  actions={
+    Object {
+      "resetUpdated": [Function],
+      "update": [Function],
+    }
+  }
+  id={123}
+  render={[Function]}
+  update={[Function]}
+  updated={
+    Object {
+      "id": 123,
+    }
+  }
+>
+  Update
+</div>
+`;

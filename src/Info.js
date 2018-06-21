@@ -5,6 +5,8 @@ import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
 import setOrFetchInfo from './setOrFetchInfo'
+import renderIfPresent from './renderIfPresent'
+import renderInfoLoading from './renderInfoLoading'
 
 class Info extends Component {
   constructor(props) {
@@ -12,28 +14,23 @@ class Info extends Component {
     setOrFetchInfo(props)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { id } = nextProps
-    const { id: oldId } = this.props
+  componentDidUpdate(prevProps) {
+    const { id } = this.props
+    const { id: oldId } = prevProps
 
     if (id.toString() !== oldId.toString()) {
-      setOrFetchInfo(nextProps)
+      setOrFetchInfo(this.props)
     }
   }
 
   render() {
-    const { render, info, fetchingInfo, infoError, options } = this.props
-    const { renderLoading, renderError } = options
+    const { render, info, infoError, renderError } = this.props
 
-    if (infoError) {
-      return renderError(infoError)
-    }
-
-    if (!info || fetchingInfo) {
-      return renderLoading()
-    }
-
-    return render(info)
+    return (
+      renderIfPresent(renderError, infoError) ||
+      renderInfoLoading(this.props) ||
+      render(info, this.props)
+    )
   }
 }
 

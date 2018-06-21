@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Component with props and options 1`] = `
+<div>
+  Consumer - 
+  <div
+    bar="baz"
+    foo="quu"
+    quu="foo"
+  >
+    Foo
+  </div>
+</div>
+`;

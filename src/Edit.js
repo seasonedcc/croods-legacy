@@ -5,6 +5,8 @@ import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
 import setOrFetchInfo from './setOrFetchInfo'
+import renderIfPresent from './renderIfPresent'
+import renderInfoLoading from './renderInfoLoading'
 
 class Edit extends Component {
   constructor(props) {
@@ -12,18 +14,13 @@ class Edit extends Component {
     setOrFetchInfo(props)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { id } = nextProps
-    const { id: oldId } = this.props
+  componentDidUpdate(prevProps) {
+    const { actions, updated, id } = this.props
+    const { updated: oldUpdated, id: oldId } = prevProps
 
     if (id.toString() !== oldId.toString()) {
-      setOrFetchInfo(nextProps)
+      setOrFetchInfo(this.props)
     }
-  }
-
-  componentDidUpdate(prevProps) {
-    const { actions, updated } = this.props
-    const { updated: oldUpdated } = prevProps
 
     if (updated && !oldUpdated) {
       actions.resetUpdated()
@@ -31,25 +28,16 @@ class Edit extends Component {
   }
 
   render() {
-    const { render, renderUpdated, actions, info, fetchingInfo } = this.props
-    const { infoError, updated, updating, updateError: error } = this.props
-    const { options } = this.props
+    const { render, actions, info, renderError, infoError } = this.props
+    const { updating, updateError: error, renderUpdated, updated } = this.props
     const { update } = actions
-    const { renderLoading, renderError } = options
 
-    if (infoError) {
-      return renderError(infoError)
-    }
-
-    if (!info || fetchingInfo) {
-      return renderLoading()
-    }
-
-    if (updated) {
-      return renderUpdated(updated)
-    }
-
-    return render({ info, update, updating, error })
+    return (
+      renderIfPresent(renderError, infoError) ||
+      renderInfoLoading(this.props) ||
+      renderIfPresent(renderUpdated, updated) ||
+      render({ info, update, updating, error }, this.props)
+    )
   }
 }
 

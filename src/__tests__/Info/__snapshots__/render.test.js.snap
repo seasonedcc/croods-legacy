@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  info={undefined}
+  render={[Function]}
+>
+  Info
+</div>
+`;
+
+exports[`with renderError and infoError renders error 1`] = `
+<div>
+  Error: 
+  foo
+</div>
+`;
+
+exports[`with renderError and without infoError renders Info 1`] = `
+<div
+  info={undefined}
+  render={[Function]}
+  renderError={[Function]}
+>
+  Info
+</div>
+`;
+
+exports[`with renderLoading and fetchingInfo renders loading correctly 1`] = `
+<div>
+  Loading
+</div>
+`;
+
+exports[`with renderLoading and info renders info correctly 1`] = `
+<div
+  info={
+    Object {
+      "foo": "bar",
+    }
+  }
+  render={[Function]}
+  renderLoading={[Function]}
+>
+  Info
+</div>
+`;
+
+exports[`with renderLoading, fetchingInfo and info renders loading 1`] = `
+<div>
+  Loading
+</div>
+`;
+
+exports[`without renderLoading and with fetchingInfo renders info correctly 1`] = `
+<div
+  fetchingInfo={true}
+  info={undefined}
+  render={[Function]}
+>
+  Info
+</div>
+`;

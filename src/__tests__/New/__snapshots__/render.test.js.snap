@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  actions={
+    Object {
+      "resetCreated": [Function],
+    }
+  }
+  create={undefined}
+  creating={undefined}
+  error={undefined}
+  render={[Function]}
+>
+  New
+</div>
+`;
+
+exports[`with renderCreated and created renders created 1`] = `
+<div
+  foo="bar"
+>
+  Created 
+</div>
+`;
+
+exports[`with renderCreated and without created renders edit 1`] = `
+<div
+  actions={
+    Object {
+      "resetCreated": [Function],
+    }
+  }
+  create={undefined}
+  creating={undefined}
+  error={undefined}
+  render={[Function]}
+  renderCreated={[Function]}
+>
+  New
+</div>
+`;
+
+exports[`without renderCreated and with created renders new 1`] = `
+<div
+  actions={
+    Object {
+      "resetCreated": [Function],
+    }
+  }
+  create={undefined}
+  created={
+    Object {
+      "foo": "bar",
+    }
+  }
+  creating={undefined}
+  error={undefined}
+  render={[Function]}
+>
+  New
+</div>
+`;
