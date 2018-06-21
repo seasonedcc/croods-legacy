@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
+import renderIfPresent from './renderIfPresent'
 
 class New extends Component {
   componentDidUpdate(prevProps) {
@@ -20,11 +21,10 @@ class New extends Component {
     const { createError: error } = this.props
     const { create } = actions
 
-    if (renderCreated && created) {
-      return renderCreated(created)
-    }
-
-    return render({ create, creating, error }, this.props)
+    return (
+      renderIfPresent(renderCreated, created) ||
+      render({ create, creating, error }, this.props)
+    )
   }
 }
 
