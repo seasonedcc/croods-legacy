@@ -25,25 +25,41 @@ class Edit extends Component {
     }
   }
 
-  render() {
-    const { render, renderUpdated, actions, info, fetchingInfo } = this.props
-    const { infoError, updated, updating, updateError: error } = this.props
-    const { renderLoading, renderError } = this.props
-    const { update } = actions
+  renderError() {
+    const { renderError, infoError } = this.props
 
     if (renderError && infoError) {
       return renderError(infoError)
     }
+  }
+
+  renderLoading() {
+    const { renderLoading, info, fetchingInfo } = this.props
 
     if (renderLoading && (!info || fetchingInfo)) {
       return renderLoading()
     }
+  }
+
+  renderUpdated() {
+    const { renderUpdated, updated } = this.props
 
     if (renderUpdated && updated) {
       return renderUpdated(updated)
     }
+  }
 
-    return render({ info, update, updating, error }, this.props)
+  render() {
+    const { render, actions, info } = this.props
+    const { updating, updateError: error } = this.props
+    const { update } = actions
+
+    return (
+      this.renderError() ||
+      this.renderLoading() ||
+      this.renderUpdated() ||
+      render({ info, update, updating, error }, this.props)
+    )
   }
 }
 
