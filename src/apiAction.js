@@ -42,6 +42,7 @@ const dispatchError = (dispatch, options) => async response => {
   const { prefix, requestAttributes } = options
 
   const json = await jsonResponse(response)
+  console.log(parseError(json))
 
   dispatch({
     type: `${prefix}_FAILURE`,
