@@ -40,6 +40,16 @@ const parseObject = error => {
   return error
 }
 
+const parseErrorArray = error => {
+  const messages = error.errors.fullMessages || error.errors
+  const message = isArray(messages) ? head(uniq(messages)) : messages
+  return {
+    id: error.id || error.errors.id || snakeCase(lowerCase(message)),
+    message,
+    error,
+  }
+}
+
 const parseError = error => {
   if (error instanceof Error) {
     return parseJSError(error)
@@ -53,13 +63,7 @@ const parseError = error => {
   }
 
   if (error.errors) {
-    const messages = error.errors.fullMessages || error.errors
-    const message = isArray(messages) ? head(uniq(messages)) : messages
-    return {
-      id: error.id || error.errors.id || snakeCase(lowerCase(message)),
-      message,
-      error,
-    }
+    return parseErrorArray(error)
   }
 
   return parseObject(error)
