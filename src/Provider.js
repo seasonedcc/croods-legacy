@@ -13,6 +13,7 @@ Provider.propTypes = {
   headers: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   renderLoading: PropTypes.func,
   renderError: PropTypes.func,
+  afterSuccess: PropTypes.func,
 }
 
 Provider.defaultProps = {
