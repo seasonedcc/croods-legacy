@@ -55,7 +55,7 @@ const dispatchError = (dispatch, options) => async response => {
 }
 
 const dispatchResponse = (dispatch, options) => async response => {
-  const { prefix, parseResponse, requestAttributes } = options
+  const { prefix, parseResponse, requestAttributes, afterSuccess } = options
 
   const json = await jsonResponse(response)
 
@@ -65,6 +65,8 @@ const dispatchResponse = (dispatch, options) => async response => {
       ...(parseResponse &&
         (await parseResponse(json, response, requestAttributes))),
     })
+
+    afterSuccess && afterSuccess(response, json)
   } else {
     dispatch({
       type: `${prefix}_FAILURE`,
