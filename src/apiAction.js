@@ -4,13 +4,17 @@ import snakeCase from './snakeCase'
 import parseError from './parseError'
 
 const fetchOptions = ({ method, params, credentials, headers = {} }) => {
+  const defaultHeaders = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  }
+
   const options = {
     method: method ? method : 'get',
     credentials,
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      ...headers,
+      ...defaultHeaders,
+      ...(typeof headers === 'function' ? headers(defaultHeaders) : headers),
     },
   }
 

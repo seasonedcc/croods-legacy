@@ -10,7 +10,7 @@ const Provider = ({ children, ...options }) => (
 Provider.propTypes = {
   baseUrl: PropTypes.string.isRequired,
   credentials: PropTypes.string,
-  headers: PropTypes.object,
+  headers: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   renderLoading: PropTypes.func,
   renderError: PropTypes.func,
 }
