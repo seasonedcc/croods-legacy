@@ -5,6 +5,8 @@ import create from './actions/create'
 import resetCreated from './actions/resetCreated'
 import update from './actions/update'
 import resetUpdated from './actions/resetUpdated'
+import destroy from './actions/destroy'
+import resetDestroyed from './actions/resetDestroyed'
 
 export default options => ({
   fetchList: fetchList(options),
@@ -14,4 +16,6 @@ export default options => ({
   resetCreated: resetCreated(options),
   update: update(options),
   resetUpdated: resetUpdated(options),
+  destroy: destroy(options),
+  resetDestroyed: resetDestroyed(options),
 })
