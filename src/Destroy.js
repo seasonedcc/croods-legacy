@@ -6,21 +6,21 @@ import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
 import resetIfChanged from './resetIfChanged'
 
-class Update extends Component {
+class Destroy extends Component {
   constructor(props) {
     super(props)
-    resetIfChanged({ props, prevProps: {}, name: 'updated' })
+    resetIfChanged({ props, prevProps: {}, name: 'destroyed' })
   }
 
   componentDidUpdate(prevProps) {
-    resetIfChanged({ props: this.props, prevProps, name: 'updated' })
+    resetIfChanged({ props: this.props, prevProps, name: 'destroyed' })
   }
 
   render() {
-    const { render, id, attributes, actions } = this.props
-    const update = () => actions.update({ id, ...attributes })
+    const { render, id, actions } = this.props
+    const destroy = () => actions.destroy(id)
 
-    return render(update, this.props)
+    return render(destroy, this.props)
   }
 }
 
@@ -28,5 +28,5 @@ export default withOptions(
   connect(
     mapStateToProps,
     mapDispatchToProps,
-  )(Update),
+  )(Destroy),
 )

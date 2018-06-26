@@ -11,4 +11,7 @@ export default {
   updated: null,
   updating: false,
   updateError: null,
+  destroyed: null,
+  destroying: false,
+  destroyError: null,
 }
