@@ -4,24 +4,16 @@ import { connect } from 'react-redux'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
+import resetIfChanged from './resetIfChanged'
 
 class Destroy extends Component {
   constructor(props) {
     super(props)
-    const { id, actions, destroyed } = props
-
-    if (destroyed && destroyed.id.toString() === id.toString()) {
-      actions.resetDestroyed()
-    }
+    resetIfChanged({ props, prevProps: {}, name: 'destroyed' })
   }
 
   componentDidUpdate(prevProps) {
-    const { id, actions, destroyed } = this.props
-    const { destroyed: old } = prevProps
-
-    if (destroyed && !old && destroyed.id.toString() === id.toString()) {
-      actions.resetDestroyed()
-    }
+    resetIfChanged({ props: this.props, prevProps, name: 'destroyed' })
   }
 
   render() {
