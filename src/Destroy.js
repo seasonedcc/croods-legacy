@@ -5,7 +5,7 @@ import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
 
-class Update extends Component {
+class Destroy extends Component {
   constructor(props) {
     super(props)
     const { id, actions, destroyed } = props
@@ -17,9 +17,9 @@ class Update extends Component {
 
   componentDidUpdate(prevProps) {
     const { id, actions, destroyed } = this.props
-    const { destroyed: oldUpdated } = prevProps
+    const { destroyed: old } = prevProps
 
-    if (destroyed && !oldUpdated && destroyed.id.toString() === id.toString()) {
+    if (destroyed && !old && destroyed.id.toString() === id.toString()) {
       actions.resetDestroyed()
     }
   }
@@ -36,5 +36,5 @@ export default withOptions(
   connect(
     mapStateToProps,
     mapDispatchToProps,
-  )(Update),
+  )(Destroy),
 )

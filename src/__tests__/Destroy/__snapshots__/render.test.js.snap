@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  actions={
+    Object {
+      "destroy": [Function],
+      "resetDestroyed": [Function],
+    }
+  }
+  destroy={[Function]}
+  id={123}
+  render={[Function]}
+>
+  Destroy
+</div>
+`;
+
+exports[`when destroyed resets destroyed 1`] = `
+<div
+  actions={
+    Object {
+      "destroy": [Function],
+      "resetDestroyed": [Function],
+    }
+  }
+  destroy={[Function]}
+  destroyed={
+    Object {
+      "id": 123,
+    }
+  }
+  id={123}
+  render={[Function]}
+>
+  Destroy
+</div>
+`;

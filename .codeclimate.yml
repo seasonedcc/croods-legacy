@@ -27,3 +27,4 @@ exclude_patterns:
 - ".eslintignore"
 - ".gitignore"
 - ".prettierrc"
+- example/
