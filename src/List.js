@@ -7,10 +7,21 @@ import mapDispatchToProps from './mapDispatchToProps'
 import renderIfPresent from './renderIfPresent'
 
 class List extends Component {
-  componentWillMount() {
-    const { list, actions } = this.props
+  constructor(props) {
+    super(props)
 
-    if (!list) {
+    const { list, parentId, actions } = props
+
+    if (!list || parentId) {
+      actions.fetchList()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { parentId, actions } = this.props
+    const { parentId: oldId } = prevProps
+
+    if (parentId && parentId.toString() !== oldId.toString()) {
       actions.fetchList()
     }
   }
