@@ -1,9 +1,11 @@
 import destroy from '../destroy'
 
+const options = {}
+
 describe('without action', () => {
   it('returns state', () => {
     const state = { foo: 'bar' }
-    expect(destroy(state)).toEqual({ foo: 'bar' })
+    expect(destroy(options)(state)).toEqual({ foo: 'bar' })
   })
 })
 
@@ -12,7 +14,7 @@ describe('with unknown action type', () => {
     const state = { foo: 'bar' }
     const action = { type: '@bar/FOO' }
 
-    expect(destroy(state, action)).toEqual({ foo: 'bar' })
+    expect(destroy(options)(state, action)).toEqual({ foo: 'bar' })
   })
 })
 
@@ -22,7 +24,7 @@ describe('with REQUEST action', () => {
       const state = { foo: 'bar' }
       const action = { type: '@bar/REQUEST' }
 
-      expect(destroy(state, action)).toEqual({
+      expect(destroy(options)(state, action)).toEqual({
         destroyError: null,
         destroying: true,
         foo: 'bar',
@@ -38,7 +40,7 @@ describe('with REQUEST action', () => {
         const state = { foo: 'bar', info: { id: 123 } }
         const action = { type: '@bar/REQUEST', id: 321 }
 
-        expect(destroy(state, action)).toEqual({
+        expect(destroy(options)(state, action)).toEqual({
           destroyError: null,
           destroying: true,
           foo: 'bar',
@@ -53,7 +55,7 @@ describe('with REQUEST action', () => {
         const state = { foo: 'bar', info: { id: 123 } }
         const action = { type: '@bar/REQUEST', id: 123 }
 
-        expect(destroy(state, action)).toEqual({
+        expect(destroy(options)(state, action)).toEqual({
           destroyError: null,
           destroying: true,
           foo: 'bar',
@@ -70,7 +72,7 @@ describe('with REQUEST action', () => {
       const state = { foo: 'bar', list }
       const action = { type: '@bar/REQUEST', id: 123 }
 
-      expect(destroy(state, action)).toEqual({
+      expect(destroy(options)(state, action)).toEqual({
         destroyError: null,
         destroying: true,
         foo: 'bar',
@@ -87,7 +89,7 @@ describe('with FAILURE action', () => {
       const state = { foo: 'bar' }
       const action = { type: '@bar/FAILURE', error: { message: 'fooError' } }
 
-      expect(destroy(state, action)).toEqual({
+      expect(destroy(options)(state, action)).toEqual({
         destroyError: 'fooError',
         destroying: false,
         foo: 'bar',
@@ -104,7 +106,7 @@ describe('with FAILURE action', () => {
         const error = { message: 'fooError' }
         const action = { type: '@bar/FAILURE', id: 321, error }
 
-        expect(destroy(state, action)).toEqual({
+        expect(destroy(options)(state, action)).toEqual({
           destroyError: 'fooError',
           destroying: false,
           foo: 'bar',
@@ -120,7 +122,7 @@ describe('with FAILURE action', () => {
         const error = { message: 'fooError' }
         const action = { type: '@bar/FAILURE', id: 123, error }
 
-        expect(destroy(state, action)).toEqual({
+        expect(destroy(options)(state, action)).toEqual({
           destroyError: 'fooError',
           destroying: false,
           foo: 'bar',
@@ -138,7 +140,7 @@ describe('with FAILURE action', () => {
       const error = { message: 'fooError' }
       const action = { type: '@bar/FAILURE', id: 123, error }
 
-      expect(destroy(state, action)).toEqual({
+      expect(destroy(options)(state, action)).toEqual({
         destroyError: 'fooError',
         destroying: false,
         foo: 'bar',
@@ -160,7 +162,7 @@ describe('with SUCCESS action', () => {
       const destroyed = { id: 789 }
       const action = { type: '@bar/SUCCESS', destroyed }
 
-      expect(destroy(state, action)).toEqual({
+      expect(destroy(options)(state, action)).toEqual({
         destroyed: { id: 789 },
         destroying: false,
         foo: 'bar',
@@ -177,7 +179,7 @@ describe('with SUCCESS action', () => {
       const destroyed = { id: 789 }
       const action = { type: '@bar/SUCCESS', destroyed }
 
-      expect(destroy(state, action)).toEqual({
+      expect(destroy(options)(state, action)).toEqual({
         destroyed: { id: 789 },
         destroying: false,
         foo: 'bar',

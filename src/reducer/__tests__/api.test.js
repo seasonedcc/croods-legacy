@@ -1,34 +1,40 @@
 import api from '../api'
 
-jest.mock('../fetchList', () => (state, action) => ({
+jest.mock('../fetchList', () => options => (state, action) => ({
   name: 'fetchList',
   state,
   action,
 }))
-jest.mock('../fetchInfo', () => (state, action) => ({
+
+jest.mock('../fetchInfo', () => options => (state, action) => ({
   name: 'fetchInfo',
   state,
   action,
 }))
-jest.mock('../create', () => (state, action) => ({
+
+jest.mock('../create', () => options => (state, action) => ({
   name: 'create',
   state,
   action,
 }))
-jest.mock('../update', () => (state, action) => ({
+
+jest.mock('../update', () => options => (state, action) => ({
   name: 'update',
   state,
   action,
 }))
-jest.mock('../destroy', () => (state, action) => ({
+
+jest.mock('../destroy', () => options => (state, action) => ({
   name: 'destroy',
   state,
   action,
 }))
 
+const options = {}
+
 describe('without parameters', () => {
   it('returns undefined', () => {
-    expect(api()).toEqual(undefined)
+    expect(api(options)()).toEqual(undefined)
   })
 })
 
@@ -36,7 +42,7 @@ describe('without action', () => {
   it('returns state', () => {
     const state = { foo: 'bar' }
 
-    expect(api(state)).toEqual(state)
+    expect(api(options)(state)).toEqual(state)
   })
 })
 
@@ -45,7 +51,7 @@ describe('with unknown action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/BAR_BAZ' }
 
-    expect(api(state, action)).toEqual(state)
+    expect(api(options)(state, action)).toEqual(state)
   })
 })
 
@@ -54,7 +60,7 @@ describe('with FETCH_LIST action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/FETCH_LIST_FOO' }
 
-    expect(api(state, action)).toEqual({
+    expect(api(options)(state, action)).toEqual({
       action: { type: '@foo/FETCH_LIST_FOO' },
       name: 'fetchList',
       state: { foo: 'bar' },
@@ -67,7 +73,7 @@ describe('with FETCH_INFO action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/FETCH_INFO_FOO' }
 
-    expect(api(state, action)).toEqual({
+    expect(api(options)(state, action)).toEqual({
       action: { type: '@foo/FETCH_INFO_FOO' },
       name: 'fetchInfo',
       state: { foo: 'bar' },
@@ -80,7 +86,7 @@ describe('with CREATE action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/CREATE_FOO' }
 
-    expect(api(state, action)).toEqual({
+    expect(api(options)(state, action)).toEqual({
       action: { type: '@foo/CREATE_FOO' },
       name: 'create',
       state: { foo: 'bar' },
@@ -93,7 +99,7 @@ describe('with UPDATE action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/UPDATE_FOO' }
 
-    expect(api(state, action)).toEqual({
+    expect(api(options)(state, action)).toEqual({
       action: { type: '@foo/UPDATE_FOO' },
       name: 'update',
       state: { foo: 'bar' },
@@ -106,7 +112,7 @@ describe('with DESTROY action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/DESTROY_FOO' }
 
-    expect(api(state, action)).toEqual({
+    expect(api(options)(state, action)).toEqual({
       action: { type: '@foo/DESTROY_FOO' },
       name: 'destroy',
       state: { foo: 'bar' },

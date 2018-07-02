@@ -21,7 +21,7 @@ export const apiSuffix = type => last(parseApiType(type))
 export const apiAction = type =>
   includes(['REQUEST', 'SUCCESS', 'FAILURE'], apiSuffix(type))
 
-export default ({ api, reducer }) => (state, action) => {
+export default (api, reducer) => (state, action) => {
   const computedState = state || reducer()
 
   if (!action) {
