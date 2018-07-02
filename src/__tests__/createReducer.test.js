@@ -1,15 +1,16 @@
 import createReducer from '../createReducer'
 
-jest.mock('../prefixedReducer', () => props => props)
-jest.mock('../apiReducer', () => props => props)
-jest.mock('../reducer/api', () => props => props)
+jest.mock('../prefixedReducer', () => ({ prefix, reducer }) => ({
+  prefix,
+  reducer,
+}))
+
+jest.mock('../apiReducer', () => (api, reducer) => state => state)
+jest.mock('../reducer/api', () => options => state => state)
 
 it('creates the correct reducer', () => {
   expect(createReducer('foo')).toEqual({
     prefix: '@foo',
-    reducer: {
-      api: expect.anything(),
-      reducer: expect.anything(),
-    },
+    reducer: expect.anything(),
   })
 })
