@@ -2,7 +2,7 @@ import map from 'lodash/map'
 import filter from 'lodash/filter'
 import { apiSuffix } from '../apiReducer'
 
-export default (state, action = {}) => {
+export default options => (state, action = {}) => {
   switch (apiSuffix(action.type)) {
     case 'REQUEST': {
       return {

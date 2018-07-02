@@ -1,7 +1,7 @@
 import concat from 'lodash/concat'
 import { apiSuffix } from '../apiReducer'
 
-export default (state, action = {}) => {
+export default ({ addCreatedToTop }) => (state, action = {}) => {
   switch (apiSuffix(action.type)) {
     case 'REQUEST': {
       return {
@@ -23,7 +23,11 @@ export default (state, action = {}) => {
         creating: false,
         created: action.created,
         info: action.created,
-        list: state.list ? concat(state.list, [action.created]) : null,
+        list: state.list
+          ? addCreatedToTop
+            ? concat([action.created], state.list)
+            : concat(state.list, [action.created])
+          : null,
       }
     }
     default:

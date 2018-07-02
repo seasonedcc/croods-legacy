@@ -4,8 +4,8 @@ import reducer from './baseReducer'
 
 import api from './reducer/api'
 
-export default name =>
+export default (name, options = {}) =>
   prefixedReducer({
     prefix: `@${name}`,
-    reducer: apiReducer({ api, reducer }),
+    reducer: apiReducer(api(options), reducer),
   })
