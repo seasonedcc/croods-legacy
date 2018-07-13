@@ -6,8 +6,12 @@ import ImportedNew from './New'
 import ImportedEdit from './Edit'
 import ImportedUpdate from './Update'
 import ImportedDestroy from './Destroy'
+import importedWithOptions from './withOptions'
+import ImportedOptions from './Options'
 
 export const Provider = ImportedProvider
+export const withOptions = importedWithOptions
+export const Options = ImportedOptions
 export const createReducer = importedCreateReducer
 export const List = ImportedList
 export const Info = ImportedInfo
