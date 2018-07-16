@@ -51,6 +51,18 @@ describe('with RESET_CREATED action', () => {
   })
 })
 
+describe('with RESET_CREATE_ERROR action', () => {
+  it('returns the correct state', () => {
+    const action = { type: '@foo/RESET_CREATE_ERROR' }
+    const state = { foo: 'bar', createError: { bar: 'foo' } }
+
+    expect(baseReducer(state, action)).toEqual({
+      foo: 'bar',
+      createError: null,
+    })
+  })
+})
+
 describe('with RESET_UPDATED action', () => {
   it('returns the correct state', () => {
     const action = { type: '@foo/RESET_UPDATED' }

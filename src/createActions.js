@@ -3,6 +3,7 @@ import fetchInfo from './actions/fetchInfo'
 import setInfo from './actions/setInfo'
 import create from './actions/create'
 import resetCreated from './actions/resetCreated'
+import resetCreateError from './actions/resetCreateError'
 import update from './actions/update'
 import resetUpdated from './actions/resetUpdated'
 import destroy from './actions/destroy'
@@ -14,6 +15,7 @@ export default options => ({
   setInfo: setInfo(options),
   create: create(options),
   resetCreated: resetCreated(options),
+  resetCreateError: resetCreateError(options),
   update: update(options),
   resetUpdated: resetUpdated(options),
   destroy: destroy(options),
