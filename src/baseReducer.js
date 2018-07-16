@@ -10,6 +10,9 @@ export default (state = initialState, action = {}) => {
     case 'RESET_CREATED': {
       return { ...state, created: null }
     }
+    case 'RESET_CREATE_ERROR': {
+      return { ...state, createError: null }
+    }
     case 'RESET_UPDATED': {
       return { ...state, updated: null }
     }

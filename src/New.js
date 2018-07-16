@@ -7,6 +7,13 @@ import mapDispatchToProps from './mapDispatchToProps'
 import renderIfPresent from './renderIfPresent'
 
 class New extends Component {
+  constructor(props) {
+    super(props)
+    const { createError, actions } = props
+
+    createError && actions.resetCreateError()
+  }
+
   componentDidUpdate(prevProps) {
     const { actions, created } = this.props
     const { created: oldCreated } = prevProps
