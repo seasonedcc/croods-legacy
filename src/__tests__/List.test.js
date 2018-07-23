@@ -12,6 +12,8 @@ jest.mock('react-redux', () => ({
   connect: jest.fn(() => Component => Component),
 }))
 
+const path = '/foo'
+
 const render = jest.fn((list, props) => (
   <div list={list} {...props}>
     List
@@ -26,16 +28,16 @@ beforeEach(() => {
 })
 
 it('renders correctly', () => {
-  const props = { actions, render }
+  const props = { actions, render, path }
   const tree = renderer.create(<List {...props} />).toJSON()
 
   expect(tree).toMatchSnapshot()
   expect(connect).toHaveBeenCalledWith(mapStateToProps, mapDispatchToProps)
-  expect(actions.fetchList).toHaveBeenCalledWith()
+  expect(actions.fetchList).toHaveBeenCalledWith(path)
 })
 
 it('renders correctly with a previous list', () => {
-  const props = { actions, render, list: ['foo', 'bar'] }
+  const props = { actions, render, listPath: path, path, list: ['foo', 'bar'] }
   const tree = renderer.create(<List {...props} />).toJSON()
 
   expect(tree).toMatchSnapshot()
@@ -45,7 +47,7 @@ it('renders correctly with a previous list', () => {
 describe('with errors', () => {
   it('with renderError, renders error correctly', () => {
     const renderError = jest.fn(error => <div>Error: {error}</div>)
-    const props = { actions, render, listError: 'foo', renderError }
+    const props = { actions, render, path, listError: 'foo', renderError }
     const tree = renderer.create(<List {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -53,7 +55,7 @@ describe('with errors', () => {
   })
 
   it('without renderError, renders list', () => {
-    const props = { actions, render, listError: 'foo' }
+    const props = { actions, render, path, listError: 'foo' }
     const tree = renderer.create(<List {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -64,7 +66,7 @@ describe('with errors', () => {
 describe('with renderLoading and fetchingList', () => {
   it('renders loading correctly', () => {
     const renderLoading = jest.fn(() => <div>Loading</div>)
-    const props = { actions, render, fetchingList: true, renderLoading }
+    const props = { actions, render, path, fetchingList: true, renderLoading }
     const tree = renderer.create(<List {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -75,7 +77,7 @@ describe('with renderLoading and fetchingList', () => {
 describe('with renderLoading and list', () => {
   it('renders list correctly', () => {
     const renderLoading = jest.fn(() => <div>Loading</div>)
-    const props = { actions, render, renderLoading, list: [1, 2, 3] }
+    const props = { actions, render, path, renderLoading, list: [1, 2, 3] }
     const tree = renderer.create(<List {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -84,7 +86,7 @@ describe('with renderLoading and list', () => {
 
 describe('without renderLoading and with fetchingList', () => {
   it('renders list correctly', () => {
-    const props = { actions, render, fetchingList: true }
+    const props = { actions, render, path, fetchingList: true }
     const tree = renderer.create(<List {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -98,6 +100,7 @@ describe('with renderLoading, fetchingList and list', () => {
     const props = {
       actions,
       render,
+      path,
       fetchingList: true,
       renderLoading,
       list: [1, 2, 3],

@@ -10,19 +10,22 @@ class List extends Component {
   constructor(props) {
     super(props)
 
-    const { list, parentId, actions } = props
+    const { list, parentId, path, listPath, actions } = props
 
-    if (!list || parentId) {
-      actions.fetchList()
+    if (!list || parentId || path !== listPath) {
+      actions.fetchList(path)
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { parentId, actions } = this.props
-    const { parentId: oldId } = prevProps
+    const { parentId, path, actions } = this.props
+    const { parentId: oldId, path: oldPath } = prevProps
 
-    if (parentId && parentId.toString() !== oldId.toString()) {
-      actions.fetchList()
+    const parentChanged = parentId && parentId.toString() !== oldId.toString()
+    const pathChanged = path && path.toString() !== oldPath.toString()
+
+    if (parentChanged || pathChanged) {
+      actions.fetchList(path)
     }
   }
 

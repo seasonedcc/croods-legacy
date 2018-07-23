@@ -1,4 +1,5 @@
 export default {
+  listPath: null,
   list: null,
   fetchingList: false,
   listError: null,

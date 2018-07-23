@@ -3,6 +3,7 @@ import baseReducer from '../baseReducer'
 describe('without action and without state', () => {
   it('returns initial state', () => {
     expect(baseReducer()).toEqual({
+      listPath: null,
       createError: null,
       created: null,
       creating: false,

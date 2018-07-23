@@ -5,6 +5,7 @@ export default options => (state, action = {}) => {
     case 'REQUEST': {
       return {
         ...state,
+        listPath: action.path,
         fetchingList: true,
         listError: null,
       }
