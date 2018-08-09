@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Link from 'react-router-dom/Link'
 import { List } from 'croods'
 
-import Children from '../Children'
 import Destroy from './Destroy'
 import Lighten from './Lighten'
 import Darken from './Darken'
@@ -11,7 +10,7 @@ export default props => (
   <List
     name="colors"
     render={list => (
-      <Children>
+      <Fragment>
         <h1>Colors</h1>
         {list.map(item => {
           const { id, name, color, updating, updateError, destroying } = item
@@ -33,10 +32,10 @@ export default props => (
               ) : updateError ? (
                 <span style={{ color: 'red' }}>{updateError}</span>
               ) : (
-                <Children>
+                <Fragment>
                   <Link to={`/${id}/edit`}>Edit</Link> | <Destroy id={id} /> |{' '}
                   <Lighten {...item} /> | <Darken {...item} />
-                </Children>
+                </Fragment>
               )}
             </div>
           )
@@ -44,7 +43,7 @@ export default props => (
         <Link to="/new" style={{ display: 'block', marginTop: 20 }}>
           New
         </Link>
-      </Children>
+      </Fragment>
     )}
   />
 )
