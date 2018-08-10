@@ -6,18 +6,16 @@ export default ({ id }) => (
     id={id}
     name="colors"
     parseDestroyResponse={() => ({ destroyed: { id } })}
-    render={destroy => {
-      return (
-        <a
-          href="#destroy"
-          onClick={event => {
-            event.preventDefault()
-            destroy()
-          }}
-        >
-          Delete
-        </a>
-      )
-    }}
+    render={destroy => (
+      <a
+        href="#destroy"
+        onClick={event => {
+          event.preventDefault()
+          destroy()
+        }}
+      >
+        Delete
+      </a>
+    )}
   />
 )

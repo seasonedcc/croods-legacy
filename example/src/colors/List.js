@@ -15,6 +15,7 @@ export default props => (
         {list.map(item => {
           const { id, name, color, updating, updateError, destroying } = item
           const { destroyError } = item
+          const error = destroyError || updateError
 
           return (
             <div key={id}>
@@ -27,14 +28,17 @@ export default props => (
                 <span>Updating...</span>
               ) : destroying ? (
                 <span>Deleting...</span>
-              ) : destroyError ? (
-                <span style={{ color: 'red' }}>{destroyError}</span>
-              ) : updateError ? (
-                <span style={{ color: 'red' }}>{updateError}</span>
+              ) : error ? (
+                <span style={{ color: 'red' }}>{error}</span>
               ) : (
                 <Fragment>
-                  <Link to={`/${id}/edit`}>Edit</Link> | <Destroy id={id} /> |{' '}
-                  <Lighten {...item} /> | <Darken {...item} />
+                  <Link to={`/${id}/edit`}>Edit</Link>
+                  {' | '}
+                  <Destroy id={id} />
+                  {' | '}
+                  <Lighten {...item} />
+                  {' | '}
+                  <Darken {...item} />
                 </Fragment>
               )}
             </div>
