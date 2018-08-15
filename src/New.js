@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-
+import PropTypes from 'prop-types'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
@@ -34,6 +34,16 @@ class New extends Component {
     )
   }
 }
+
+New.propTypes = {
+  actions: PropTypes.object,
+  created: PropTypes.object,
+  creating: PropTypes.bool,
+  renderCreated: PropTypes.func,
+  render: PropTypes.func,
+  createError: PropTypes.object
+}
+
 
 export default withOptions(
   connect(
