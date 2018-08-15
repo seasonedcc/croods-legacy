@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
@@ -40,6 +41,20 @@ class Edit extends Component {
     )
   }
 }
+
+Edit.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  actions: PropTypes.object,
+  update: PropTypes.string,
+  info: PropTypes.object,
+  infoError: PropTypes.string,
+  update: PropTypes.bool,
+  updateError: PropTypes.func,
+  render: PropTypes.func,
+  renderUpdated: PropTypes.func,
+  renderError: PropTypes.func
+}
+
 
 export default withOptions(
   connect(
