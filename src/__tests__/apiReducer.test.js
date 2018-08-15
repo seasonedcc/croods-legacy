@@ -1,4 +1,9 @@
-import apiReducer, { parseApiType, apiPrefix, apiSuffix, isApiAction } from '../apiReducer'
+import apiReducer, {
+  parseApiType,
+  apiPrefix,
+  apiSuffix,
+  isApiAction,
+} from '../apiReducer'
 
 const ACTION_TYPE = '@colors/FETCH_INFO_SUCCESS'
 
@@ -19,14 +24,20 @@ describe('apiReducer', () => {
     const reducer = (state, action) => ({ ...state, info: action.info })
     const initialState = { one: 1 }
     const action = { info: 'foo' }
-    expect(apiReducer(null, reducer)(initialState, action)).toEqual({ one: 1, info: 'foo' })
+    expect(apiReducer(null, reducer)(initialState, action)).toEqual({
+      one: 1,
+      info: 'foo',
+    })
   })
 
   it('returns processed state from api when it is an apiAction', () => {
     const api = (state, action) => ({ ...state, info: action.info })
     const initialState = { one: 1 }
     const action = { type: ACTION_TYPE, info: 'foo' }
-    expect(apiReducer(api)(initialState, action)).toEqual({ one: 1, info: 'foo' })
+    expect(apiReducer(api)(initialState, action)).toEqual({
+      one: 1,
+      info: 'foo',
+    })
   })
 })
 

@@ -3,7 +3,12 @@ import humps from 'lodash-humps'
 import snakeCase from './snakeCase'
 import parseError from './parseError'
 
-const fetchOptions = ({ method = 'get', params, credentials, headers = {} }) => {
+const fetchOptions = ({
+  method = 'get',
+  params,
+  credentials,
+  headers = {},
+}) => {
   const defaultHeaders = {
     Accept: 'application/json',
     'Content-Type': 'application/json',

@@ -1,5 +1,3 @@
-import identity from 'lodash/identity'
-
 import initialState from './reducer/initialState'
 import nestedReducer from './nestedReducer'
 import { suffix } from './prefixedReducer'

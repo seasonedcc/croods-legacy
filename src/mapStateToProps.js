@@ -1,6 +1,5 @@
 import find from 'lodash/find'
 import get from 'lodash/get'
-import split from 'lodash/split'
 
 export default (state, { name, parentId }) => {
   const statePart = get(state, name)
