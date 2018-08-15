@@ -40,7 +40,7 @@ Info.propTypes = {
   render: PropTypes.func,
   infoError: PropTypes.object,
   renderError: PropTypes.func,
-  info: PropTypes.object
+  info: PropTypes.object,
 }
 
 export default withOptions(

@@ -52,9 +52,8 @@ Edit.propTypes = {
   updateError: PropTypes.func,
   render: PropTypes.func,
   renderUpdated: PropTypes.func,
-  renderError: PropTypes.func
+  renderError: PropTypes.func,
 }
-
 
 export default withOptions(
   connect(

@@ -41,9 +41,8 @@ New.propTypes = {
   creating: PropTypes.bool,
   renderCreated: PropTypes.func,
   render: PropTypes.func,
-  createError: PropTypes.object
+  createError: PropTypes.object,
 }
-
 
 export default withOptions(
   connect(

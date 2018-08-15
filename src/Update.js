@@ -29,7 +29,7 @@ Update.propTypes = {
   render: PropTypes.func,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   attributes: PropTypes.object,
-  actions: PropTypes.object
+  actions: PropTypes.object,
 }
 
 export default withOptions(
