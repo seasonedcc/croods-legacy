@@ -1,6 +1,7 @@
 import identity from 'lodash/identity'
 
 import initialState from './reducer/initialState'
+import nestedReducer from './nestedReducer'
 import { suffix } from './prefixedReducer'
 
 const reducers = {
@@ -11,5 +12,7 @@ const reducers = {
   RESET_DESTROYED: (state, action) => ({ ...state, destroyed: null }),
 }
 
-export default (state = initialState, action = {}) =>
-  (reducers[suffix(action.type)] || identity)(state, action)
+export default (state = initialState, action = {}) => {
+  const reducer = nestedReducer(reducers[suffix(action.type)])
+  return reducer(state, action)
+}
