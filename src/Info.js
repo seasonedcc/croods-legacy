@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
@@ -32,6 +33,14 @@ class Info extends Component {
       render(info, this.props)
     )
   }
+}
+
+Info.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  render: PropTypes.func,
+  infoError: PropTypes.object,
+  renderError: PropTypes.func,
+  info: PropTypes.object
 }
 
 export default withOptions(
