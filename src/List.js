@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
@@ -46,6 +47,19 @@ class List extends Component {
       render(list, this.props)
     )
   }
+}
+
+List.propTypes = {
+  list: PropTypes.array,
+  actions: PropTypes.object,
+  parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  path: PropTypes.string,
+  listPath: PropTypes.string,
+  renderLoading: PropTypes.func,
+  fetchingList: PropTypes.bool,
+  render: PropTypes.func,
+  listError: PropTypes.object,
+  renderError: PropTypes.func,
 }
 
 export default withOptions(
