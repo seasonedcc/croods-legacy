@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
@@ -22,6 +23,13 @@ class Update extends Component {
 
     return render(update, this.props)
   }
+}
+
+Update.propTypes = {
+  render: PropTypes.func,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  attributes: PropTypes.object,
+  actions: PropTypes.object
 }
 
 export default withOptions(
