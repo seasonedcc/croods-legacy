@@ -43,17 +43,19 @@ class Edit extends Component {
 }
 
 Edit.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  actions: PropTypes.object,
-  update: PropTypes.string,
-  info: PropTypes.object,
-  infoError: PropTypes.string,
-  update: PropTypes.bool,
-  updateError: PropTypes.func,
-  render: PropTypes.func,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  render: PropTypes.func.isRequired,
   renderUpdated: PropTypes.func,
   renderError: PropTypes.func,
+  info: PropTypes.object,
 }
+
+// INTERNAL PROPS
+// actions: object
+// updated: object
+// updating: bool
+// infoError: string
+// updateError: func
 
 export default withOptions(
   connect(
