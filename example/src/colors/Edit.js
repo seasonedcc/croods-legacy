@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Link from 'react-router-dom/Link'
 import Redirect from 'react-router-dom/Redirect'
 import { Edit } from 'croods'
 
-import Children from '../Children'
 import Form from './Form'
 
 export default ({ match: { params } }) => {
@@ -17,7 +16,7 @@ export default ({ match: { params } }) => {
         const { name } = info
 
         return (
-          <Children>
+          <Fragment>
             <h1>{name}</h1>
             <Form
               onSubmit={update}
@@ -25,7 +24,7 @@ export default ({ match: { params } }) => {
               initialValues={info}
             />
             <Link to="/">Back</Link>
-          </Children>
+          </Fragment>
         )
       }}
       renderUpdated={({ id }) => <Redirect to={`/${id}`} />}

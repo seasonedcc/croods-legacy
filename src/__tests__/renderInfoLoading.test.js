@@ -8,7 +8,7 @@ describe('with a function with fetching', () => {
 
   it('renders loading', () => {
     renderInfoLoading(props)
-    expect(props.renderLoading).toHaveBeenCalledWith()
+    expect(props.renderLoading).toHaveBeenCalledWith({})
   })
 })
 
@@ -20,7 +20,7 @@ describe('with a function, without info', () => {
 
   it('renders loading', () => {
     renderInfoLoading(props)
-    expect(props.renderLoading).toHaveBeenCalledWith()
+    expect(props.renderLoading).toHaveBeenCalledWith({})
   })
 })
 

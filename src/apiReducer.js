@@ -5,10 +5,8 @@ import includes from 'lodash/includes'
 import initial from 'lodash/initial'
 import join from 'lodash/join'
 
-import { parseType } from './prefixedReducer'
-
 export const parseApiType = type => {
-  const [, actionSuffix] = parseType(type)
+  const [, actionSuffix] = split(type, '/')
   const parsedType = split(actionSuffix, '_')
   const suffix = last(parsedType)
   const prefix = join(initial(parsedType), '_')
@@ -18,17 +16,16 @@ export const parseApiType = type => {
 export const apiPrefix = type => first(parseApiType(type))
 export const apiSuffix = type => last(parseApiType(type))
 
-export const apiAction = type =>
+export const isApiAction = type =>
   includes(['REQUEST', 'SUCCESS', 'FAILURE'], apiSuffix(type))
 
 export default (api, reducer) => (state, action) => {
   const computedState = state || reducer()
-
   if (!action) {
     return computedState
   }
 
-  if (apiAction(action.type)) {
+  if (isApiAction(action.type)) {
     return api(computedState, action)
   }
 

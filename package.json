@@ -1,10 +1,10 @@
 {
   "name": "croods",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "A React + Redux framework for creating CRUDs",
   "author": "danielweinmann",
   "license": "MIT",
-  "repository": "danielweinmann/croods",
+  "repository": "SeasonedSoftware/croods",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
