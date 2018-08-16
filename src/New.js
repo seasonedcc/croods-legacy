@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+
+import providerProps from './providerProps'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
@@ -36,27 +38,15 @@ class New extends Component {
 }
 
 New.propTypes = {
-  render: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired, // match foo.bar
+  render: PropTypes.func.isRequired, // ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> Html
+  renderCreated: PropTypes.func, // (created = {}) -> Html
   parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  renderCreated: PropTypes.func,
-  // Subscribe Provider
-  path: PropTypes.string,
-  baseUrl:  PropTypes.string,
-  credentials: PropTypes.string,
-  headers: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  parseListResponse: PropTypes.func,
-  parseInfoResponse: PropTypes.func,
-  parseUpdateResponse: PropTypes.func,
-  renderLoading: PropTypes.func,
-  renderError: PropTypes.func,
-  afterSuccess: PropTypes.func,
-}
+  path: PropTypes.string, // match /foo/bar-_12?&=
+  parseCreateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 
-// INTERNAL PROPS
-// actions: object
-// created: object
-// creating: bool
-// createError: object
+  ...providerProps,
+}
 
 export default withOptions(
   connect(

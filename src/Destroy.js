@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import providerProps from './providerProps'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
@@ -27,23 +28,14 @@ class Destroy extends Component {
 
 Destroy.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  render: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired, // match foo.bar
+  render: PropTypes.func.isRequired, // (destroy, props) -> Html
   parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  // Subscribe Provider
-  path: PropTypes.string,
-  baseUrl:  PropTypes.string,
-  credentials: PropTypes.string,
-  headers: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  parseListResponse: PropTypes.func,
-  parseInfoResponse: PropTypes.func,
-  parseUpdateResponse: PropTypes.func,
-  renderLoading: PropTypes.func,
-  renderError: PropTypes.func,
-  afterSuccess: PropTypes.func,
+  path: PropTypes.string, // match /foo/bar-_12?&=
+  parseDestroyResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 
+  ...providerProps,
 }
-// INTERNAL PROPS
-// actions: object
 
 export default withOptions(
   connect(
