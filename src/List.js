@@ -33,7 +33,7 @@ class List extends Component {
     const { renderLoading, list, fetchingList } = this.props
 
     if (renderLoading && (!list || fetchingList)) {
-      return renderLoading()
+      return renderLoading({})
     }
   }
 
