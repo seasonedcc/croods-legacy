@@ -37,10 +37,19 @@ class Info extends Component {
 
 Info.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  info: PropTypes.object.isRequired,
   render: PropTypes.func.isRequired,
   parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // Subscribe Provider
+  path: PropTypes.string,
+  baseUrl:  PropTypes.string,
+  credentials: PropTypes.string,
+  headers: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  parseListResponse: PropTypes.func,
+  parseInfoResponse: PropTypes.func,
+  parseUpdateResponse: PropTypes.func,
+  renderLoading: PropTypes.func,
   renderError: PropTypes.func,
+  afterSuccess: PropTypes.func,
 }
 
 // INTERNAL PROPS
