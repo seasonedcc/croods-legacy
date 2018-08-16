@@ -47,8 +47,18 @@ Edit.propTypes = {
   parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   render: PropTypes.func.isRequired,
   renderUpdated: PropTypes.func,
+  // Subscribe Provider
+  path: PropTypes.string,
+  baseUrl:  PropTypes.string,
+  credentials: PropTypes.string,
+  headers: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  parseListResponse: PropTypes.func,
+  parseInfoResponse: PropTypes.func,
+  parseUpdateResponse: PropTypes.func,
+  renderLoading: PropTypes.func,
   renderError: PropTypes.func,
-  info: PropTypes.object,
+  afterSuccess: PropTypes.func,
+
 }
 
 // INTERNAL PROPS

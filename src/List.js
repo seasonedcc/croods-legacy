@@ -53,8 +53,18 @@ List.propTypes = {
   render: PropTypes.func.isRequired,
   list: PropTypes.array,
   parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  renderError: PropTypes.func,
+  // Subscribe Provider
+  path: PropTypes.string,
+  baseUrl:  PropTypes.string,
+  credentials: PropTypes.string,
+  headers: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  parseListResponse: PropTypes.func,
+  parseInfoResponse: PropTypes.func,
+  parseUpdateResponse: PropTypes.func,
   renderLoading: PropTypes.func,
+  renderError: PropTypes.func,
+  afterSuccess: PropTypes.func,
+
 }
 
 // INTERNAL PROPS
