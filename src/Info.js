@@ -36,12 +36,14 @@ class Info extends Component {
 }
 
 Info.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  render: PropTypes.func,
-  infoError: PropTypes.object,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  info: PropTypes.object.isRequired,
+  render: PropTypes.func.isRequired,
   renderError: PropTypes.func,
-  info: PropTypes.object,
 }
+
+// INTERNAL PROPS
+// infoError: PropTypes.object,
 
 export default withOptions(
   connect(
