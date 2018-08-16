@@ -1,4 +1,3 @@
-import map from 'lodash/map'
 import filter from 'lodash/filter'
 import { apiSuffix } from '../apiReducer'
 
@@ -15,7 +14,7 @@ export default options => (state, action = {}) => {
             : state.info
           : null,
         list: state.list
-          ? map(state.list, item => {
+          ? state.list.map(item => {
               if (item.id.toString() === action.id.toString()) {
                 return { ...item, destroying: true }
               }
@@ -39,7 +38,7 @@ export default options => (state, action = {}) => {
             : state.info
           : null,
         list: state.list
-          ? map(state.list, item => {
+          ? state.list.map(item => {
               if (item.id.toString() === action.id.toString()) {
                 return {
                   ...item,
