@@ -24,7 +24,7 @@ beforeEach(() => {
 
 describe('without createError', () => {
   it('does not reset create error', () => {
-    const props = { render, actions }
+    const props = { name: 'colors', render, actions }
     renderer.create(<New {...props} />)
 
     expect(actions.resetCreateError).not.toHaveBeenCalled()
@@ -33,7 +33,7 @@ describe('without createError', () => {
 
 describe('with createError', () => {
   it('resets create error', () => {
-    const props = { render, actions, createError: 'foo' }
+    const props = { name: 'colors', render, actions, createError: 'foo' }
     renderer.create(<New {...props} />)
 
     expect(actions.resetCreateError).toHaveBeenCalledWith()

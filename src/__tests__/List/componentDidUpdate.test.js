@@ -16,9 +16,16 @@ const render = jest.fn((list, props) => (
   </div>
 ))
 const actions = { fetchList: jest.fn() }
-const parentId = { toString: jest.fn(() => '1234') }
+const parentId = '1234'
 
-const props = { actions, render, listPath: path, path, list: ['foo', 'bar'] }
+const props = {
+  name: 'colors',
+  actions,
+  render,
+  listPath: path,
+  path,
+  list: ['foo', 'bar'],
+}
 
 describe('when path changes', () => {
   it('calls fetchList with new path', () => {
@@ -26,6 +33,7 @@ describe('when path changes', () => {
 
     actions.fetchList.mockClear()
     const props2 = {
+      name: 'colors',
       actions,
       render,
       listPath: '/bar',
@@ -42,7 +50,7 @@ describe('when parentId changes', () => {
     const tree = renderer.create(<List {...props} parentId={parentId} />)
 
     actions.fetchList.mockClear()
-    const newParentId = { toString: jest.fn(() => '4321') }
+    const newParentId = '4321'
     tree.update(<List {...props} parentId={newParentId} />)
     expect(actions.fetchList).toHaveBeenCalledWith('/foo')
   })

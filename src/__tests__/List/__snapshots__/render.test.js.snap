@@ -8,6 +8,7 @@ exports[`renders correctly 1`] = `
     }
   }
   list={undefined}
+  name="colors"
   path="/foo"
   render={[Function]}
 >
@@ -29,6 +30,7 @@ exports[`renders correctly with a previous list 1`] = `
     ]
   }
   listPath="/foo"
+  name="colors"
   path="/foo"
   render={[Function]}
 >
@@ -52,6 +54,7 @@ exports[`with errors without renderError, renders list 1`] = `
   }
   list={undefined}
   listError="foo"
+  name="colors"
   path="/foo"
   render={[Function]}
 >
@@ -79,6 +82,7 @@ exports[`with renderLoading and list renders list correctly 1`] = `
       3,
     ]
   }
+  name="colors"
   path="/foo"
   render={[Function]}
   renderLoading={[Function]}
@@ -102,6 +106,7 @@ exports[`without renderLoading and with fetchingList renders list correctly 1`] 
   }
   fetchingList={true}
   list={undefined}
+  name="colors"
   path="/foo"
   render={[Function]}
 >
