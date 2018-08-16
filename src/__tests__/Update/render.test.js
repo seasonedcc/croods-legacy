@@ -29,7 +29,7 @@ beforeEach(() => {
 })
 
 it('renders correctly', () => {
-  const props = { render, actions, id: 123 }
+  const props = { name: 'colors', attributes: {}, render, actions, id: 123 }
   const tree = renderer.create(<Update {...props} />).toJSON()
 
   expect(tree).toMatchSnapshot()
@@ -41,7 +41,14 @@ it('renders correctly', () => {
 describe('when updated', () => {
   it('resets updated', () => {
     const updated = { id: 123 }
-    const props = { render, actions, id: 123, updated }
+    const props = {
+      name: 'colors',
+      attributes: {},
+      render,
+      actions,
+      id: 123,
+      updated,
+    }
     const tree = renderer.create(<Update {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()

@@ -10,6 +10,7 @@ exports[`renders correctly 1`] = `
   create={undefined}
   creating={undefined}
   error={undefined}
+  name="colors"
   render={[Function]}
 >
   New
@@ -34,6 +35,7 @@ exports[`with renderCreated and without created renders edit 1`] = `
   create={undefined}
   creating={undefined}
   error={undefined}
+  name="colors"
   render={[Function]}
   renderCreated={[Function]}
 >
@@ -56,6 +58,7 @@ exports[`without renderCreated and with created renders new 1`] = `
   }
   creating={undefined}
   error={undefined}
+  name="colors"
   render={[Function]}
 >
   New

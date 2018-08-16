@@ -8,7 +8,9 @@ exports[`renders correctly 1`] = `
     }
   }
   error={undefined}
+  id={1}
   info={undefined}
+  name="colors"
   render={[Function]}
   update={[Function]}
   updating={undefined}
@@ -32,7 +34,9 @@ exports[`with renderError and without infoError renders edit 1`] = `
     }
   }
   error={undefined}
+  id={1}
   info={undefined}
+  name="colors"
   render={[Function]}
   renderError={[Function]}
   update={[Function]}
@@ -56,11 +60,13 @@ exports[`with renderLoading and info renders edit correctly 1`] = `
     }
   }
   error={undefined}
+  id={1}
   info={
     Object {
       "foo": "bar",
     }
   }
+  name="colors"
   render={[Function]}
   renderLoading={[Function]}
   update={[Function]}
@@ -84,7 +90,9 @@ exports[`with renderUpdated and not updated renders edit 1`] = `
     }
   }
   error={undefined}
+  id={1}
   info={undefined}
+  name="colors"
   render={[Function]}
   renderUpdated={[Function]}
   update={[Function]}
@@ -111,7 +119,9 @@ exports[`without renderLoading and with fetchingInfo renders edit correctly 1`] 
   }
   error={undefined}
   fetchingInfo={true}
+  id={1}
   info={undefined}
+  name="colors"
   render={[Function]}
   update={[Function]}
   updating={undefined}

@@ -27,7 +27,7 @@ beforeEach(() => {
 })
 
 it('renders correctly', () => {
-  const props = { render }
+  const props = { id: 1, name: 'colors', render }
   const tree = renderer.create(<Info {...props} />).toJSON()
 
   expect(tree).toMatchSnapshot()
@@ -39,7 +39,9 @@ describe('with renderError and without infoError', () => {
   it('renders Info', () => {
     const renderError = jest.fn(error => <div>Error: {error}</div>)
     const props = { render, renderError }
-    const tree = renderer.create(<Info {...props} />).toJSON()
+    const tree = renderer
+      .create(<Info id={1} name="colors" {...props} />)
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -49,7 +51,9 @@ describe('with renderError and infoError', () => {
   it('renders error', () => {
     const renderError = jest.fn(error => <div>Error: {error}</div>)
     const props = { render, renderError, infoError: 'foo' }
-    const tree = renderer.create(<Info {...props} />).toJSON()
+    const tree = renderer
+      .create(<Info id={1} name="colors" {...props} />)
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -59,7 +63,9 @@ describe('with renderLoading and fetchingInfo', () => {
   it('renders loading correctly', () => {
     const renderLoading = jest.fn(() => <div>Loading</div>)
     const props = { render, fetchingInfo: true, renderLoading }
-    const tree = renderer.create(<Info {...props} />).toJSON()
+    const tree = renderer
+      .create(<Info id={1} name="colors" {...props} />)
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
     expect(render).not.toHaveBeenCalled()
@@ -70,7 +76,9 @@ describe('with renderLoading and info', () => {
   it('renders info correctly', () => {
     const renderLoading = jest.fn(() => <div>Loading</div>)
     const props = { render, renderLoading, info: { foo: 'bar' } }
-    const tree = renderer.create(<Info {...props} />).toJSON()
+    const tree = renderer
+      .create(<Info id={1} name="colors" {...props} />)
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -79,7 +87,9 @@ describe('with renderLoading and info', () => {
 describe('without renderLoading and with fetchingInfo', () => {
   it('renders info correctly', () => {
     const props = { render, fetchingInfo: true }
-    const tree = renderer.create(<Info {...props} />).toJSON()
+    const tree = renderer
+      .create(<Info id={1} name="colors" {...props} />)
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
     expect(render).toHaveBeenCalled()
@@ -96,7 +106,9 @@ describe('with renderLoading, fetchingInfo and info', () => {
       info: { foo: 'bar' },
     }
 
-    const tree = renderer.create(<Info {...props} />).toJSON()
+    const tree = renderer
+      .create(<Info id={1} name="colors" {...props} />)
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
     expect(render).not.toHaveBeenCalled()
