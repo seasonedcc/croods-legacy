@@ -5,12 +5,12 @@ import Options from '../Options'
 
 jest.mock('../Context', () => ({
   Consumer: ({ children }) => (
-    <div>Consumer - {children({ foo: 'bar', quu: 'foo' })}</div>
+    <div>Consumer - {children({ foo: 'baz', quu: 'foo' })}</div>
   ),
 }))
 
 it('renders correctly', () => {
-  const props = { foo: 'bar' }
+  const props = { foo: 'baz' }
   const render = props => <div {...props}>Render</div>
   const tree = renderer.create(<Options {...props} render={render} />).toJSON()
   expect(tree).toMatchSnapshot()
