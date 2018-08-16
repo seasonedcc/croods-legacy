@@ -1,9 +1,11 @@
 import find from 'lodash/find'
+import toString from 'lodash/toString'
 import map from 'lodash/map'
 import { getInitialState } from './reducer/initialState'
 
 export default reducer => (state, action = {}) => {
-  const isCurrentBlock = ({ parentId }) => parentId === action.parentId
+  const isCurrentBlock = ({ parentId }) =>
+    toString(parentId) === toString(action.parentId)
   const statePart = find(state, isCurrentBlock)
   const newState = statePart
     ? state

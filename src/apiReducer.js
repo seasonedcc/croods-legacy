@@ -21,7 +21,6 @@ export const isApiAction = type =>
 
 export default (api, reducer) => (state, action) => {
   const computedState = state || reducer()
-
   if (!action) {
     return computedState
   }
