@@ -48,11 +48,12 @@ const jsonResponse = async response => {
 }
 
 const dispatchError = (dispatch, options) => async response => {
-  const { prefix, requestAttributes } = options
+  const { parentId, prefix, requestAttributes } = options
 
   const json = await jsonResponse(response)
 
   dispatch({
+    parentId,
     type: `${prefix}_FAILURE`,
     ...requestAttributes,
     error: parseError(json),
@@ -60,12 +61,19 @@ const dispatchError = (dispatch, options) => async response => {
 }
 
 const dispatchResponse = (dispatch, options) => async response => {
-  const { prefix, parseResponse, requestAttributes, afterSuccess } = options
+  const {
+    parentId,
+    prefix,
+    parseResponse,
+    requestAttributes,
+    afterSuccess,
+  } = options
 
   const json = await jsonResponse(response)
 
   if (response.ok) {
     dispatch({
+      parentId,
       type: `${prefix}_SUCCESS`,
       ...(parseResponse &&
         (await parseResponse(json, response, requestAttributes))),
@@ -74,6 +82,7 @@ const dispatchResponse = (dispatch, options) => async response => {
     afterSuccess && afterSuccess(response, json)
   } else {
     dispatch({
+      parentId,
       type: `${prefix}_FAILURE`,
       ...requestAttributes,
       error: parseError(json),
@@ -82,9 +91,9 @@ const dispatchResponse = (dispatch, options) => async response => {
 }
 
 const dispatchAction = (dispatch, options) => {
-  const { baseUrl, path, prefix, requestAttributes } = options
+  const { baseUrl, path, parentId, prefix, requestAttributes } = options
 
-  dispatch({ type: `${prefix}_REQUEST`, ...requestAttributes })
+  dispatch({ parentId, type: `${prefix}_REQUEST`, ...requestAttributes })
 
   return fetch(`${baseUrl}${path}`, fetchOptions(options)).then(
     dispatchResponse(dispatch, options),
