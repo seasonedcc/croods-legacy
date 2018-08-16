@@ -26,10 +26,12 @@ class Destroy extends Component {
 }
 
 Destroy.propTypes = {
-  render: PropTypes.func,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  actions: PropTypes.object,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  render: PropTypes.func.isRequired,
+  parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
+// INTERNAL PROPS
+// actions: object
 
 export default withOptions(
   connect(

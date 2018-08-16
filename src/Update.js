@@ -26,11 +26,14 @@ class Update extends Component {
 }
 
 Update.propTypes = {
-  render: PropTypes.func,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  render: PropTypes.func.isRequired,
+  parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   attributes: PropTypes.object,
-  actions: PropTypes.object,
 }
+
+// INTERNAL PROPS
+// actions: object
 
 export default withOptions(
   connect(

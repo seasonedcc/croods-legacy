@@ -44,6 +44,7 @@ class Edit extends Component {
 
 Edit.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   render: PropTypes.func.isRequired,
   renderUpdated: PropTypes.func,
   renderError: PropTypes.func,
