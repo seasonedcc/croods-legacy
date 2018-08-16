@@ -1,5 +1,7 @@
 import api from '../api'
 
+jest.mock('../../nestedReducer', () => reducer => (state, action) => state)
+
 jest.mock('../fetchList', () => options => (state, action) => ({
   name: 'fetchList',
   state,
@@ -60,11 +62,7 @@ describe('with FETCH_LIST action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/FETCH_LIST_FOO' }
 
-    expect(api(options)(state, action)).toEqual({
-      action: { type: '@foo/FETCH_LIST_FOO' },
-      name: 'fetchList',
-      state: { foo: 'bar' },
-    })
+    expect(api(options)(state, action)).toEqual(state)
   })
 })
 
@@ -73,11 +71,7 @@ describe('with FETCH_INFO action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/FETCH_INFO_FOO' }
 
-    expect(api(options)(state, action)).toEqual({
-      action: { type: '@foo/FETCH_INFO_FOO' },
-      name: 'fetchInfo',
-      state: { foo: 'bar' },
-    })
+    expect(api(options)(state, action)).toEqual(state)
   })
 })
 
@@ -86,11 +80,7 @@ describe('with CREATE action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/CREATE_FOO' }
 
-    expect(api(options)(state, action)).toEqual({
-      action: { type: '@foo/CREATE_FOO' },
-      name: 'create',
-      state: { foo: 'bar' },
-    })
+    expect(api(options)(state, action)).toEqual(state)
   })
 })
 
@@ -99,11 +89,7 @@ describe('with UPDATE action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/UPDATE_FOO' }
 
-    expect(api(options)(state, action)).toEqual({
-      action: { type: '@foo/UPDATE_FOO' },
-      name: 'update',
-      state: { foo: 'bar' },
-    })
+    expect(api(options)(state, action)).toEqual(state)
   })
 })
 
@@ -112,10 +98,6 @@ describe('with DESTROY action', () => {
     const state = { foo: 'bar' }
     const action = { type: '@foo/DESTROY_FOO' }
 
-    expect(api(options)(state, action)).toEqual({
-      action: { type: '@foo/DESTROY_FOO' },
-      name: 'destroy',
-      state: { foo: 'bar' },
-    })
+    expect(api(options)(state, action)).toEqual(state)
   })
 })

@@ -1,1 +1,4 @@
-export default options => () => ({ type: `@${options.name}/RESET_DESTROYED` })
+export default ({ name, parentId }) => () => ({
+  type: `@${name}/RESET_DESTROYED`,
+  parentId,
+})

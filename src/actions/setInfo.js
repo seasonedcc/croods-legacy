@@ -1,1 +1,5 @@
-export default options => info => ({ type: `@${options.name}/SET_INFO`, info })
+export default ({ name, parentId }) => info => ({
+  type: `@${name}/SET_INFO`,
+  info,
+  parentId,
+})
