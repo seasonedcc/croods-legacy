@@ -1,6 +1,5 @@
-import identity from 'lodash/identity'
-
 import { apiPrefix } from '../apiReducer'
+import nestedReducer from '../nestedReducer'
 
 import fetchList from './fetchList'
 import fetchInfo from './fetchInfo'
@@ -16,5 +15,7 @@ const reducers = options => ({
   DESTROY: destroy(options),
 })
 
-export default options => (state, action = {}) =>
-  (reducers(options)[apiPrefix(action.type)] || identity)(state, action)
+export default options => (state, action = {}) => {
+  const reducer = nestedReducer(reducers(options)[apiPrefix(action.type)])
+  return reducer(state, action)
+}
