@@ -9,7 +9,6 @@ jest.mock('../Context', () => ({
   ),
 }))
 
-
 it('renders correctly', () => {
   const props = { foo: 'bar' }
   const render = props => <div {...props}>Render</div>
