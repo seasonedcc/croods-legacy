@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import renderer from 'react-test-renderer'
 
-import List from '../List'
-import mapStateToProps from '../mapStateToProps'
-import mapDispatchToProps from '../mapDispatchToProps'
+import List from '../../List'
+import mapStateToProps from '../../mapStateToProps'
+import mapDispatchToProps from '../../mapDispatchToProps'
 
-jest.mock('../withOptions', () => Component => Component)
+jest.mock('../../withOptions', () => Component => Component)
 
 jest.mock('react-redux', () => ({
   connect: jest.fn(() => Component => Component),
