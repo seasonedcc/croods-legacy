@@ -50,17 +50,19 @@ class List extends Component {
 }
 
 List.propTypes = {
+  render: PropTypes.func.isRequired,
   list: PropTypes.array,
-  actions: PropTypes.object,
   parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  path: PropTypes.string,
-  listPath: PropTypes.string,
-  renderLoading: PropTypes.func,
-  fetchingList: PropTypes.bool,
-  render: PropTypes.func,
-  listError: PropTypes.object,
   renderError: PropTypes.func,
+  renderLoading: PropTypes.func,
 }
+
+// INTERNAL PROPS
+// listError: object,
+// actions: object
+// path: string
+// listPath: string
+// fetchingList: bool
 
 export default withOptions(
   connect(

@@ -36,13 +36,16 @@ class New extends Component {
 }
 
 New.propTypes = {
-  actions: PropTypes.object,
-  created: PropTypes.object,
-  creating: PropTypes.bool,
+  render: PropTypes.func.isRequired,
+  parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   renderCreated: PropTypes.func,
-  render: PropTypes.func,
-  createError: PropTypes.object,
 }
+
+// INTERNAL PROPS
+// actions: object
+// created: object
+// creating: bool
+// createError: object
 
 export default withOptions(
   connect(

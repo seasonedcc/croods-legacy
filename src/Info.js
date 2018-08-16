@@ -39,11 +39,12 @@ Info.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   info: PropTypes.object.isRequired,
   render: PropTypes.func.isRequired,
+  parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   renderError: PropTypes.func,
 }
 
 // INTERNAL PROPS
-// infoError: PropTypes.object,
+// infoError: object,
 
 export default withOptions(
   connect(
