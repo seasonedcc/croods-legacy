@@ -9,6 +9,4 @@ export default {
   renderLoading: PropTypes.func, // undefined -> Html
   renderError: PropTypes.func, // error -> Html
   afterSuccess: PropTypes.func, // (response, json)
-  // parse responses to adjust the API to croods patterns
-  parseResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 }

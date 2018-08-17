@@ -34,7 +34,8 @@ Update.propTypes = {
   render: PropTypes.func.isRequired, // (update = (), props) -> Html
   parentId: customPropTypes.id,
   path: customPropTypes.path,
-  parseUpdateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
+  // parse responses to adjust the API to croods patterns
+  parseResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 
   ...providerProps,
 }
