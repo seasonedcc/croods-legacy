@@ -56,7 +56,8 @@ List.propTypes = {
   render: PropTypes.func.isRequired, // (list, props) -> Html
   parentId: customPropTypes.id,
   path: customPropTypes.path,
-  parseListResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
+  // parse responses to adjust the API to croods patterns
+  parseResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 
   ...providerProps,
 }
