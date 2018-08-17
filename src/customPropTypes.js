@@ -13,30 +13,22 @@ const regexValidator = (regex, required) => (
   if (!required && value === undefined) {
     return null
   }
-  if (!regex.test(value)) {
-    return new Error(
-      `Invalid value:"${
-        props[propName]
-      }" of prop:"${propName}" supplied to ${componentName} component.`,
-    )
-  }
-
-  return null
+  return regex.test(value)
+    ? null
+    : new Error(
+        `Invalid value: "${value}" of prop:"${propName}" supplied to ${componentName} component.`,
+      )
 }
 
 const name = regexValidator(NAME_REGEX)
 name.isRequired = regexValidator(NAME_REGEX, true)
 
 const path = regexValidator(PATH_REGEX)
+path.isRequired = regexValidator(PATH_REGEX, true)
 
 const url = regexValidator(URL_REGEX)
 url.isRequired = regexValidator(URL_REGEX, true)
 
 const id = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 
-export default {
-  id,
-  name,
-  path,
-  url,
-}
+export default { id, name, path, url }

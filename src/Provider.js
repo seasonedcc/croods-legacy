@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import customPropTypes from './customPropTypes'
 
+import customPropTypes from './customPropTypes'
 import providerProps from './providerProps'
 import { Provider as ContextProvider } from './Context'
 
@@ -11,7 +11,7 @@ const Provider = ({ children, ...options }) => (
 
 Provider.propTypes = {
   ...providerProps,
-  baseUrl: customPropTypes.url.isRequired, // match http(s)://url
+  baseUrl: customPropTypes.url.isRequired,
   parseListResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
   parseInfoResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
   parseCreateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
