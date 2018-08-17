@@ -1,8 +1,8 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import customPropTypes from './customPropTypes'
 
+import customPropTypes from './customPropTypes'
 import providerProps from './providerProps'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
@@ -46,11 +46,11 @@ class Edit extends Component {
 
 Edit.propTypes = {
   id: customPropTypes.id.isRequired,
-  name: customPropTypes.name.isRequired, // match foo.bar
+  name: customPropTypes.name.isRequired,
   render: PropTypes.func.isRequired, // ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> Html
   renderUpdated: PropTypes.func, // (updated = {}) -> Html
   parentId: customPropTypes.id,
-  path: customPropTypes.path, // match /foo/bar-_12?&=
+  path: customPropTypes.path,
   parseUpdateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 
   ...providerProps,

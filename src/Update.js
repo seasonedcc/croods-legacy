@@ -1,8 +1,8 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import customPropTypes from './customPropTypes'
 
+import customPropTypes from './customPropTypes'
 import providerProps from './providerProps'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
@@ -29,11 +29,11 @@ class Update extends Component {
 
 Update.propTypes = {
   id: customPropTypes.id.isRequired,
-  name: customPropTypes.name.isRequired, // match foo.bar
+  name: customPropTypes.name.isRequired,
   attributes: PropTypes.object.isRequired, // properties to be updated
   render: PropTypes.func.isRequired, // (update = (), props) -> Html
   parentId: customPropTypes.id,
-  path: customPropTypes.path, // match /foo/bar-_12?&=
+  path: customPropTypes.path,
   parseUpdateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 
   ...providerProps,
