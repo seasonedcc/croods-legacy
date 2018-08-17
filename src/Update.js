@@ -30,7 +30,7 @@ Update.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   name: PropTypes.string.isRequired, // match foo.bar
   attributes: PropTypes.object.isRequired, // properties to be updated
-  render: PropTypes.func.isRequired, // (update = (id, ...attributes), props) -> Html
+  render: PropTypes.func.isRequired, // (update = (), props) -> Html
   parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   path: PropTypes.string, // match /foo/bar-_12?&=
   parseUpdateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
