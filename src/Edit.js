@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import customPropTypes from './customPropTypes'
 
 import providerProps from './providerProps'
 import withOptions from './withOptions'
@@ -44,12 +45,12 @@ class Edit extends Component {
 }
 
 Edit.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  name: PropTypes.string.isRequired, // match foo.bar
+  id: customPropTypes.id.isRequired,
+  name: customPropTypes.name.isRequired, // match foo.bar
   render: PropTypes.func.isRequired, // ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> Html
   renderUpdated: PropTypes.func, // (updated = {}) -> Html
-  parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  path: PropTypes.string, // match /foo/bar-_12?&=
+  parentId: customPropTypes.id,
+  path: customPropTypes.path, // match /foo/bar-_12?&=
   parseUpdateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 
   ...providerProps,

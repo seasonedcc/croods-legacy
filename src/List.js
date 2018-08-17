@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import customPropTypes from './customPropTypes'
 
 import providerProps from './providerProps'
 import withOptions from './withOptions'
@@ -51,10 +52,10 @@ class List extends Component {
 }
 
 List.propTypes = {
-  name: PropTypes.string.isRequired, // match foo.bar
+  name: customPropTypes.name.isRequired, // required match foo.bar
   render: PropTypes.func.isRequired, // (list, props) -> Html
-  parentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  path: PropTypes.string, // match /foo/bar-_12?&=
+  parentId: customPropTypes.id,
+  path: customPropTypes.path, // match /foo/bar-_12?&=
   parseListResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 
   ...providerProps,
