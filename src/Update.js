@@ -28,14 +28,20 @@ class Update extends Component {
 }
 
 Update.propTypes = {
+  /** Ex: 1234 or '1234' */
   id: customPropTypes.id.isRequired,
+  /** Defines the deep properties used in the component. Ex: foo.bar */
   name: customPropTypes.name.isRequired,
-  attributes: PropTypes.object.isRequired, // properties to be updated
-  render: PropTypes.func.isRequired, // (update = (), props) -> Html
+  /** Properties to be updated */
+  attributes: PropTypes.object.isRequired,
+  /** A function returning a React Node. Ex: (update = (id, ...attributes), props) -> < JSX /> */
+  render: PropTypes.func.isRequired,
+  /**  Parent element's Id, for more specificity in changes.  */
   parentId: customPropTypes.id,
+  /**  Ex: /foo/bar-_12?&= */
   path: customPropTypes.path,
-  // parse responses to adjust the API to croods patterns
-  parseResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
+  /** Parse responses to adjust the API to croods patterns. Ex: (json, response, requestAttributes) -> Object */
+  parseResponse: PropTypes.func,
 
   ...providerProps,
 }
