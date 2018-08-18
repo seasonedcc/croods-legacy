@@ -52,9 +52,13 @@ class List extends Component {
 }
 
 List.propTypes = {
+  /** Defines the deep properties used in the component. Ex: foo.bar */
   name: customPropTypes.name.isRequired,
-  render: PropTypes.func.isRequired, // (list, props) -> Html
+  /** A function returning a React Node. Ex: (list, props) -> < JSX /> */
+  render: PropTypes.func.isRequired,
+  /**  Parent element's Id, for more specificity in changes.  */
   parentId: customPropTypes.id,
+  /**  Ex: /foo/bar-_12?&= */
   path: customPropTypes.path,
 
   ...providerProps,
