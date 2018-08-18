@@ -10,25 +10,26 @@ const regexValidator = (regex, required) => (
   componentName,
 ) => {
   const value = props[propName]
-  if (!required && value === undefined) {
-    return null
+  const error = new Error(
+    `Invalid value: "${value}" of prop:"${propName}" supplied to ${componentName} component.`,
+  )
+
+  if (value === undefined) {
+    return !required ? null : error
   }
-  return regex.test(value)
-    ? null
-    : new Error(
-        `Invalid value: "${value}" of prop:"${propName}" supplied to ${componentName} component.`,
-      )
+
+  return regex.test(value) ? null : error
 }
 
-const name = regexValidator(NAME_REGEX)
+export const name = regexValidator(NAME_REGEX)
 name.isRequired = regexValidator(NAME_REGEX, true)
 
-const path = regexValidator(PATH_REGEX)
+export const path = regexValidator(PATH_REGEX)
 path.isRequired = regexValidator(PATH_REGEX, true)
 
-const url = regexValidator(URL_REGEX)
+export const url = regexValidator(URL_REGEX)
 url.isRequired = regexValidator(URL_REGEX, true)
 
-const id = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+export const id = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 
 export default { id, name, path, url }
