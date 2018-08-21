@@ -15,7 +15,7 @@ const regexValidator = (regex, required) => (
   )
 
   if (value === undefined) {
-    return !required ? null : error
+    return required ? error : null
   }
 
   return regex.test(value) ? null : error
@@ -30,6 +30,6 @@ path.isRequired = regexValidator(PATH_REGEX, true)
 export const url = regexValidator(URL_REGEX)
 url.isRequired = regexValidator(URL_REGEX, true)
 
-export const id = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+const id = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 
 export default { id, name, path, url }
