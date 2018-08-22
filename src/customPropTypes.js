@@ -9,6 +9,8 @@ const throwInvalid = (value, propName, componentName) =>
     `Invalid value: "${value}" of prop:"${propName}" supplied to ${componentName} component.`,
   )
 
+const isOkValue = (value, regex) => value !== undefined && regex.test(value)
+
 const regexValidator = (regex, required) => (
   props,
   propName,
@@ -17,11 +19,11 @@ const regexValidator = (regex, required) => (
   const value = props[propName]
   const error = throwInvalid(value, propName, componentName)
 
-  if (value === undefined) {
-    return required ? error : null
+  if (value === undefined && !required) {
+    return null
   }
 
-  return regex.test(value) ? null : error
+  return isOkValue(value, regex) ? null : error
 }
 
 export const name = regexValidator(NAME_REGEX)
