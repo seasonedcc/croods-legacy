@@ -24,7 +24,7 @@ beforeEach(() => {
 
 describe('when not created', () => {
   it('does not reset created', () => {
-    const props = { render, actions }
+    const props = { render, name: 'colors', actions }
     const rendered = renderer.create(<New {...props} />)
 
     actions.resetCreated.mockClear()
@@ -35,7 +35,7 @@ describe('when not created', () => {
 
 describe('when created', () => {
   it('resets created', () => {
-    const props = { render, actions }
+    const props = { render, name: 'colors', actions }
     const rendered = renderer.create(<New {...props} />)
 
     actions.resetCreated.mockClear()

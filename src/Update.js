@@ -1,6 +1,9 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
+import customPropTypes from './customPropTypes'
+import providerProps from './providerProps'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
@@ -22,6 +25,17 @@ class Update extends Component {
 
     return render(update, this.props)
   }
+}
+
+Update.propTypes = {
+  id: customPropTypes.id.isRequired,
+  name: customPropTypes.name.isRequired,
+  attributes: PropTypes.object.isRequired, // properties to be updated
+  render: PropTypes.func.isRequired, // (update = (), props) -> Html
+  parentId: customPropTypes.id,
+  path: customPropTypes.path,
+
+  ...providerProps,
 }
 
 export default withOptions(

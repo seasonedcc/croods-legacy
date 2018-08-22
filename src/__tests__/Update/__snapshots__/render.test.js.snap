@@ -8,7 +8,9 @@ exports[`renders correctly 1`] = `
       "update": [Function],
     }
   }
+  attributes={Object {}}
   id={123}
+  name="colors"
   render={[Function]}
   update={[Function]}
 >
@@ -24,7 +26,9 @@ exports[`when updated resets updated 1`] = `
       "update": [Function],
     }
   }
+  attributes={Object {}}
   id={123}
+  name="colors"
   render={[Function]}
   update={[Function]}
   updated={

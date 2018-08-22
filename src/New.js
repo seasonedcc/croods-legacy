@@ -1,6 +1,9 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
+import customPropTypes from './customPropTypes'
+import providerProps from './providerProps'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
@@ -33,6 +36,16 @@ class New extends Component {
       render({ create, creating, error }, this.props)
     )
   }
+}
+
+New.propTypes = {
+  name: customPropTypes.name.isRequired,
+  render: PropTypes.func.isRequired, // ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> Html
+  renderCreated: PropTypes.func, // (created = {}) -> Html
+  parentId: customPropTypes.id,
+  path: customPropTypes.path,
+
+  ...providerProps,
 }
 
 export default withOptions(

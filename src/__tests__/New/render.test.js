@@ -26,7 +26,7 @@ beforeEach(() => {
 })
 
 it('renders correctly', () => {
-  const props = { render, actions }
+  const props = { name: 'colors', render, actions }
   const tree = renderer.create(<New {...props} />).toJSON()
 
   expect(tree).toMatchSnapshot()
@@ -37,7 +37,7 @@ it('renders correctly', () => {
 describe('with renderCreated and without created', () => {
   it('renders edit', () => {
     const renderCreated = jest.fn(created => <div>Created: {created}</div>)
-    const props = { render, actions, renderCreated }
+    const props = { name: 'colors', render, actions, renderCreated }
     const tree = renderer.create(<New {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -47,7 +47,13 @@ describe('with renderCreated and without created', () => {
 describe('with renderCreated and created', () => {
   it('renders created', () => {
     const renderCreated = jest.fn(created => <div {...created}>Created </div>)
-    const props = { render, actions, renderCreated, created: { foo: 'bar' } }
+    const props = {
+      name: 'colors',
+      render,
+      actions,
+      renderCreated,
+      created: { foo: 'bar' },
+    }
     const tree = renderer.create(<New {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -57,7 +63,7 @@ describe('with renderCreated and created', () => {
 
 describe('without renderCreated and with created', () => {
   it('renders new', () => {
-    const props = { render, actions, created: { foo: 'bar' } }
+    const props = { name: 'colors', render, actions, created: { foo: 'bar' } }
     const tree = renderer.create(<New {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()

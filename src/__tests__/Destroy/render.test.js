@@ -29,7 +29,7 @@ beforeEach(() => {
 })
 
 it('renders correctly', () => {
-  const props = { render, actions, id: 123 }
+  const props = { name: 'colors', render, actions, id: 123 }
   const tree = renderer.create(<Destroy {...props} />).toJSON()
 
   expect(tree).toMatchSnapshot()
@@ -41,7 +41,7 @@ it('renders correctly', () => {
 describe('when destroyed', () => {
   it('resets destroyed', () => {
     const destroyed = { id: 123 }
-    const props = { render, actions, id: 123, destroyed }
+    const props = { name: 'colors', render, actions, id: 123, destroyed }
     const tree = renderer.create(<Destroy {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
