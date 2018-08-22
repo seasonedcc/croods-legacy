@@ -27,7 +27,7 @@ beforeEach(() => {
 
 describe('when id is the same', () => {
   it('does not set or fetch info', () => {
-    const props = { render, actions, id: 123 }
+    const props = { render, actions, id: 123, name: 'colors' }
     const rendered = renderer.create(<Edit {...props} />)
 
     setOrFetchInfo.mockClear()
@@ -38,7 +38,7 @@ describe('when id is the same', () => {
 
 describe('when id is different', () => {
   it('sets or fetches info', () => {
-    const props = { render, actions, id: 123 }
+    const props = { render, actions, id: 123, name: 'colors' }
     const rendered = renderer.create(<Edit {...props} />)
 
     setOrFetchInfo.mockClear()
@@ -49,7 +49,7 @@ describe('when id is different', () => {
 
 describe('when not updated', () => {
   it('does not reset updated', () => {
-    const props = { render, actions, id: 123 }
+    const props = { render, actions, id: 123, name: 'colors' }
     const rendered = renderer.create(<Edit {...props} />)
 
     actions.resetUpdated.mockClear()
@@ -60,7 +60,7 @@ describe('when not updated', () => {
 
 describe('when updated', () => {
   it('resets updated', () => {
-    const props = { render, actions, id: 123 }
+    const props = { render, actions, id: 123, name: 'colors' }
     const rendered = renderer.create(<Edit {...props} />)
 
     actions.resetUpdated.mockClear()

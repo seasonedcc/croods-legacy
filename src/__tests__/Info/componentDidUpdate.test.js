@@ -25,7 +25,7 @@ beforeEach(() => {
 
 describe('when id is the same', () => {
   it('does not set or fetch info', () => {
-    const props = { render, id: 123 }
+    const props = { render, name: 'colors', id: 123 }
     const rendered = renderer.create(<Info {...props} />)
     setOrFetchInfo.mockClear()
     rendered.update(<Info {...props} foo="bar" />)
@@ -35,7 +35,7 @@ describe('when id is the same', () => {
 
 describe('when id is different', () => {
   it('sets or fetches info', () => {
-    const props = { render, id: 123 }
+    const props = { render, name: 'colors', id: 123 }
     const rendered = renderer.create(<Info {...props} />)
     setOrFetchInfo.mockClear()
     rendered.update(<Info {...props} id="321" />)

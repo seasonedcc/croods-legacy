@@ -27,7 +27,7 @@ beforeEach(() => {
 
 describe('when not destroyed', () => {
   it('does not reset destroyed', () => {
-    const props = { render, actions }
+    const props = { render, name: 'colors', actions, id: 123 }
     const rendered = renderer.create(<Destroy {...props} />)
 
     actions.resetDestroyed.mockClear()
@@ -38,7 +38,7 @@ describe('when not destroyed', () => {
 
 describe('when destroyed with different ids', () => {
   it('does not reset destroyed', () => {
-    const props = { render, actions, id: 123 }
+    const props = { render, name: 'colors', actions, id: 123 }
     const rendered = renderer.create(<Destroy {...props} />)
 
     actions.resetDestroyed.mockClear()
@@ -49,7 +49,7 @@ describe('when destroyed with different ids', () => {
 
 describe('when destroyed with same id', () => {
   it('reset destroyed', () => {
-    const props = { render, actions, id: 123 }
+    const props = { render, name: 'colors', actions, id: 123 }
     const rendered = renderer.create(<Destroy {...props} />)
 
     actions.resetDestroyed.mockClear()

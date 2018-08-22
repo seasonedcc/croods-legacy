@@ -9,3 +9,6 @@ export default (name, options = {}) =>
     prefix: `@${name}`,
     reducer: apiReducer(api(options), reducer),
   })
+
+// example: createReducer('comments', { addCreatedToTop: true })
+// createReducer: (name = String, options = Object) -> Reducer

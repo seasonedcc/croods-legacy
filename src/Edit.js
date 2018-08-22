@@ -1,6 +1,9 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
+import customPropTypes from './customPropTypes'
+import providerProps from './providerProps'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
@@ -39,6 +42,20 @@ class Edit extends Component {
       render({ info, update, updating, error }, this.props)
     )
   }
+}
+
+Edit.propTypes = {
+  id: customPropTypes.id.isRequired,
+  name: customPropTypes.name.isRequired,
+  render: PropTypes.func.isRequired, // ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> Html
+  renderUpdated: PropTypes.func, // (updated = {}) -> Html
+  parentId: customPropTypes.id,
+  path: customPropTypes.path,
+
+  /** Parse specific responses to adjust the API to croods patterns */
+  parseInfoResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
+  parseUpdateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
+  ...providerProps,
 }
 
 export default withOptions(

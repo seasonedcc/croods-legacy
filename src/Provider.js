@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import customPropTypes from './customPropTypes'
+import providerProps from './providerProps'
 import { Provider as ContextProvider } from './Context'
 
 const Provider = ({ children, ...options }) => (
@@ -8,12 +10,14 @@ const Provider = ({ children, ...options }) => (
 )
 
 Provider.propTypes = {
-  baseUrl: PropTypes.string.isRequired,
-  credentials: PropTypes.string,
-  headers: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  renderLoading: PropTypes.func,
-  renderError: PropTypes.func,
-  afterSuccess: PropTypes.func,
+  ...providerProps,
+  baseUrl: customPropTypes.url.isRequired,
+  /** Parse specific responses to adjust the API to croods patterns */
+  parseListResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
+  parseInfoResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
+  parseCreateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
+  parseDestroyResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
+  parseUpdateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 }
 
 Provider.defaultProps = {

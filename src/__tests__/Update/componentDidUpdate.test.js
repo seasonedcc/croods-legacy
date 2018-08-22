@@ -27,7 +27,7 @@ beforeEach(() => {
 
 describe('when not updated', () => {
   it('does not reset updated', () => {
-    const props = { render, actions }
+    const props = { name: 'colors', render, actions, id: 123, attributes: {} }
     const rendered = renderer.create(<Update {...props} />)
 
     actions.resetUpdated.mockClear()
@@ -38,7 +38,7 @@ describe('when not updated', () => {
 
 describe('when updated with different ids', () => {
   it('does not reset updated', () => {
-    const props = { render, actions, id: 123 }
+    const props = { name: 'colors', render, actions, id: 123, attributes: {} }
     const rendered = renderer.create(<Update {...props} />)
 
     actions.resetUpdated.mockClear()
@@ -49,7 +49,7 @@ describe('when updated with different ids', () => {
 
 describe('when updated with same id', () => {
   it('reset updated', () => {
-    const props = { render, actions, id: 123 }
+    const props = { name: 'colors', render, actions, id: 123, attributes: {} }
     const rendered = renderer.create(<Update {...props} />)
 
     actions.resetUpdated.mockClear()
