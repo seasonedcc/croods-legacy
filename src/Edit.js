@@ -51,9 +51,10 @@ Edit.propTypes = {
   renderUpdated: PropTypes.func, // (updated = {}) -> Html
   parentId: customPropTypes.id,
   path: customPropTypes.path,
-  // parse responses to adjust the API to croods patterns
-  parseResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 
+  /** Parse specific responses to adjust the API to croods patterns */
+  parseInfoResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
+  parseUpdateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
   ...providerProps,
 }
 
