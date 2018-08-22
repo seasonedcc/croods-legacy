@@ -12,6 +12,7 @@ const Provider = ({ children, ...options }) => (
 Provider.propTypes = {
   ...providerProps,
   baseUrl: customPropTypes.url.isRequired,
+  /** Parse specific responses to adjust the API to croods patterns */
   parseListResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
   parseInfoResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
   parseCreateResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
