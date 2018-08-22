@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 const URL_REGEX = /^(https?):\/\/[^\s/$.?#].[^\s]*$/
 const PATH_REGEX = /^\/\S*/
-const NAME_REGEX = /^([a-zA-Z0-9]+\.)*[a-zA-Z0-9]*[^\.]$/
+const NAME_REGEX = /^([a-zA-Z0-9]+\.)*[a-zA-Z0-9]*[^.]$/
 
 const regexValidator = (regex, required) => (
   props,

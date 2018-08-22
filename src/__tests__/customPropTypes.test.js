@@ -1,5 +1,4 @@
 import { name, path, url } from '../customPropTypes'
-import PropTypes from 'prop-types'
 
 describe('name', () => {
   const input = ['name', 'Component']
