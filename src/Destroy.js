@@ -20,17 +20,17 @@ class Destroy extends Component {
   }
 
   render() {
-    const { render, id, actions } = this.props
+    const { children, id, actions } = this.props
     const destroy = () => actions.destroy(id)
 
-    return render(destroy, this.props)
+    return children(destroy, this.props)
   }
 }
 
 Destroy.propTypes = {
   id: customPropTypes.id.isRequired,
   name: customPropTypes.name.isRequired,
-  render: PropTypes.func.isRequired, // (destroy, props) -> Html
+  children: PropTypes.func.isRequired, // (destroy, props) -> Html
   parentId: customPropTypes.id,
   path: customPropTypes.path,
 

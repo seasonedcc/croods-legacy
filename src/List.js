@@ -41,19 +41,19 @@ class List extends Component {
   }
 
   render() {
-    const { render, list, listError, renderError } = this.props
+    const { children, list, listError, renderError } = this.props
 
     return (
       renderIfPresent(renderError, listError) ||
       this.renderLoading() ||
-      render(list, this.props)
+      children(list, this.props)
     )
   }
 }
 
 List.propTypes = {
   name: customPropTypes.name.isRequired,
-  render: PropTypes.func.isRequired, // (list, props) -> Html
+  children: PropTypes.func.isRequired, // (list, props) -> Html
   parentId: customPropTypes.id,
   path: customPropTypes.path,
 

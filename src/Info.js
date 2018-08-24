@@ -27,12 +27,12 @@ class Info extends Component {
   }
 
   render() {
-    const { render, info, infoError, renderError } = this.props
+    const { children, info, infoError, renderError } = this.props
 
     return (
       renderIfPresent(renderError, infoError) ||
       renderInfoLoading(this.props) ||
-      render(info, this.props)
+      children(info, this.props)
     )
   }
 }
@@ -40,7 +40,7 @@ class Info extends Component {
 Info.propTypes = {
   id: customPropTypes.id.isRequired,
   name: customPropTypes.name.isRequired,
-  render: PropTypes.func.isRequired, // (info = {}, props) -> Html
+  children: PropTypes.func.isRequired, // (info = {}, props) -> Html
   parentId: customPropTypes.id,
   path: customPropTypes.path,
 

@@ -27,20 +27,20 @@ class New extends Component {
   }
 
   render() {
-    const { render, renderCreated, actions, created, creating } = this.props
+    const { children, renderCreated, actions, created, creating } = this.props
     const { createError: error } = this.props
     const { create } = actions
 
     return (
       renderIfPresent(renderCreated, created) ||
-      render({ create, creating, error }, this.props)
+      children({ create, creating, error }, this.props)
     )
   }
 }
 
 New.propTypes = {
   name: customPropTypes.name.isRequired,
-  render: PropTypes.func.isRequired, // ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> Html
+  children: PropTypes.func.isRequired, // ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> Html
   renderCreated: PropTypes.func, // (created = {}) -> Html
   parentId: customPropTypes.id,
   path: customPropTypes.path,

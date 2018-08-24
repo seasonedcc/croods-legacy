@@ -7,9 +7,8 @@ import Lighten from './Lighten'
 import Darken from './Darken'
 
 export default props => (
-  <List
-    name="colors"
-    render={list => (
+  <List name="colors">
+    {list => (
       <Fragment>
         <h1>Colors</h1>
         {list.map(item => {
@@ -49,5 +48,5 @@ export default props => (
         </Link>
       </Fragment>
     )}
-  />
+  </List>
 )

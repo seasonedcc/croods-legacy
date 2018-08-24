@@ -9,14 +9,12 @@ export default ({ color, ...props }) => {
     .toHexString()
 
   return (
-    <Update
-      {...props}
-      color={darkColor}
-      render={onClick => (
+    <Update {...props} color={darkColor}>
+      {onClick => (
         <a href="#darken" onClick={onClick}>
           Darken
         </a>
       )}
-    />
+    </Update>
   )
 }

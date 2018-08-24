@@ -31,7 +31,7 @@ class Edit extends Component {
   }
 
   render() {
-    const { render, actions, info, renderError, infoError } = this.props
+    const { children, actions, info, renderError, infoError } = this.props
     const { updating, updateError: error, renderUpdated, updated } = this.props
     const { update } = actions
 
@@ -39,7 +39,7 @@ class Edit extends Component {
       renderIfPresent(renderError, infoError) ||
       renderInfoLoading(this.props) ||
       renderIfPresent(renderUpdated, updated) ||
-      render({ info, update, updating, error }, this.props)
+      children({ info, update, updating, error }, this.props)
     )
   }
 }
@@ -47,7 +47,7 @@ class Edit extends Component {
 Edit.propTypes = {
   id: customPropTypes.id.isRequired,
   name: customPropTypes.name.isRequired,
-  render: PropTypes.func.isRequired, // ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> Html
+  children: PropTypes.func.isRequired, // ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> Html
   renderUpdated: PropTypes.func, // (updated = {}) -> Html
   parentId: customPropTypes.id,
   path: customPropTypes.path,

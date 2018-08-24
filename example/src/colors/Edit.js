@@ -9,10 +9,8 @@ export default ({ match: { params } }) => {
   const { id } = params
 
   return (
-    <Edit
-      id={id}
-      name="colors"
-      render={({ info, update, updating, error }) => {
+    <Edit id={id} name="colors" renderUpdated={({ id }) => <Redirect to={`/${id}`} />}>
+      {({ info, update, updating, error }) => {
         const { name } = info
 
         return (
@@ -27,7 +25,6 @@ export default ({ match: { params } }) => {
           </Fragment>
         )
       }}
-      renderUpdated={({ id }) => <Redirect to={`/${id}`} />}
-    />
+    </Edit>
   )
 }

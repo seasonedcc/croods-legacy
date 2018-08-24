@@ -6,15 +6,13 @@ import { New } from 'croods'
 import Form from './Form'
 
 export default props => (
-  <New
-    name="colors"
-    render={({ create, creating, error }) => (
+  <New name="colors" renderCreated={({ id }) => <Redirect to={`/${id}`} />}>
+    {({ create, creating, error }) => (
       <Fragment>
         <h1>New color</h1>
         <Form onSubmit={create} submitting={creating} />
         <Link to="/">Back</Link>
       </Fragment>
     )}
-    renderCreated={({ id }) => <Redirect to={`/${id}`} />}
-  />
+  </New>
 )

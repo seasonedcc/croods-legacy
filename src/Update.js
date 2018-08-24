@@ -20,10 +20,10 @@ class Update extends Component {
   }
 
   render() {
-    const { render, id, attributes, actions } = this.props
+    const { children, id, attributes, actions } = this.props
     const update = () => actions.update({ id, ...attributes })
 
-    return render(update, this.props)
+    return children(update, this.props)
   }
 }
 
@@ -31,7 +31,7 @@ Update.propTypes = {
   id: customPropTypes.id.isRequired,
   name: customPropTypes.name.isRequired,
   attributes: PropTypes.object.isRequired, // properties to be updated
-  render: PropTypes.func.isRequired, // (update = (), props) -> Html
+  children: PropTypes.func.isRequired, // (update = (), props) -> Html
   parentId: customPropTypes.id,
   path: customPropTypes.path,
 
