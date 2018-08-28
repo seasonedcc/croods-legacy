@@ -60,8 +60,6 @@ List.propTypes = {
   parentId: customPropTypes.id,
   /**  Ex: /foo/bar-_12?&= */
   path: customPropTypes.path,
-  /** Parse responses to adjust the API to croods patterns. Ex: (json, response, requestAttributes) -> Object */
-  parseResponse: PropTypes.func,
 
   ...providerProps,
 }
