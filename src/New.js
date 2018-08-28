@@ -39,10 +39,15 @@ class New extends Component {
 }
 
 New.propTypes = {
+  /** Defines the deep properties used in the component. Ex: foo.bar */
   name: customPropTypes.name.isRequired,
-  render: PropTypes.func.isRequired, // ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> Html
-  renderCreated: PropTypes.func, // (created = {}) -> Html
+  /** A function returning a React Node. Ex: ({ create, creating = bool, error }, props) -> < JSX /> */
+  render: PropTypes.func.isRequired,
+  /** A function returning a React Node. Ex: (created = {}) -> < JSX /> */
+  renderCreated: PropTypes.func,
+  /**  Parent element's Id, for more specificity in changes.  */
   parentId: customPropTypes.id,
+  /**  Ex: /foo/bar-_12?&= */
   path: customPropTypes.path,
 
   ...providerProps,
