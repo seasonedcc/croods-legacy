@@ -26,13 +26,13 @@ const regexValidator = (regex, required) => (
   return isOkValue(value, regex) ? null : error
 }
 
-export const name = regexValidator(NAME_REGEX)
+const name = regexValidator(NAME_REGEX)
 name.isRequired = regexValidator(NAME_REGEX, true)
 
-export const path = regexValidator(PATH_REGEX)
+const path = regexValidator(PATH_REGEX)
 path.isRequired = regexValidator(PATH_REGEX, true)
 
-export const url = regexValidator(URL_REGEX)
+const url = regexValidator(URL_REGEX)
 url.isRequired = regexValidator(URL_REGEX, true)
 
 const id = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
