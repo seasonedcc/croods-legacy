@@ -10,6 +10,10 @@ export default {
   renderError: PropTypes.func, // error -> Html
   afterSuccess: PropTypes.func, // (response, json)
 
+  /** Logs requests parameters to the console: method, credentials and headers */
+  debugRequests: PropTypes.bool,
+
+
   /** Parse responses to adjust the API to croods patterns */
   parseResponse: PropTypes.func, // (json, response, requestAttributes) -> Object
 }

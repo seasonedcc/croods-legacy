@@ -2,6 +2,7 @@ import humps from 'lodash-humps'
 
 import snakeCase from './snakeCase'
 import parseError from './parseError'
+import requestLogger from './requestLogger'
 
 const fetchOptions = ({
   method = 'get',
@@ -90,12 +91,16 @@ const dispatchResponse = (dispatch, options) => async response => {
   }
 }
 
-const dispatchAction = (dispatch, options) => {
+const dispatchAction = (dispatch, { debugRequests, ...options }) => {
   const { baseUrl, path, parentId, prefix, requestAttributes } = options
 
   dispatch({ parentId, type: `${prefix}_REQUEST`, ...requestAttributes })
 
-  return fetch(`${baseUrl}${path}`, fetchOptions(options)).then(
+  const [url, fetchParams] = [`${baseUrl}${path}`, fetchOptions(options)]
+
+  debugRequests && requestLogger(url, fetchParams)
+
+  return fetch(url, fetchParams).then(
     dispatchResponse(dispatch, options),
     dispatchError(dispatch, options),
   )
