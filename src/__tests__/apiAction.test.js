@@ -1,4 +1,7 @@
 import apiAction from '../apiAction'
+import requestLogger from '../requestLogger'
+
+jest.mock('../requestLogger', () => jest.fn())
 
 describe('with default GET method and successful JSON response', () => {
   it('dispatches the correct actions', async () => {
@@ -281,6 +284,32 @@ describe('with custom headers', () => {
         },
         method: 'POST',
       })
+    })
+  })
+})
+
+describe('with debugRequests', () => {
+  it('uses requestLogger function to log fetch params', async () => {
+    const dispatch = jest.fn()
+
+    const action = apiAction({
+      prefix: '@foo/BAR',
+      path: '/foo/bar',
+      baseUrl: 'http://foo.com',
+      parseResponse: json => ({ json }),
+      debugRequests: true,
+    })
+
+    await action(dispatch)
+
+    expect(requestLogger).toHaveBeenCalled()
+    expect(requestLogger).toHaveBeenCalledWith('http://foo.com/foo/bar', {
+      credentials: undefined,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'get',
     })
   })
 })
