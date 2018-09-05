@@ -1,6 +1,6 @@
 {
   "name": "croods",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "A React + Redux framework for creating CRUDs",
   "author": "danielweinmann",
   "contributors": [
