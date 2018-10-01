@@ -47,3 +47,18 @@ describe('defaultParse', () => {
     })
   })
 })
+
+describe('with a custom method', () => {
+  it('returns the correct action', () => {
+    const options = { method: 'put' }
+    const params = { baz: 'quu' }
+
+    expect(create(options)(params)).toEqual({
+      customParse: undefined,
+      defaultParse: expect.anything(),
+      method: 'put',
+      prefix: 'CREATE',
+      params,
+    })
+  })
+})

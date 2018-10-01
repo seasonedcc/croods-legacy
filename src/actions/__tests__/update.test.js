@@ -83,3 +83,23 @@ describe('defaultParse', () => {
     })
   })
 })
+
+describe('with a custom method', () => {
+  it('returns the correct action', () => {
+    const options = { method: 'post' }
+    const params = { bar: 'foo' }
+
+    expect(update(options)({ id: 123, ...params })).toEqual({
+      customParse: undefined,
+      defaultParse: expect.anything(),
+      id: 123,
+      method: 'post',
+      prefix: 'UPDATE',
+      params,
+      requestAttributes: {
+        id: 123,
+        params,
+      },
+    })
+  })
+})

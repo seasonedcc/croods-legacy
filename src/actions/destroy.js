@@ -2,9 +2,9 @@ import action from './action'
 
 export default options => id => {
   return action({
+    method: 'delete',
     ...options,
     id,
-    method: 'delete',
     prefix: 'DESTROY',
     requestAttributes: { id },
     customParse: options.parseDestroyResponse,

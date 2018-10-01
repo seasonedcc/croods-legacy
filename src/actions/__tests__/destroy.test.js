@@ -50,3 +50,21 @@ describe('defaultParse', () => {
     })
   })
 })
+
+describe('with a custom method', () => {
+  it('returns the correct action', () => {
+    const options = { foo: 'bar', method: 'post' }
+
+    expect(destroy(options)(123)).toEqual({
+      customParse: undefined,
+      defaultParse: expect.anything(),
+      id: 123,
+      foo: 'bar',
+      method: 'post',
+      prefix: 'DESTROY',
+      requestAttributes: {
+        id: 123,
+      },
+    })
+  })
+})
