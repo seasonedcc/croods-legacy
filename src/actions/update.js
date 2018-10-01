@@ -8,10 +8,10 @@ export default options => ({ id, ...attributes }) => {
   const params = omit(attributes, flags)
 
   return action({
+    method: 'put',
     ...options,
     id,
     params,
-    method: 'put',
     prefix: 'UPDATE',
     requestAttributes: { id, params },
     customParse: options.parseUpdateResponse,
