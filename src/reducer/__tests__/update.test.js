@@ -28,7 +28,6 @@ describe('with REQUEST action', () => {
         foo: 'bar',
         updateError: null,
         updating: true,
-        updateError: null,
         info: null,
         list: null,
       })
@@ -185,7 +184,7 @@ describe('with SUCCESS action', () => {
       const action = { type: '@bar/SUCCESS', updated }
 
       expect(update(options)(state, action)).toEqual({
-        updated: updated,
+        updated,
         updating: false,
         foo: 'bar',
         info: updated,

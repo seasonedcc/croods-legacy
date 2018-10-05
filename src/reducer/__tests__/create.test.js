@@ -54,7 +54,7 @@ describe('with SUCCESS action', () => {
       expect(create(options)(state, action)).toEqual({
         ...state,
         creating: false,
-        created: created,
+        created,
         info: created,
         list: null,
       })
@@ -72,7 +72,7 @@ describe('with SUCCESS action', () => {
         expect(create({ addCreatedToTop: true })(state, action)).toEqual({
           ...state,
           creating: false,
-          created: created,
+          created,
           info: created,
           list: [{ id: 789 }, { id: 123 }, { id: 456 }],
         })
@@ -84,7 +84,7 @@ describe('with SUCCESS action', () => {
         expect(create(options)(state, action)).toEqual({
           ...state,
           creating: false,
-          created: created,
+          created,
           info: created,
           list: [{ id: 123 }, { id: 456 }, { id: 789 }],
         })
