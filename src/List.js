@@ -13,9 +13,9 @@ class List extends Component {
   constructor(props) {
     super(props)
 
-    const { list, parentId, path, listPath, actions } = props
+    const { list, parentId, path, listPath, actions, disableCache } = props
 
-    if (!list || parentId || path !== listPath) {
+    if (!list || parentId || path !== listPath || disableCache) {
       actions.fetchList(path)
     }
   }
