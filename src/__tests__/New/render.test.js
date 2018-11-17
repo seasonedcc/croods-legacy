@@ -35,7 +35,7 @@ it('renders correctly', () => {
 })
 
 describe('with renderCreated and without created', () => {
-  it('renders edit', () => {
+  it('renders new', () => {
     const renderCreated = jest.fn(created => <div>Created: {created}</div>)
     const props = { name: 'colors', render, actions, renderCreated }
     const tree = renderer.create(<New {...props} />).toJSON()
@@ -45,7 +45,7 @@ describe('with renderCreated and without created', () => {
 })
 
 describe('with renderCreated and created', () => {
-  it('renders created', () => {
+  it('renders both new and created', () => {
     const renderCreated = jest.fn(created => <div {...created}>Created </div>)
     const props = {
       name: 'colors',
@@ -57,7 +57,6 @@ describe('with renderCreated and created', () => {
     const tree = renderer.create(<New {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
-    expect(render).not.toHaveBeenCalled()
   })
 })
 
