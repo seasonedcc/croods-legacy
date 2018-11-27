@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -32,8 +32,10 @@ class New extends Component {
     const { create } = actions
 
     return (
-      renderIfPresent(renderCreated, created) ||
-      render({ create, creating, error }, this.props)
+      <Fragment>
+        {renderIfPresent(renderCreated, created)}
+        {render({ create, creating, error }, this.props)}
+      </Fragment>
     )
   }
 }

@@ -17,15 +17,37 @@ exports[`renders correctly 1`] = `
 </div>
 `;
 
-exports[`with renderCreated and created renders created 1`] = `
-<div
-  foo="bar"
+exports[`with renderCreated and created renders both new and created 1`] = `
+Array [
+  <div
+    foo="bar"
 >
-  Created 
-</div>
+    Created 
+</div>,
+  <div
+    actions={
+        Object {
+            "resetCreated": [Function],
+          }
+    }
+    create={undefined}
+    created={
+        Object {
+            "foo": "bar",
+          }
+    }
+    creating={undefined}
+    error={undefined}
+    name="colors"
+    render={[Function]}
+    renderCreated={[Function]}
+>
+    New
+</div>,
+]
 `;
 
-exports[`with renderCreated and without created renders edit 1`] = `
+exports[`with renderCreated and without created renders new 1`] = `
 <div
   actions={
     Object {
