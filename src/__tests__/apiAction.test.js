@@ -314,9 +314,9 @@ describe('with debugRequests', () => {
   })
 })
 
-describe('with afterError', () => {
+describe('with afterFailure', () => {
   const dispatch = jest.fn()
-  const afterError = jest.fn()
+  const afterFailure = jest.fn()
 
   const action = apiAction({
     prefix: '@foo/BAR',
@@ -324,12 +324,12 @@ describe('with afterError', () => {
     path: '/foo/bar',
     method: 'POST',
     headers: { bar: 'foo' },
-    afterError,
+    afterFailure,
     parseResponse: json => ({ json }),
   })
 
   describe('when response is ok', () => {
-    it('does NOT call afterError function', async () => {
+    it('does NOT call afterFailure function', async () => {
       const response = {
         ok: true,
         text: () => JSON.stringify({ foo: 'bar' }),
@@ -340,13 +340,13 @@ describe('with afterError', () => {
       global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
       global.fetch.mockClear()
       await action(dispatch)
-      afterError.mockClear()
-      expect(afterError).not.toBeCalled()
+      afterFailure.mockClear()
+      expect(afterFailure).not.toBeCalled()
     })
   })
 
   describe('when response is NOT ok', () => {
-    it('calls afterError function', async () => {
+    it('calls afterFailure function', async () => {
       const response = {
         ok: false,
         text: () => JSON.stringify({ foo: 'bar' }),
@@ -357,8 +357,8 @@ describe('with afterError', () => {
       global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
       global.fetch.mockClear()
       await action(dispatch)
-      expect(afterError).toBeCalled()
-      afterError.mockClear()
+      expect(afterFailure).toBeCalled()
+      afterFailure.mockClear()
     })
   })
 })

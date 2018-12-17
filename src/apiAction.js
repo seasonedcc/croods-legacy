@@ -67,7 +67,7 @@ const dispatchError = (dispatch, options) => async response => {
 
 const dispatchResponse = (dispatch, options) => async response => {
   const { parentId, prefix, parseResponse, requestAttributes } = options
-  const { afterSuccess, afterError, afterRequest } = options
+  const { afterSuccess, afterFailure, afterRequest } = options
 
   const json = await jsonResponse(response)
 
@@ -86,7 +86,7 @@ const dispatchResponse = (dispatch, options) => async response => {
       ...requestAttributes,
       error: parseError(json),
     })
-    afterError && afterError(response, json)
+    afterFailure && afterFailure(response, json)
   }
   afterRequest && afterRequest(response, json)
 }
