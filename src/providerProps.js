@@ -9,6 +9,8 @@ export default {
   renderLoading: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]), // undefined -> Html
   renderError: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]), // error -> Html
   afterSuccess: PropTypes.func, // (response, json)
+  afterError: PropTypes.func, // (response, json)
+  afterRequest: PropTypes.func, // (response, json)
   disableCache: PropTypes.bool,
 
   /** Logs requests parameters to the console: method, credentials and headers */

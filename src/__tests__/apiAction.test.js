@@ -145,9 +145,7 @@ describe('with POST method and with newtwork error', () => {
       },
     }
 
-    global.fetch = jest.fn(
-      () => new Promise((resolve, reject) => reject(response)),
-    )
+    global.fetch = jest.fn(() => new Promise((resolve, reject) => reject(response)))
 
     const action = apiAction({
       prefix: '@foo/BAR',
@@ -310,6 +308,153 @@ describe('with debugRequests', () => {
         'Content-Type': 'application/json',
       },
       method: 'get',
+    })
+  })
+})
+
+describe('with afterError', () => {
+  const dispatch = jest.fn()
+  const afterError = jest.fn()
+
+  const action = apiAction({
+    prefix: '@foo/BAR',
+    baseUrl: 'foourl',
+    path: '/foo/bar',
+    method: 'POST',
+    headers: { bar: 'foo' },
+    afterError,
+    parseResponse: json => ({ json }),
+  })
+
+  describe('when response is ok', () => {
+    it('does NOT call afterError function', async () => {
+      const response = {
+        ok: true,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      afterError.mockClear()
+      expect(afterError).not.toBeCalled()
+    })
+  })
+
+  describe('when response is NOT ok', () => {
+    it('calls afterError function', async () => {
+      const response = {
+        ok: false,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      expect(afterError).toBeCalled()
+      afterError.mockClear()
+    })
+  })
+})
+
+describe('with afterSuccess', () => {
+  const dispatch = jest.fn()
+  const afterSuccess = jest.fn()
+
+  const action = apiAction({
+    prefix: '@foo/BAR',
+    baseUrl: 'foourl',
+    path: '/foo/bar',
+    method: 'POST',
+    headers: { bar: 'foo' },
+    afterSuccess,
+    parseResponse: json => ({ json }),
+  })
+
+  describe('when response is ok', () => {
+    it('calls afterSuccess function', async () => {
+      const response = {
+        ok: true,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      expect(afterSuccess).toBeCalled()
+      afterSuccess.mockClear()
+    })
+  })
+
+  describe('when response is NOT ok', () => {
+    it('does NOT call afterSuccess function', async () => {
+      const response = {
+        ok: false,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      expect(afterSuccess).not.toBeCalled()
+      afterSuccess.mockClear()
+    })
+  })
+})
+
+describe('with afterRequest', () => {
+  const dispatch = jest.fn()
+  const afterRequest = jest.fn()
+
+  const action = apiAction({
+    prefix: '@foo/BAR',
+    baseUrl: 'foourl',
+    path: '/foo/bar',
+    method: 'POST',
+    headers: { bar: 'foo' },
+    afterRequest,
+    parseResponse: json => ({ json }),
+  })
+
+  describe('when response is ok', () => {
+    it('calls afterRequest function', async () => {
+      const response = {
+        ok: true,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      expect(afterRequest).toBeCalled()
+      afterRequest.mockClear()
+    })
+  })
+
+  describe('when response is NOT ok', () => {
+    it('call afterRequest function', async () => {
+      const response = {
+        ok: false,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      expect(afterRequest).toBeCalled()
+      afterRequest.mockClear()
     })
   })
 })
