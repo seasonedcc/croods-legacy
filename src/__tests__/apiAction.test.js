@@ -412,9 +412,9 @@ describe('with afterSuccess', () => {
   })
 })
 
-describe('with afterRequest', () => {
+describe('with afterResponse', () => {
   const dispatch = jest.fn()
-  const afterRequest = jest.fn()
+  const afterResponse = jest.fn()
 
   const action = apiAction({
     prefix: '@foo/BAR',
@@ -422,12 +422,12 @@ describe('with afterRequest', () => {
     path: '/foo/bar',
     method: 'POST',
     headers: { bar: 'foo' },
-    afterRequest,
+    afterResponse,
     parseResponse: json => ({ json }),
   })
 
   describe('when response is ok', () => {
-    it('calls afterRequest function', async () => {
+    it('calls afterResponse function', async () => {
       const response = {
         ok: true,
         text: () => JSON.stringify({ foo: 'bar' }),
@@ -438,13 +438,13 @@ describe('with afterRequest', () => {
       global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
       global.fetch.mockClear()
       await action(dispatch)
-      expect(afterRequest).toBeCalled()
-      afterRequest.mockClear()
+      expect(afterResponse).toBeCalled()
+      afterResponse.mockClear()
     })
   })
 
   describe('when response is NOT ok', () => {
-    it('call afterRequest function', async () => {
+    it('call afterResponse function', async () => {
       const response = {
         ok: false,
         text: () => JSON.stringify({ foo: 'bar' }),
@@ -455,8 +455,8 @@ describe('with afterRequest', () => {
       global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
       global.fetch.mockClear()
       await action(dispatch)
-      expect(afterRequest).toBeCalled()
-      afterRequest.mockClear()
+      expect(afterResponse).toBeCalled()
+      afterResponse.mockClear()
     })
   })
 })
