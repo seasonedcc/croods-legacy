@@ -4,13 +4,20 @@ import snakeCase from './snakeCase'
 import parseError from './parseError'
 import requestLogger from './requestLogger'
 
-const fetchOptions = async ({ method = 'get', params, credentials, headers = {} }) => {
+const fetchOptions = async ({
+  method = 'get',
+  params,
+  credentials,
+  headers = {},
+}) => {
   const defaultHeaders = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   }
 
-  const customHeaders = await (typeof headers === 'function' ? headers(defaultHeaders) : headers)
+  const customHeaders = await (typeof headers === 'function'
+    ? headers(defaultHeaders)
+    : headers)
 
   const options = {
     method,
@@ -75,7 +82,8 @@ const dispatchResponse = (dispatch, options) => async response => {
     dispatch({
       parentId,
       type: `${prefix}_SUCCESS`,
-      ...(parseResponse && (await parseResponse(json, response, requestAttributes))),
+      ...(parseResponse &&
+        (await parseResponse(json, response, requestAttributes))),
     })
 
     afterSuccess && afterSuccess(response, json)
@@ -103,7 +111,7 @@ const dispatchAction = async (dispatch, { debugRequests, ...options }) => {
 
   return fetch(url, fetchParams).then(
     dispatchResponse(dispatch, options),
-    dispatchError(dispatch, options)
+    dispatchError(dispatch, options),
   )
 }
 

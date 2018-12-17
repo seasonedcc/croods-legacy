@@ -145,7 +145,9 @@ describe('with POST method and with newtwork error', () => {
       },
     }
 
-    global.fetch = jest.fn(() => new Promise((resolve, reject) => reject(response)))
+    global.fetch = jest.fn(
+      () => new Promise((resolve, reject) => reject(response)),
+    )
 
     const action = apiAction({
       prefix: '@foo/BAR',
