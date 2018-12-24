@@ -444,7 +444,7 @@ describe('with afterResponse', () => {
   })
 
   describe('when response is NOT ok', () => {
-    it('call afterResponse function', async () => {
+    it('calls afterResponse function', async () => {
       const response = {
         ok: false,
         text: () => JSON.stringify({ foo: 'bar' }),
