@@ -313,3 +313,150 @@ describe('with debugRequests', () => {
     })
   })
 })
+
+describe('with afterFailure', () => {
+  const dispatch = jest.fn()
+  const afterFailure = jest.fn()
+
+  const action = apiAction({
+    prefix: '@foo/BAR',
+    baseUrl: 'foourl',
+    path: '/foo/bar',
+    method: 'POST',
+    headers: { bar: 'foo' },
+    afterFailure,
+    parseResponse: json => ({ json }),
+  })
+
+  describe('when response is ok', () => {
+    it('does NOT call afterFailure function', async () => {
+      const response = {
+        ok: true,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      afterFailure.mockClear()
+      expect(afterFailure).not.toBeCalled()
+    })
+  })
+
+  describe('when response is NOT ok', () => {
+    it('calls afterFailure function', async () => {
+      const response = {
+        ok: false,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      expect(afterFailure).toBeCalled()
+      afterFailure.mockClear()
+    })
+  })
+})
+
+describe('with afterSuccess', () => {
+  const dispatch = jest.fn()
+  const afterSuccess = jest.fn()
+
+  const action = apiAction({
+    prefix: '@foo/BAR',
+    baseUrl: 'foourl',
+    path: '/foo/bar',
+    method: 'POST',
+    headers: { bar: 'foo' },
+    afterSuccess,
+    parseResponse: json => ({ json }),
+  })
+
+  describe('when response is ok', () => {
+    it('calls afterSuccess function', async () => {
+      const response = {
+        ok: true,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      expect(afterSuccess).toBeCalled()
+      afterSuccess.mockClear()
+    })
+  })
+
+  describe('when response is NOT ok', () => {
+    it('does NOT call afterSuccess function', async () => {
+      const response = {
+        ok: false,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      expect(afterSuccess).not.toBeCalled()
+      afterSuccess.mockClear()
+    })
+  })
+})
+
+describe('with afterResponse', () => {
+  const dispatch = jest.fn()
+  const afterResponse = jest.fn()
+
+  const action = apiAction({
+    prefix: '@foo/BAR',
+    baseUrl: 'foourl',
+    path: '/foo/bar',
+    method: 'POST',
+    headers: { bar: 'foo' },
+    afterResponse,
+    parseResponse: json => ({ json }),
+  })
+
+  describe('when response is ok', () => {
+    it('calls afterResponse function', async () => {
+      const response = {
+        ok: true,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      expect(afterResponse).toBeCalled()
+      afterResponse.mockClear()
+    })
+  })
+
+  describe('when response is NOT ok', () => {
+    it('calls afterResponse function', async () => {
+      const response = {
+        ok: false,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      global.fetch.mockClear()
+      await action(dispatch)
+      expect(afterResponse).toBeCalled()
+      afterResponse.mockClear()
+    })
+  })
+})
