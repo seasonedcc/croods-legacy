@@ -1,0 +1,32 @@
+{
+  "config": {
+    "title": "Croods",
+    "description": "A React + Redux framework for creating CRUDs",
+    "menu": [],
+    "ordering": "descending",
+    "version": "0.12.1",
+    "repository": "https://github.com/SeasonedSoftware/croods",
+    "native": false,
+    "codeSandbox": true,
+    "themeConfig": {}
+  },
+  "entries": {
+    "src/New.mdx": {
+      "name": "New",
+      "id": "7f50837a5074b6b937113fc3dd98e6ef",
+      "filepath": "src/New.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/New.mdx",
+      "slug": "src-new",
+      "route": "/src-new",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "new",
+          "value": "New"
+        }
+      ]
+    }
+  }
+}

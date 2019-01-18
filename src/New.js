@@ -55,6 +55,10 @@ New.propTypes = {
   ...providerProps,
 }
 
+const NewDocs = New
+
+export { NewDocs }
+
 export default withOptions(
   connect(
     mapStateToProps,
