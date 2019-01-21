@@ -10,5 +10,23 @@
     "codeSandbox": true,
     "themeConfig": {}
   },
-  "entries": {}
+  "entries": {
+    "src/docs/GettingStarted.mdx": {
+      "name": "Getting Started",
+      "route": "/",
+      "id": "6933ac498ace0bfec5c658d30b1678de",
+      "filepath": "src/docs/GettingStarted.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/GettingStarted.mdx",
+      "slug": "src-docs-getting-started",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "getting-started",
+          "value": "Getting Started"
+        }
+      ]
+    }
+  }
 }

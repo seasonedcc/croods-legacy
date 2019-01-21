@@ -11,12 +11,10 @@ export default reducer => (state, action = {}) => {
     ? state
     : [...state, getInitialState(action.parentId)]
   return reducer
-    ? map(
-        newState,
-        block =>
-          isCurrentBlock(block)
-            ? { ...block, state: reducer(block.state, action) }
-            : block,
+    ? map(newState, block =>
+        isCurrentBlock(block)
+          ? { ...block, state: reducer(block.state, action) }
+          : block,
       )
     : newState
 }
