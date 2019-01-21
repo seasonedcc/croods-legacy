@@ -27,6 +27,43 @@
           "value": "Getting Started"
         }
       ]
+    },
+    "src/docs/Info.mdx": {
+      "name": "Info",
+      "route": "/info",
+      "id": "e33abda561a3b670ea28f1cefa2d75f8",
+      "filepath": "src/docs/Info.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/Info.mdx",
+      "slug": "src-docs-info",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "info",
+          "value": "Info"
+        },
+        {
+          "depth": 2,
+          "slug": "api",
+          "value": "API"
+        },
+        {
+          "depth": 2,
+          "slug": "how-to-use",
+          "value": "How to use"
+        },
+        {
+          "depth": 3,
+          "slug": "render",
+          "value": "render"
+        },
+        {
+          "depth": 2,
+          "slug": "example",
+          "value": "Example"
+        }
+      ]
     }
   }
 }
