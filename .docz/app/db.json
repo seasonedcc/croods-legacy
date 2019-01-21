@@ -10,23 +10,5 @@
     "codeSandbox": true,
     "themeConfig": {}
   },
-  "entries": {
-    "src/New.mdx": {
-      "name": "New",
-      "id": "7f50837a5074b6b937113fc3dd98e6ef",
-      "filepath": "src/New.mdx",
-      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/New.mdx",
-      "slug": "src-new",
-      "route": "/src-new",
-      "order": 0,
-      "menu": null,
-      "headings": [
-        {
-          "depth": 1,
-          "slug": "new",
-          "value": "New"
-        }
-      ]
-    }
-  }
+  "entries": {}
 }
