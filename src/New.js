@@ -41,7 +41,7 @@ class New extends Component {
 }
 
 New.propTypes = {
-  /** Defines the deep properties used in the component. Ex: foo.bar */
+  /** It must be equal to the reducer name. Defines the deep properties used in the component. Ex: foo.bar */
   name: customPropTypes.name.isRequired,
   /** A function returning a React Node. Ex: ({ create, creating = bool, error }, props) -> < JSX /> */
   render: PropTypes.func.isRequired,

@@ -10,5 +10,65 @@
     "codeSandbox": true,
     "themeConfig": {}
   },
-  "entries": {}
+  "entries": {
+    "src/docs/GettingStarted.mdx": {
+      "name": "Getting Started",
+      "route": "/",
+      "id": "6933ac498ace0bfec5c658d30b1678de",
+      "filepath": "src/docs/GettingStarted.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/GettingStarted.mdx",
+      "slug": "src-docs-getting-started",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "getting-started",
+          "value": "Getting Started"
+        }
+      ]
+    },
+    "src/docs/New.mdx": {
+      "name": "New",
+      "route": "/new",
+      "id": "194fd7b37926b7900aa623d4e47ee1ff",
+      "filepath": "src/docs/New.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/New.mdx",
+      "slug": "src-docs-new",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "new",
+          "value": "New"
+        },
+        {
+          "depth": 2,
+          "slug": "api",
+          "value": "API"
+        },
+        {
+          "depth": 2,
+          "slug": "how-to-use",
+          "value": "How to use"
+        },
+        {
+          "depth": 3,
+          "slug": "render",
+          "value": "render"
+        },
+        {
+          "depth": 3,
+          "slug": "rendercreated",
+          "value": "renderCreated"
+        },
+        {
+          "depth": 2,
+          "slug": "example",
+          "value": "Example"
+        }
+      ]
+    }
+  }
 }
