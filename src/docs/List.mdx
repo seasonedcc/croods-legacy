@@ -1,0 +1,48 @@
+---
+name: List
+route: /list
+---
+
+import { Playground } from 'docz'
+
+# New
+
+The List component provides a way to fetch a list from an api, using the response as needed, fetching or set a resource and show or use the response data.
+
+## API
+
+| Property | Type          | Required | Default    | Description                                                                                          |
+| -------- | ------------- | -------- | ---------- | ---------------------------------------------------------------------------------------------------- |
+| name     | String        | true     | -          | It must be equal to the reducer name. Defines the deep properties used in the component. Ex: foo.bar |
+| render   | Func          | true     | -          | A function returning a React Node. Ex: ({ create, creating = bool, error }, props) -> < JSX />       |
+| parentId | String/Number | false    | -          | Parent element's Id, for more specificity in changes.                                                |
+| path     | String        | false    | `/${name}` | Ex: /foo/bar-\_12?&=                                                                                 |
+
+## How to use
+
+You have to add a reducer with the same name that you will pass to List.
+
+```javascript
+import { createReducer } from 'croods'
+
+const reducers = {
+  foobar: createReducer('foobar'),
+}
+```
+
+### render
+
+The render function receives three important parameters, **create** (func), **creating** (bool) and **error** (string).
+
+- The **list** is an array with the response.
+- The \*\*listError is a bool to identify if the request is being done.
+- The **error** is populated after the use of create if the server response has an error status code.
+
+### renderCreated
+
+The renderCreated function is fired when the create function is used and the server response has a 2xx status.
+It receives the `created` parameter that contains the server response body.
+
+## Example
+
+You can see a working example using this component in [here](https://github.com/SeasonedSoftware/croods/blob/master/example/src/colors/List.js).

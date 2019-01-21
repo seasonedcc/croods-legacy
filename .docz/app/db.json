@@ -28,6 +28,48 @@
         }
       ]
     },
+    "src/docs/List.mdx": {
+      "name": "List",
+      "route": "/list",
+      "id": "baa000fbaf600ad417163e18132bda9b",
+      "filepath": "src/docs/List.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/List.mdx",
+      "slug": "src-docs-list",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "new",
+          "value": "New"
+        },
+        {
+          "depth": 2,
+          "slug": "api",
+          "value": "API"
+        },
+        {
+          "depth": 2,
+          "slug": "how-to-use",
+          "value": "How to use"
+        },
+        {
+          "depth": 3,
+          "slug": "render",
+          "value": "render"
+        },
+        {
+          "depth": 3,
+          "slug": "rendercreated",
+          "value": "renderCreated"
+        },
+        {
+          "depth": 2,
+          "slug": "example",
+          "value": "Example"
+        }
+      ]
+    },
     "src/docs/New.mdx": {
       "name": "New",
       "route": "/new",
