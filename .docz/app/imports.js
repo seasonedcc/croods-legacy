@@ -1,4 +1,6 @@
 export const imports = {
+  'src/docs/Destroy.mdx': () =>
+    import(/* webpackPrefetch: true, webpackChunkName: "src-docs-destroy" */ 'src/docs/Destroy.mdx'),
   'src/docs/GettingStarted.mdx': () =>
     import(/* webpackPrefetch: true, webpackChunkName: "src-docs-getting-started" */ 'src/docs/GettingStarted.mdx'),
   'src/docs/List.mdx': () =>

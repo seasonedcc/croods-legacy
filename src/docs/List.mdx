@@ -5,43 +5,49 @@ route: /list
 
 import { Playground } from 'docz'
 
-# New
+# List
 
 The List component provides a way to fetch a list from an api, using the response as needed, fetching or set a resource and show or use the response data.
 
 ## API
 
-| Property | Type          | Required | Default    | Description                                                                                          |
-| -------- | ------------- | -------- | ---------- | ---------------------------------------------------------------------------------------------------- |
-| name     | String        | true     | -          | It must be equal to the reducer name. Defines the deep properties used in the component. Ex: foo.bar |
-| render   | Func          | true     | -          | A function returning a React Node. Ex: ({ create, creating = bool, error }, props) -> < JSX />       |
-| parentId | String/Number | false    | -          | Parent element's Id, for more specificity in changes.                                                |
-| path     | String        | false    | `/${name}` | Ex: /foo/bar-\_12?&=                                                                                 |
+| Property      | Type          | Required | Default    | Description                                                                                             |
+| ------------- | ------------- | -------- | ---------- | ------------------------------------------------------------------------------------------------------- |
+| name          | String        | true     | -          | It defines which reducer will be used and, if no path have been provider, will set path to baseUrl/name |
+| render        | Func          | true     | -          | A function returning a React Node. Ex: ({ list }, props) -> < JSX />                                    |
+| renderError   | Func          | false    | -          | A function returning a React Node. Ex: ({ error, creating = bool, error }, props) -> < JSX />           |
+| renderLoading | Func          | false    | -          | A function returning a React Node. Ex: ({ create, creating = bool, error }, props) -> < JSX />          |
+| parentId      | String/Number | false    | -          | Parent element's Id, for more specificity in changes.                                                   |
+| path          | String        | false    | `/${name}` | Ex: /foo/bar-\_12?&=                                                                                    |
 
 ## How to use
 
-You have to add a reducer with the same name that you will pass to List.
-
 ```javascript
-import { createReducer } from 'croods'
+import { List } from 'croods'
 
-const reducers = {
-  foobar: createReducer('foobar'),
-}
+export default (
+  <List
+    name="pets"
+    // if path is different than /pets, you can set a custom path like so:
+    // path='/customPath'
+    render={list => <Component list={list} />}
+  />
+)
 ```
 
 ### render
 
-The render function receives three important parameters, **create** (func), **creating** (bool) and **error** (string).
+The render function is used to receive the api response in the form of an array, **list** , and
+pass it to any component you like.
 
-- The **list** is an array with the response.
-- The \*\*listError is a bool to identify if the request is being done.
-- The **error** is populated after the use of create if the server response has an error status code.
+### renderError
 
-### renderCreated
+The renderError function is fired when the server response has a 4xx or 5xx status.
+It receives the `error` parameter that contains the server error message.
 
-The renderCreated function is fired when the create function is used and the server response has a 2xx status.
-It receives the `created` parameter that contains the server response body.
+### renderError
+
+The renderLoading function is fired while there is no response from server.
 
 ## Example
 

@@ -11,6 +11,43 @@
     "themeConfig": {}
   },
   "entries": {
+    "src/docs/Destroy.mdx": {
+      "name": "Destroy",
+      "route": "/destroy",
+      "id": "7d6f3a0b48bd50b4cc788f20f37dafec",
+      "filepath": "src/docs/Destroy.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/Destroy.mdx",
+      "slug": "src-docs-destroy",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "destroy",
+          "value": "Destroy"
+        },
+        {
+          "depth": 2,
+          "slug": "api",
+          "value": "API"
+        },
+        {
+          "depth": 2,
+          "slug": "how-to-use",
+          "value": "How to use"
+        },
+        {
+          "depth": 3,
+          "slug": "render",
+          "value": "render"
+        },
+        {
+          "depth": 2,
+          "slug": "example",
+          "value": "Example"
+        }
+      ]
+    },
     "src/docs/GettingStarted.mdx": {
       "name": "Getting Started",
       "route": "/",
@@ -40,8 +77,8 @@
       "headings": [
         {
           "depth": 1,
-          "slug": "new",
-          "value": "New"
+          "slug": "list",
+          "value": "List"
         },
         {
           "depth": 2,
@@ -60,8 +97,13 @@
         },
         {
           "depth": 3,
-          "slug": "rendercreated",
-          "value": "renderCreated"
+          "slug": "rendererror",
+          "value": "renderError"
+        },
+        {
+          "depth": 3,
+          "slug": "rendererror-1",
+          "value": "renderError"
         },
         {
           "depth": 2,
