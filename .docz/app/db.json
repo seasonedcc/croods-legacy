@@ -70,6 +70,7 @@
         }
       ]
     },
+<<<<<<< HEAD
     "src/docs/New.mdx": {
       "name": "New",
       "route": "/new",
@@ -77,13 +78,27 @@
       "filepath": "src/docs/New.mdx",
       "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/New.mdx",
       "slug": "src-docs-new",
+=======
+    "src/docs/Info.mdx": {
+      "name": "Info",
+      "route": "/info",
+      "id": "e33abda561a3b670ea28f1cefa2d75f8",
+      "filepath": "src/docs/Info.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/Info.mdx",
+      "slug": "src-docs-info",
+>>>>>>> docz-info
       "order": 0,
       "menu": null,
       "headings": [
         {
           "depth": 1,
+<<<<<<< HEAD
           "slug": "new",
           "value": "New"
+=======
+          "slug": "info",
+          "value": "Info"
+>>>>>>> docz-info
         },
         {
           "depth": 2,
@@ -101,11 +116,14 @@
           "value": "render"
         },
         {
+<<<<<<< HEAD
           "depth": 3,
           "slug": "rendercreated",
           "value": "renderCreated"
         },
         {
+=======
+>>>>>>> docz-info
           "depth": 2,
           "slug": "example",
           "value": "Example"
