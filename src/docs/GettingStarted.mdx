@@ -72,7 +72,6 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 Now we create the regular redux provider, and inside it, we put crood's provider, passing as `baseUrl` prop the API's url.
 
 ```javascript
-
 export default props => (
   <ReduxProvider store={store}>
     <CroodsProvider
@@ -82,7 +81,7 @@ export default props => (
      
     </CroodsProvider>
   </ReduxProvider>
-);
+)
 ```
 In `parseListResponse` prop, we are specifying to croods how to handle api responses to our list component. In this example, our api returns a json like this:
 ```json
@@ -91,7 +90,8 @@ In `parseListResponse` prop, we are specifying to croods how to handle api respo
     "message": [
         "https://images.dog.ceo/breeds/beagle/n02088364_10108.jpg",
         "https://images.dog.ceo/breeds/beagle/n02088364_10206.jpg"
-    ]}
+    ]
+}
 ```
 Since the list we want is inside "messages", all we need to do is pass a function to extract that list from the response.
 
@@ -102,22 +102,21 @@ parseListResponse={({ message: list }) => ({ list })}
 Then we create our [List](http://linkto.docs) component: 
 ```javascript
  <List
-        name="beagle"
-        path="/images"
-        render={list => (
-          <div>
-            <h1>Hello Beagles!</h1>
-            <ul>
-              {list.map((item, index) => (
-                <li key={index}>
-                  <img src={item} alt="" />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      />
-
+  name="beagle"
+  path="/images"
+  render={list => (
+    <div>
+      <h1>Hello Beagles!</h1>
+      <ul>
+        {list.map((item, index) => (
+          <li key={index}>
+            <img src={item} alt="" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+/>
 ```
 `name` defines the actions and reducers being used in the component, the "beagle" we created with `createReducer`. `path` states where to find our  endpoint being used by the component, relative to `baseUrl` passed to crood's provider. Since we want `https://dog.ceo/api/breed/beagle/images`,  we just need to pass it `/images`. 
 The last prop is `render`, which, as the name implies, is a function defining the component's output. It receives the list as prop from crood's provider.
