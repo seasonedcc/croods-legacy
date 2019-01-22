@@ -1,0 +1,43 @@
+---
+name: Info
+route: /info
+---
+
+# Info
+
+The Info component provides a way to fetch the info about a resource and render component using the resource info.
+This component does a `GET` request to the `path` and renders the render function.
+
+## API
+
+|Property|Type|Required|Default|Description|
+|--- |--- |--- |--- |--- |
+|id|String/Number|true|-|Ex: 1234 or '1234'|
+|name|String|true|-|Defines the deep properties used in the component. Ex: foo.bar|
+|render|Func|true|-|A function returning a React Node. Ex: (info = {}, props) -> < JSX />|
+|parentId|String/Number|false|-|Parent element's Id, for more specificity in changes.|
+|path|String|false|`/${name}/${id}`|Ex: /foo/bar-_12?&=|
+|renderError|Func|false|Provider's renderError|A function returning a React Node that will render when occurs an error. Ex: (error = {}) -> < JSX />|
+|renderLoading|Func|false|Provider's renderLoading|A function returning a React Node that will be rendered while wait the server response. Ex: () -> < JSX />|
+
+
+
+## How to use
+
+You have to add a reducer with the same name that you will pass to Info.
+
+```javascript
+import { createReducer } from 'croods'
+
+const reducers = {
+  foobar: createReducer('foobar'),
+}
+```
+
+### render
+
+The render function receives an important parameter, **info**, that contains the response body.
+
+## Example
+
+You can see a working example using this component in [here](https://github.com/SeasonedSoftware/croods/blob/master/example/src/colors/Info.js).
