@@ -8,7 +8,10 @@
     "repository": "https://github.com/SeasonedSoftware/croods",
     "native": false,
     "codeSandbox": true,
-    "themeConfig": {}
+    "themeConfig": {},
+    "plugins": [
+      {}
+    ]
   },
   "entries": {
     "src/docs/Edit.mdx": {
@@ -70,15 +73,6 @@
         }
       ]
     },
-<<<<<<< HEAD
-    "src/docs/New.mdx": {
-      "name": "New",
-      "route": "/new",
-      "id": "194fd7b37926b7900aa623d4e47ee1ff",
-      "filepath": "src/docs/New.mdx",
-      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/New.mdx",
-      "slug": "src-docs-new",
-=======
     "src/docs/Info.mdx": {
       "name": "Info",
       "route": "/info",
@@ -86,19 +80,13 @@
       "filepath": "src/docs/Info.mdx",
       "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/Info.mdx",
       "slug": "src-docs-info",
->>>>>>> docz-info
       "order": 0,
       "menu": null,
       "headings": [
         {
           "depth": 1,
-<<<<<<< HEAD
-          "slug": "new",
-          "value": "New"
-=======
           "slug": "info",
           "value": "Info"
->>>>>>> docz-info
         },
         {
           "depth": 2,
@@ -116,14 +104,90 @@
           "value": "render"
         },
         {
-<<<<<<< HEAD
+          "depth": 2,
+          "slug": "example",
+          "value": "Example"
+        }
+      ]
+    },
+    "src/docs/List.mdx": {
+      "name": "List",
+      "route": "/list",
+      "id": "baa000fbaf600ad417163e18132bda9b",
+      "filepath": "src/docs/List.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/List.mdx",
+      "slug": "src-docs-list",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "new",
+          "value": "New"
+        },
+        {
+          "depth": 2,
+          "slug": "api",
+          "value": "API"
+        },
+        {
+          "depth": 2,
+          "slug": "how-to-use",
+          "value": "How to use"
+        },
+        {
+          "depth": 3,
+          "slug": "render",
+          "value": "render"
+        },
+        {
           "depth": 3,
           "slug": "rendercreated",
           "value": "renderCreated"
         },
         {
-=======
->>>>>>> docz-info
+          "depth": 2,
+          "slug": "example",
+          "value": "Example"
+        }
+      ]
+    },
+    "src/docs/New.mdx": {
+      "name": "New",
+      "route": "/new",
+      "id": "194fd7b37926b7900aa623d4e47ee1ff",
+      "filepath": "src/docs/New.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/New.mdx",
+      "slug": "src-docs-new",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "new",
+          "value": "New"
+        },
+        {
+          "depth": 2,
+          "slug": "api",
+          "value": "API"
+        },
+        {
+          "depth": 2,
+          "slug": "how-to-use",
+          "value": "How to use"
+        },
+        {
+          "depth": 3,
+          "slug": "render",
+          "value": "render"
+        },
+        {
+          "depth": 3,
+          "slug": "rendercreated",
+          "value": "renderCreated"
+        },
+        {
           "depth": 2,
           "slug": "example",
           "value": "Example"
