@@ -11,6 +11,48 @@
     "themeConfig": {}
   },
   "entries": {
+    "src/docs/Edit.mdx": {
+      "name": "Edit",
+      "route": "/edit",
+      "id": "12293291e392e902788a2c89949e1afe",
+      "filepath": "src/docs/Edit.mdx",
+      "link": "https://github.com/SeasonedSoftware/croods/edit/master/src/docs/Edit.mdx",
+      "slug": "src-docs-edit",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "edit",
+          "value": "Edit"
+        },
+        {
+          "depth": 2,
+          "slug": "api",
+          "value": "API"
+        },
+        {
+          "depth": 2,
+          "slug": "how-to-use",
+          "value": "How to use"
+        },
+        {
+          "depth": 3,
+          "slug": "render",
+          "value": "render"
+        },
+        {
+          "depth": 3,
+          "slug": "renderupdated",
+          "value": "renderUpdated"
+        },
+        {
+          "depth": 2,
+          "slug": "example",
+          "value": "Example"
+        }
+      ]
+    },
     "src/docs/GettingStarted.mdx": {
       "name": "Getting Started",
       "route": "/",
