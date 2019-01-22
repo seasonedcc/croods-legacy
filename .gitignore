@@ -22,3 +22,5 @@ yarn-error.log*
 coverage/
 
 .docz/cache/
+.docz/app/db.json
+.docz/app/imports.js
