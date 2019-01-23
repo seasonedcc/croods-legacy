@@ -39,7 +39,7 @@ The render function receives three important parameters, **create** (func), **cr
 
 - The **create** function makes a `POST` request on `path` with the JSONified object parameter as body.
 - The **creating** is a boolean that will be `true` while requesting and will switch back to `false` once the request succeeds or fails.
-- The **error** is populated after the use of create if the server response has an error status code.
+- The `error` is populated after calling `create`, only if the server response has an error status code.
 
 ### renderCreated
 
