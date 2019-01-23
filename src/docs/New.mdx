@@ -37,15 +37,15 @@ const reducers = {
 
 The render function receives three important parameters, **create** (func), **creating** (bool) and **error** (string).
 
-- The **create** function makes a `POST` request on `path` with the jsonified object parameter as body.
-- The **creating** is a bool to identify if the request is being done.
-- The **error** is populated after the use of create if the server response has an error status code.
+- The **create** function makes a `POST` request on `path` with the JSONified object parameter as body.
+- The **creating** is a boolean that will be `true` while requesting and will switch back to `false` once the request succeeds or fails.
+- The `error` is populated after calling `create`, only if the server response has an error status code.
 
 ### renderCreated
 
-The renderCreated function is fired when the create function is used and the server response has a 2xx status.
-It receives the `created` parameter that contains the server response body.
+The renderCreated function is fired when the `create` function is called and the server response is of 2xx status.
+It receives one parameter: `created` containing the server's response body.
 
 ## Example
 
-You can see a working example using this component in [here](https://github.com/SeasonedSoftware/croods/blob/master/example/src/colors/New.js).
+You can see a working sample of this component's usage [here](https://github.com/SeasonedSoftware/croods/blob/master/example/src/colors/New.js).
