@@ -7,7 +7,7 @@ order: 100
 # Edit
 
 The Edit component is a union of Info and New.
-This component does a `GET` request to the `path` like Info and its update function, 
+This component firstly does a `GET` request to the `path` like Info. Then its update function, when executed, does a `PUT` request with the JSONified data, like the New component.
   when executed, does a `PUT` request with the jsonified parameter as request body, like New.
 
 
