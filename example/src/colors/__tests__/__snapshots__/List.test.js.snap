@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  name="colors"
+  render={[Function]}
+>
+  List -
+   
+  <h1>
+    Colors
+  </h1>
+  <div
+    item={
+      Object {
+        "id": 1,
+        "name": "foo",
+      }
+    }
+  >
+    ListItem - 
+  </div>
+  <div
+    item={
+      Object {
+        "id": 2,
+        "name": "bar",
+      }
+    }
+  >
+    ListItem - 
+  </div>
+  <div
+    item={
+      Object {
+        "id": 3,
+        "name": "foobar",
+      }
+    }
+  >
+    ListItem - 
+  </div>
+  <div
+    style={
+      Object {
+        "display": "block",
+        "marginTop": 20,
+      }
+    }
+    to="/new"
+  >
+    Link - 
+    New
+  </div>
+</div>
+`;
