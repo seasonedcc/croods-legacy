@@ -77,7 +77,6 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 Then we create the regular redux provider, and within it, we nest CroodsProvider, passing as `baseUrl` prop the API's url.
 
 ```javascript
-
 export default props => (
   <ReduxProvider store={store}>
     <CroodsProvider
@@ -87,7 +86,7 @@ export default props => (
      
     </CroodsProvider>
   </ReduxProvider>
-);
+)
 ```
 In `parseListResponse` prop, we are telling Croods how to handle API responses to our List component. In this example, our API returns a json like this:
 ```json
@@ -96,7 +95,8 @@ In `parseListResponse` prop, we are telling Croods how to handle API responses t
     "message": [
         "https://images.dog.ceo/breeds/beagle/n02088364_10108.jpg",
         "https://images.dog.ceo/breeds/beagle/n02088364_10206.jpg"
-    ]}
+    ]
+}
 ```
 Given that the list we want is inside "messages", all we need to do is passing a function to extract that list from the response.
 
@@ -107,22 +107,21 @@ parseListResponse={({ message: list }) => ({ list })}
 Then we create our [List](http://linkto.docs) component: 
 ```javascript
  <List
-        name="beagle"
-        path="/images"
-        render={list => (
-          <div>
-            <h1>Hello Beagles!</h1>
-            <ul>
-              {list.map((item, index) => (
-                <li key={index}>
-                  <img src={item} alt="" />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      />
-
+  name="beagle"
+  path="/images"
+  render={list => (
+    <div>
+      <h1>Hello Beagles!</h1>
+      <ul>
+        {list.map((item, index) => (
+          <li key={index}>
+            <img src={item} alt="" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+/>
 ```
 - `name` defines the actions and reducers being used in the component, the "beagle" we created with `createReducer`. **IMPORTANT**: Whatever name you defined in `createReducer` must match with what you point in `name`.
 - `path` defines the endpoint relative to `baseUrl` passed to croods's provider. As we want `https://dog.ceo/api/breed/beagle/images`, we just need to pass it `/images`. 

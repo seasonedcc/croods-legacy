@@ -42,12 +42,11 @@ The render function receives four parameters: **info, update, updating and error
 - info: the response body of the `GET` request.
 - update: the function to make the `PUT` request.
 - updating: a boolean that identifies when the `PUT` request is being done and it is not finished.
-- error: The error message in case the update fails.
+- error: The error message in case that update fails.
 
 ### renderUpdated
 
-In order to do something after the `update`call, use renderUpdated function to
- redirect to other page or show the resource updated/some message/anything in the current page.
+In order to do something after update, use renderUpdated function to redirect to other page or show the resource updated/some message/anything in the current page.
  This function receives the response body as parameter.
 
 
