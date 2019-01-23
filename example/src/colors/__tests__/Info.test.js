@@ -6,12 +6,15 @@ import Info from '../Info'
 jest.mock('croods', () => ({
   Info: props => (
     <div {...props}>
-      Info - {props.render({ id: 1, name: 'color name', color: 'color hexadecimal' })}
+      Info -{' '}
+      {props.render({ id: 1, name: 'color name', color: 'color hexadecimal' })}
     </div>
   ),
 }))
 
-jest.mock('react-router-dom/Link', () => props => <div {...props}>Link - {props.children}</div>)
+jest.mock('react-router-dom/Link', () => props => (
+  <div {...props}>Link - {props.children}</div>
+))
 
 it('renders correctly', () => {
   const props = {
