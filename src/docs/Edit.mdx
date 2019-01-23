@@ -19,7 +19,7 @@ when executed, does a `PUT` request with the jsonified parameter as request body
 | render              | Func          | true     | -                | A function returning a React Node. Ex: ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> < JSX /> |
 | renderUpdated       | Func          | false    | -                | A function returning a React Node. Ex: (updated = {}) -> < JSX />                                                               |
 | parentId            | String/Number | false    | -                | Parent element's Id, for more specificity in changes.                                                                           |
-| path                | String        | false    | `/${name}/${id}` | Ex: /foo/bar-\_12?&=                                                                                                            |
+| path                | String        | false    | Ex: /foo/123                                                                                                            |
 | parseInfoResponse   | Func          | false    | -                | Parse specific responses to adjust the API to croods patterns. Ex: (json, response, requestAttributes) -> Object                |
 | parseUpdateResponse | Func          | false    | -                |                                                                                                                                 |
 
