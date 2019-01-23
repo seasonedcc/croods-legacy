@@ -7,8 +7,7 @@ order: 6
 # Edit
 
 The Edit component is a union of Info and New.
-This component does a `GET` request to the `path` like Info and its update function,
-when executed, does a `PUT` request with the jsonified parameter as request body, like New.
+This component firstly does a `GET` request to the `path` like Info. Then its update function, when executed, does a `PUT` request with the JSONified data, like the New component.
 
 ## API
 
@@ -41,7 +40,7 @@ The render function receives four parameters: **info, update, updating and error
 
 - info: the response body of the `GET` request.
 - update: the function to make the `PUT` request.
-- updating: the bool that identifies when the `PUT` request is being done and it is not finished.
+- updating: a boolean that identifies when the `PUT` request is being done and it is not finished.
 - error: The error message in case that update fails.
 
 ### renderUpdated

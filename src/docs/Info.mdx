@@ -6,8 +6,8 @@ order: 9
 
 # Info
 
-The Info component provides a way to fetch the info about a resource and render component using the resource info.
-This component does a `GET` request to the `path` and renders the render function.
+The Info component provides a way to fetch one resource and render a component using the resource data.
+This component does a `GET` request to the `path` and calls the render function passing the resource data as the `info` parameter.
 
 ## API
 
@@ -35,8 +35,8 @@ const reducers = {
 
 ### render
 
-The render function receives an important parameter, **info**, that contains the response body.
+The render function receives the parameter **info** containing the response body.
 
 ## Example
 
-You can see a working example using this component in [here](https://github.com/SeasonedSoftware/croods/blob/master/example/src/colors/Info.js).
+You can see a working sample of this component's usage [here](https://github.com/SeasonedSoftware/croods/blob/master/example/src/colors/Info.js).

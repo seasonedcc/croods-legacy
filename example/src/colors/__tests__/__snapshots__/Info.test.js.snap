@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  id={1}
+  name="colors"
+  render={[Function]}
+>
+  Info - 
+  <h1
+    style={
+      Object {
+        "color": "color hexadecimal",
+      }
+    }
+  >
+    color name
+  </h1>
+  <h2>
+    color hexadecimal
+  </h2>
+  <div
+    to="/"
+  >
+    Link - 
+    Back
+  </div>
+</div>
+`;
