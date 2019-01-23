@@ -7,19 +7,21 @@ import { Playground } from 'docz'
 
 # Destroy
 
-The Destroy component provides a easy way to destroy an entry in the server, using the response as needed.
+The Destroy component provides a easy way to destroy a resource in the server, using the response as needed.
 
 ## API
 
-| Property | Type          | Required | Default    | Description                                                                                             |
-| -------- | ------------- | -------- | ---------- | ------------------------------------------------------------------------------------------------------- |
-| name     | String        | true     | -          | It defines which reducer will be used and, if no path have been provider, will set path to baseUrl/name |
-| id       | String/Number | true     | -          | It defines the id of the entry to be destroyed, passing it in the url defined in path                   |
-| render   | Func          | true     | -          | A function returning a React Node. Ex: ({ list }, props) -> < JSX />                                    |
-| parentId | String/Number | false    | -          | Parent element's Id, for more specificity in changes.                                                   |
-| path     | String        | false    | `/${name}` | Ex: /foo/bar-\_12?&=                                                                                    |
+| Property | Type          | Required | Default          | Description                                                                                              |
+| -------- | ------------- | -------- | ---------------- | -------------------------------------------------------------------------------------------------------- |
+| name     | String        | true     | -                | It defines which reducer will be used and, if no path have been provider, will set path to baseUrl/name. |
+| id       | String/Number | true     | -                | It defines the id of the entry to be destroyed, passing it in the url defined in path                    |
+| render   | Func          | true     | -                | A function returning a React Node. Ex: ({ list }, props) -> < JSX />                                     |
+| parentId | String/Number | false    | -                | Parent element's Id, for more specificity in changes.                                                    |
+| path     | String        | false    | `/${name}/${id}` | Ex: /foo/bar-\_12?&=                                                                                     |
 
 ## How to use
+
+Don't forget to add a reducer with the same name used here in your rootReducer, with **createReducer**
 
 ```javascript
 import { Destroy } from 'croods'

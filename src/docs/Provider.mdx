@@ -11,19 +11,19 @@ The Provider component is used to connect other components to the state managed 
 
 ## API
 
-| Property      | Type          | Required | Default                       | Description                                                                                      |
-| ------------- | ------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------------------ |
-| baseUrl       | String        | true     | -                             | It defines the api url which all other paths used in croods components will be relative too.     |
-| credentials   | String        | true     | -                             | Credentials                                                                                      |
-| headers       | String/Number | true     | -                             | Defines the headers used in the requests.                                                        |
-| renderLoading | Func          | false    | `() => <div>Loading...</div>` | A default function to be called when loading a component without a custom renderLoading.         |
-| renderError   | Func          | false    | `error => <div>{error}</div>` | A default function to be called when a error occurs in a component without a custom renderError. |
-| afterSuccess  | Func          | false    | -                             | A function to be called after a request success.                                                 |
-| afterFailure  | Func          | false    | -                             | A function to be called after a request failure.                                                 |
-| afterResponse | Func          | false    | -                             | A function to be called after any response from a request.                                       |
-| disableCache  | Bool          | false    | false                         | Enable/disable chache.                                                                           |
-| debugRequests | Boll          | false    | false                         | If set to true, will show in console more information regarding requests being made.             |
-| parseResponse | String        | false    |                               | Custom parser for api responses.                                                                 |
+| Property      | Type          | Required | Default                       | Description                                                                                                      |
+| ------------- | ------------- | -------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| baseUrl       | String        | true     | -                             | It defines the api url which all other paths used in croods components will be relative too.                     |
+| credentials   | String        | true     | -                             | Credentials                                                                                                      |
+| headers       | String/Number | true     | -                             | Defines the headers used in the requests.                                                                        |
+| renderLoading | Func          | false    | `() => <div>Loading...</div>` | A default function to be called when loading a component without a custom renderLoading.                         |
+| renderError   | Func          | false    | `error => <div>{error}</div>` | A default function to be called when a error occurs in a component without a custom renderError.                 |
+| afterSuccess  | Func          | false    | -                             | A function to be called after a request success.                                                                 |
+| afterFailure  | Func          | false    | -                             | A function to be called after a request failure.                                                                 |
+| afterResponse | Func          | false    | -                             | A function to be called after any response from a request.                                                       |
+| disableCache  | Bool          | false    | false                         | Disable chache. When true, will force Croods to make a new API request each time Info or List components render. |
+| debugRequests | Boll          | false    | false                         | If set to true, will show in console more information regarding requests being made.                             |
+| parseResponse | String        | false    |                               | Custom parser for api responses.                                                                                 |
 
 ## How to use
 
