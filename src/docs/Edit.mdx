@@ -1,28 +1,27 @@
 ---
 name: Edit
 route: /edit
-order: 100
+order: 6
 ---
 
 # Edit
 
 The Edit component is a union of Info and New.
-This component does a `GET` request to the `path` like Info and its update function, 
-  when executed, does a `PUT` request with the jsonified parameter as request body, like New.
-
+This component does a `GET` request to the `path` like Info and its update function,
+when executed, does a `PUT` request with the jsonified parameter as request body, like New.
 
 ## API
 
-|Property|Type|Required|Default|Description|
-|--- |--- |--- |--- |--- |
-|id|String/Number|true|-|Ex: 1234 or '1234'|
-|name|String|true|-|Defines the deep properties used in the component. Ex: foo.bar|
-|render|Func|true|-|A function returning a React Node. Ex: ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> < JSX />|
-|renderUpdated|Func|false|-|A function returning a React Node. Ex: (updated = {}) -> < JSX />|
-|parentId|String/Number|false|-|Parent element's Id, for more specificity in changes.|
-|path|String|false|`/${name}/${id}`|Ex: /foo/bar-_12?&=|
-|parseInfoResponse|Func|false|-|Parse specific responses to adjust the API to croods patterns. Ex: (json, response, requestAttributes) -> Object|
-|parseUpdateResponse|Func|false|-||
+| Property            | Type          | Required | Default          | Description                                                                                                                     |
+| ------------------- | ------------- | -------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| id                  | String/Number | true     | -                | Ex: 1234 or '1234'                                                                                                              |
+| name                | String        | true     | -                | Defines the deep properties used in the component. Ex: foo.bar                                                                  |
+| render              | Func          | true     | -                | A function returning a React Node. Ex: ({ info = {}, update = (id, ...attributes), updating = bool, error }, props) -> < JSX /> |
+| renderUpdated       | Func          | false    | -                | A function returning a React Node. Ex: (updated = {}) -> < JSX />                                                               |
+| parentId            | String/Number | false    | -                | Parent element's Id, for more specificity in changes.                                                                           |
+| path                | String        | false    | `/${name}/${id}` | Ex: /foo/bar-\_12?&=                                                                                                            |
+| parseInfoResponse   | Func          | false    | -                | Parse specific responses to adjust the API to croods patterns. Ex: (json, response, requestAttributes) -> Object                |
+| parseUpdateResponse | Func          | false    | -                |                                                                                                                                 |
 
 ## How to use
 
@@ -48,9 +47,8 @@ The render function receives four parameters: **info, update, updating and error
 ### renderUpdated
 
 In order to do something after update, use renderUpdated function to
- redirect to other page or show the resource updated/some message/anything in the current page.
- This function receives the response body as parameter.
-
+redirect to other page or show the resource updated/some message/anything in the current page.
+This function receives the response body as parameter.
 
 ## Example
 
