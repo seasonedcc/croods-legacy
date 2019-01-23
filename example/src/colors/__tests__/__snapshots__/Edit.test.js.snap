@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  id={1}
+  name="colors"
+  render={[Function]}
+  renderUpdated={[Function]}
+>
+  Edit -
+   
+  <div>
+    render -
+     
+    <h1>
+      Object
+    </h1>
+    <div
+      initialValues={[Function]}
+      onSubmit={[Function]}
+      submitting={[Function]}
+    >
+      Form - 
+    </div>
+    <div
+      to="/"
+    >
+      Link - 
+      Back
+    </div>
+  </div>
+  <div>
+    renderUpdated - 
+    <div
+      to="/1"
+    >
+      Redirect - 
+    </div>
+  </div>
+</div>
+`;
