@@ -90,11 +90,12 @@ In `parseListResponse` prop, we are telling Croods how to handle API responses t
 
 ```json
 {
-  "status": "success",
-  "message": [
-    "https://images.dog.ceo/breeds/beagle/n02088364_10108.jpg",
-    "https://images.dog.ceo/breeds/beagle/n02088364_10206.jpg"
-  ]
+    "status": "success",
+    "message": [
+        "https://images.dog.ceo/breeds/beagle/n02088364_10108.jpg",
+        "https://images.dog.ceo/breeds/beagle/n02088364_10206.jpg"
+    ]
+
 }
 ```
 
@@ -104,10 +105,10 @@ Given that the list we want is inside "messages", all we need to do is passing a
 parseListResponse={({ message: list }) => ({ list })}
 ```
 
-Then we create our [List](http://linkto.docs) component:
 
+Then we create our [List](http://linkto.docs) component: 
 ```javascript
-<List
+ <List
   name="beagle"
   path="/images"
   render={list => (
