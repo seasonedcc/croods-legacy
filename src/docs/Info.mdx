@@ -1,6 +1,7 @@
 ---
 name: Info
 route: /info
+order: 9
 ---
 
 # Info
@@ -10,17 +11,15 @@ This component does a `GET` request to the `path` and calls the render function 
 
 ## API
 
-|Property|Type|Required|Default|Description|
-|--- |--- |--- |--- |--- |
-|id|String/Number|true|-|Ex: 1234 or '1234'|
-|name|String|true|-|Defines the deep properties used in the component. Ex: foo.bar|
-|render|Func|true|-|A function returning a React Node. Ex: (info = {}, props) -> < JSX />|
-|parentId|String/Number|false|-|Parent element's Id, for more specificity in changes.|
-|path|String|false|`/${name}/${id}`|Ex: /foo/bar-_12?&=|
-|renderError|Func|false|Provider's renderError|A function returning a React Node that will render when occurs an error. Ex: (error = {}) -> < JSX />|
-|renderLoading|Func|false|Provider's renderLoading|A function returning a React Node that will be rendered while wait the server response. Ex: () -> < JSX />|
-
-
+| Property      | Type          | Required | Default                  | Description                                                                                                |
+| ------------- | ------------- | -------- | ------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| id            | String/Number | true     | -                        | Ex: 1234 or '1234'                                                                                         |
+| name          | String        | true     | -                        | Defines the deep properties used in the component. Ex: foo.bar                                             |
+| render        | Func          | true     | -                        | A function returning a React Node. Ex: (info = {}, props) -> < JSX />                                      |
+| parentId      | String/Number | false    | -                        | Parent element's Id, for more specificity in changes.                                                      |
+| path          | String        | false    | `/${name}/${id}`         | Ex: /foo/bar-\_12?&=                                                                                       |
+| renderError   | Func          | false    | Provider's renderError   | A function returning a React Node that will render when occurs an error. Ex: (error = {}) -> < JSX />      |
+| renderLoading | Func          | false    | Provider's renderLoading | A function returning a React Node that will be rendered while wait the server response. Ex: () -> < JSX /> |
 
 ## How to use
 
