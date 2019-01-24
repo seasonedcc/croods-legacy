@@ -108,7 +108,25 @@ if the request succeeds:
   // todos...,
 }
 ```
+if the request fails:
 
+```javascript
+// @users/FETCH_LIST_FAILURE
+// resulting state
+{
+  // myCustomReducer...,
+  users: [{
+    parentId: undefined,
+    state: {
+      // ...
+      list: null,
+      fetchingList: false,
+      listError: 'some error',
+      // ...
+    },
+  }],
+  // todos...,
+}
 ### parentId
 
 This prop is useful when you want to request a nested resource.
