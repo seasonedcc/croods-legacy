@@ -9,23 +9,23 @@ import New from '../New'
 
 # New
 
-The New component provides a way to create a resource and show or use the response data.
+The New component provides a way to render elements, to create a resource and show or use the response data.
 
 
 ## API
 
-| Property      | Type               | Required | Default    | Description                                                                                          |
-| ------------- | ------------------ | -------- | ---------- | ---------------------------------------------------------------------------------------------------- |
-| name          | String             | true     | -          | It must be equal to the reducer name. Defines the deep properties used in the component. Ex: foo.bar |
-| render        | Func               | true     | -          | A function returning a React Node. Ex: ({ create, creating = bool, error }, props) -> < JSX />       |
-| renderCreated | Func               | false    | -          | A function returning a React Node. Ex: (created = {}) -> < JSX />                                    |
-| parentId      | String/Number      | false    | -          | Parent element's Id, for more specificity in changes.                                                |
-| path          | String             | false    | `/${name}` | Ex: /foo/bar-\_12?&=                                                                                 |
-| method        | Enum (post or put) | false    | `post`     | The http request method.                                                                             |
+| Property      | Type               | Required | Default    | Description                                                                                                                          |
+| ------------- | ------------------ | -------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| name          | String             | true     | -          | It must be equal to the reducer name set in your `rootReducer.js` and will be used as `path` if none is provided Ex: `baseUrl/name`. |
+| render        | Func               | true     | -          | A function returning a React Node. Ex: ({ create, creating = bool, error }, props) -> < JSX />                                       |
+| renderCreated | Func               | false    | -          | A function returning a React Node. Ex: (created = {}) -> < JSX />                                                                    |
+| parentId      | String/Number      | false    | -          | Parent element's Id, for more specificity in changes.                                                                                |
+| path          | String             | false    | `/${name}` | Ex: /foo                                                                                                                             |
+| method        | Enum (post or put) | false    | `post`     | The http request method.                                                                                                             |
 
 ## How to use
 
-You have to add a reducer with the same name that you will pass as prop to the New component.
+You have to add a reducer with the same name that you will pass to New.
 
 ```javascript
 import { createReducer } from 'croods'
