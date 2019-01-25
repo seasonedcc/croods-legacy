@@ -80,13 +80,21 @@ You can see your changes on croods using the [`/example`](https://github.com/Sea
 ```bash
 $ cd example
 $ yarn
+$ yarn start
 ```
 
-For every change that you make on croods, run:
+For every change that you make on croods, stop running the server and run the script below:
 
 ```bash
-$ cd / croods
+# go back to /croods and build it
+$ cd ..
 $ yarn build
+
+# go back to example
+$ cd example
+
+# run server again
+$ yarn start
 ```
 
 ## License
