@@ -65,7 +65,7 @@ export default props => (
 )
 ```
 
-## <h3 id="HowToContribute">How to contribute</h3>
+<h2 id="HowToContribute">How to contribute</h2>
 
 ```bash
 $ # Fork and clone this project
