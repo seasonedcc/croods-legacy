@@ -1,29 +1,100 @@
-# croods
+[![NPM](https://img.shields.io/npm/v/croods.svg)](https://www.npmjs.com/package/croods) [![CircleCI](https://circleci.com/gh/SeasonedSoftware/croods.svg?style=svg)](https://circleci.com/gh/SeasonedSoftware/croods) [![Maintainability](https://api.codeclimate.com/v1/badges/09e8becc8b94e5760abb/maintainability)](https://codeclimate.com/github/SeasonedSoftware/croods/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/09e8becc8b94e5760abb/test_coverage)](https://codeclimate.com/github/SeasonedSoftware/croods/test_coverage)
 
+# Croods
 > A React + Redux framework for creating CRUDs
 
-[![NPM](https://img.shields.io/npm/v/croods.svg)](https://www.npmjs.com/package/croods) [![CircleCI](https://circleci.com/gh/SeasonedSoftware/croods.svg?style=svg)](https://circleci.com/gh/SeasonedSoftware/croods) [![Maintainability](https://api.codeclimate.com/v1/badges/1fbb6da18b9ce2664baa/maintainability)](https://codeclimate.com/github/SeasonedSoftware/croods/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/1fbb6da18b9ce2664baa/test_coverage)](https://codeclimate.com/github/SeasonedSoftware/croods/test_coverage)
+- [About](#About)
+- [Install](#Install)
+- [Usage](#Usage)
+- <a href="#HowToContribute">How to contribute</a>
+    - [Playground](#Playground)
+
+## About
+
+Croods is a library that abstracts most of the details (actions, reducers, etc) needed to integrate a REST API with an react/redux application.
+
+More details on our [docs](https://croods-docz.netlify.com/).
 
 ## Install
 
 ```bash
-npm install --save croods
+yarn add croods
 ```
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+// src/App.js
 
-import MyComponent from 'croods'
+import React from 'react'
 
-class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
-}
+import { createReducer, List } from 'croods'
+import { Provider as CroodsProvider } from 'croods'
+import { Provider as ReduxProvider } from 'react-redux'
+
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import thunk from 'redux-thunk'
+
+import './App.css'
+
+const rootReducer = combineReducers({ beagle: createReducer('beagle') })
+const store = createStore(rootReducer, applyMiddleware(thunk))
+
+export default props => (
+  <ReduxProvider store={store}>
+    <CroodsProvider baseUrl="https://dog.ceo/api/breed/beagle">
+      <List
+        name="beagle"
+        path="/images"
+        parseListResponse={({ message: list }) => ({ list })}
+        render={list => (
+          <div>
+            <h1>Hello Beagles!</h1>
+            <ul>
+              {list.map((item, index) => (
+                <li key={index}>
+                  <img src={item} alt="" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      />
+    </CroodsProvider>
+  </ReduxProvider>
+)
+```
+
+<h2 id="HowToContribute">How to contribute</h2>
+
+```bash
+$ # Fork and clone this project
+$ cd croods
+$ yarn
+```
+
+### Playground:
+
+You can see your changes on croods using the [`/example`](https://github.com/SeasonedSoftware/croods/tree/master/example) inside croods.
+
+```bash
+$ cd example
+$ yarn
+$ yarn start
+```
+
+For every change that you make on croods, stop running the server and run the script below:
+
+```bash
+# go back to /croods and build it
+$ cd ..
+$ yarn build
+
+# go back to example
+$ cd example
+
+# run server again
+$ yarn start
 ```
 
 ## License
