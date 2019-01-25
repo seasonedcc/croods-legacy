@@ -66,7 +66,7 @@ export default props => (
 )
 ```
 
-## How to contribute
+## How&#32;to&#32;contribute
 
 ```bash
 $ # Fork and clone this project
