@@ -3,12 +3,11 @@
 # Croods
 > A React + Redux framework for creating CRUDs
 
-1. [About](#About)
-2. [Install](#Install)
-3. [Usage](#Usage)
-4. [How to contribute](#How&#32;to&#32;contribute)
-
-    4.1. [Playground](#Playground)
+- [About](#About)
+- [Install](#Install)
+- [Usage](#Usage)
+- <a href="#HowToContribute">How to contribute</a>
+    - [Playground](#Playground)
 
 ## About
 
@@ -66,7 +65,7 @@ export default props => (
 )
 ```
 
-## How&#32;to&#32;contribute
+## <h3 id="HowToContribute">How to contribute</h3>
 
 ```bash
 $ # Fork and clone this project
