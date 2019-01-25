@@ -68,7 +68,7 @@ export default props => (
 <h2 id="HowToContribute">How to contribute</h2>
 
 ```bash
-$ # Fork and clone this project
+# Fork and clone this project
 $ cd croods
 $ yarn
 ```
@@ -77,24 +77,23 @@ $ yarn
 
 You can see your changes on croods using the [`/example`](https://github.com/SeasonedSoftware/croods/tree/master/example) inside croods.
 
+Run the scripts below:
+
 ```bash
-$ cd example
-$ yarn
-$ yarn start
+# access /croods
+$ cd croods
+
+# install modules and run server
+$ yarn && yarn start
 ```
-
-For every change that you make on croods, stop running the server and run the script below:
+Open a new terminal and run:
 
 ```bash
-# go back to /croods and build it
-$ cd ..
-$ yarn build
-
-# go back to example
+# acces the /example located inside /croods
 $ cd example
 
-# run server again
-$ yarn start
+# install modules and run server
+$ yarn && yarn start
 ```
 
 ## License
