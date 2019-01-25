@@ -6,7 +6,7 @@
 1. [About](#About)
 2. [Install](#Install)
 3. [Usage](#Usage)
-4. [How to contribute](#How\ /to\ /contribute)
+4. [How to contribute](#How&#32;to&#32;contribute)
 
     4.1. [Playground](#Playground)
 
