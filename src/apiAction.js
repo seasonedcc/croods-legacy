@@ -79,9 +79,7 @@ const dispatchResponse = (dispatch, options) => async response => {
         (await parseResponse(json, response, requestAttributes))),
     })
     afterSuccess && (await afterSuccess(response, json))
-    if (prefix.includes('CREATE')) {
-      afterCreate && (await afterCreate(json))
-    }
+    prefix.includes('/CREATE') && afterCreate && (await afterCreate(json))
   } else {
     dispatch({
       parentId,
