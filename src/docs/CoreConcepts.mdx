@@ -59,20 +59,20 @@ You'll have the following store structure:
 }
 ```
 
-So basically any time Croods is used, it is going to populate the resource's state with useful information so you can show data, errors and visual feedbacks for the requests. For instance, we want to **list** all users:
+Whenever Croods is used, it is going to populate the resource's state with useful information so you can show data, errors and visual feedback for the requests. For instance, we want to **list** all users:
 
 ```javascript
 <List
-  name="users" // it tells Croods we are gonna play with this piece of state
+  name="users" // it tells Croods we are using this piece of state
   render={list => list.map(user => <span>{user.name}</span>)}
 />
 ```
 
-Let's look to the actions dispatched:
+When this component is mounted, is dispatches these actions:
 
 ```javascript
 // @users/FETCH_LIST_REQUEST
-// the state while fetching
+// While fetching, the state will be:
 {
   // myCustomReducer...,
   users: [{
@@ -89,7 +89,7 @@ Let's look to the actions dispatched:
 }
 ```
 
-if the request succeeds:
+If the request succeeds:
 
 ```javascript
 // @users/FETCH_LIST_SUCCESS
@@ -108,7 +108,8 @@ if the request succeeds:
   // todos...,
 }
 ```
-if the request fails:
+
+If the request fails:
 
 ```javascript
 // @users/FETCH_LIST_FAILURE
@@ -127,6 +128,7 @@ if the request fails:
   }],
   // todos...,
 }
+
 ### parentId
 
 This prop is useful when you want to request a nested resource.
