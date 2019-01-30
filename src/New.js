@@ -12,7 +12,12 @@ import renderIfPresent from './renderIfPresent'
 class New extends Component {
   constructor(props) {
     super(props)
-    const { createError, actions } = props
+    const { createError, actions, renderCreated } = props
+    if (renderCreated) {
+      console.warn(
+        'renderCreated is deprecated and will be removed in future versions of Croods. Please, update your code to use afterCreate function instead. [Docs at: https://croods-docz.netlify.com/new]',
+      )
+    }
 
     createError && actions.resetCreateError()
   }
