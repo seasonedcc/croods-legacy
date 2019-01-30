@@ -56,7 +56,7 @@ export default props => (
 )
 ```
 
-The sample code above is fetching the [Dog API](https://dog.ceo/dog-api/). to show a list of Beagle photos. Click [here](https://hello-beagles.herokuapp.com) to see it running, and [here]() to see the full code.
+The sample code above is fetching the [Dog API](https://dog.ceo/dog-api/) to show a list of Beagle photos. Click [here](https://hello-beagles.herokuapp.com) to see it running, and [here]() to see the full code.
 
 Now let's look through the code step by step.
 
@@ -84,8 +84,6 @@ export default props => (
 )
 ```
 
-In `parseListResponse` prop, we are specifying to croods how to handle api responses to our list component. In this example, our api returns a json like this:
-
 In `parseListResponse` prop, we are telling Croods how to handle API responses to our List component. In this example, our API returns a json like this:
 
 ```json
@@ -99,7 +97,7 @@ In `parseListResponse` prop, we are telling Croods how to handle API responses t
 }
 ```
 
-Given that the list we want is inside "messages", all we need to do is passing a function to extract that list from the response.>>>>>>> master
+Given that the list we want is inside "messages", all we need to do is passing a function to extract that list from the response.
 
 ```javascript
 parseListResponse={({ message: list }) => ({ list })}
@@ -125,6 +123,6 @@ Then we create our [List](http://linkto.docs) component:
   )}
 />
 ```
-- `name` defines the actions and reducers being used in the component, the "beagle" we created with `createReducer`. **IMPORTANT**: Whatever name you defined in `createReducer` must match with what you point in `name`.
-- `path` defines the endpoint relative to `baseUrl` passed to croods's provider. As we want `https://dog.ceo/api/breed/beagle/images`, we just need to pass it `/images`. 
-- The last prop is `render`, which, as the name implies, is a function defining the component's output. It receives the list as a parameter from croods's provider and must return a React element.
+- `name` defines the actions and reducers being used in the component, the "beagle" we created with `createReducer`. **IMPORTANT**: Whatever name you defined in `createReducer` must match the prop `name`.
+- `path` defines the endpoint relative to `baseUrl` passed to croods's provider. As we want `https://dog.ceo/api/breed/beagle/images`, we just need to pass it the value `/images`. 
+- The last prop is `render`, which, as the name implies, is a function defining the component's children. It receives the list as a parameter from croods's provider and must return a React element.
