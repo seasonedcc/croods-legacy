@@ -53,6 +53,8 @@ New.propTypes = {
   /** A function returning a React Node. Ex: (created = {}) -> < JSX /> */
   renderCreated: PropTypes.func,
   /**  Parent element's Id, for more specificity in changes.  */
+  afterCreate: PropTypes.func,
+  /**  A function that receives the created data once it is executed.  */
   parentId: customPropTypes.id,
   /**  Ex: /foo/bar-_12?&= */
   path: customPropTypes.path,
