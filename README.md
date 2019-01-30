@@ -77,25 +77,23 @@ $ yarn
 
 You can see your changes on croods using the [`/example`](https://github.com/SeasonedSoftware/croods/tree/master/example) inside croods.
 
+First make sure croods is running.
+
 ```bash
-$ cd example
+$ cd croods
 $ yarn
 $ yarn start
 ```
 
-For every change that you make on croods, stop running the server and run the script below:
+Leave it running, then open another terminal and run the example.
 
 ```bash
-# go back to /croods and build it
-$ cd ..
-$ yarn build
-
-# go back to example
-$ cd example
-
-# run server again
+$ cd croods/example
+$ yarn
 $ yarn start
 ```
+
+The example will update for every change that you make on croods.
 
 ## License
 
