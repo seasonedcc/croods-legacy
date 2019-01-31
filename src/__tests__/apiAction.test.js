@@ -3,10 +3,18 @@ import requestLogger from '../requestLogger'
 
 jest.mock('../requestLogger', () => jest.fn())
 
+const dispatch = jest.fn()
+const afterFailure = jest.fn()
+const afterSuccess = jest.fn()
+const afterCreate = jest.fn()
+const afterResponse = jest.fn()
+
+afterEach(() => {
+  jest.clearAllMocks()
+})
+
 describe('with default GET method and successful JSON response', () => {
   it('dispatches the correct actions', async () => {
-    const dispatch = jest.fn()
-
     const response = {
       ok: true,
       text: () => JSON.stringify({ foo: 'bar' }),
@@ -37,8 +45,6 @@ describe('with default GET method and successful JSON response', () => {
 
 describe('with default GET method and successful text response', () => {
   it('dispatches the correct actions', async () => {
-    const dispatch = jest.fn()
-
     const response = {
       ok: true,
       text: () => 'foo bar',
@@ -69,8 +75,6 @@ describe('with default GET method and successful text response', () => {
 
 describe('with default GET method and failed JSON response', () => {
   it('dispatches the correct actions', async () => {
-    const dispatch = jest.fn()
-
     const response = {
       ok: false,
       text: () => JSON.stringify({ foo: 'bar' }),
@@ -101,8 +105,6 @@ describe('with default GET method and failed JSON response', () => {
 
 describe('with POST method and successful response', () => {
   it('dispatches the correct actions', async () => {
-    const dispatch = jest.fn()
-
     const response = {
       ok: true,
       text: () => JSON.stringify({ foo: 'bar' }),
@@ -135,8 +137,6 @@ describe('with POST method and successful response', () => {
 
 describe('with POST method and with newtwork error', () => {
   it('dispatches the correct actions', async () => {
-    const dispatch = jest.fn()
-
     const response = {
       ok: false,
       text: () => JSON.stringify({ foo: 'bar' }),
@@ -172,8 +172,6 @@ describe('with POST method and with newtwork error', () => {
 describe('with custom headers', () => {
   describe('whith an object', () => {
     it('merges custom and default headers', async () => {
-      const dispatch = jest.fn()
-
       const response = {
         ok: true,
         text: () => JSON.stringify({ foo: 'bar' }),
@@ -193,7 +191,6 @@ describe('with custom headers', () => {
         parseResponse: json => ({ json }),
       })
 
-      global.fetch.mockClear()
       await action(dispatch)
 
       expect(global.fetch).toHaveBeenCalledWith('foourl/foo/bar', {
@@ -208,8 +205,6 @@ describe('with custom headers', () => {
     })
 
     it('overwrites default headers with custom ones', async () => {
-      const dispatch = jest.fn()
-
       const response = {
         ok: true,
         text: () => JSON.stringify({ foo: 'bar' }),
@@ -229,7 +224,6 @@ describe('with custom headers', () => {
         parseResponse: json => ({ json }),
       })
 
-      global.fetch.mockClear()
       await action(dispatch)
 
       expect(global.fetch).toHaveBeenCalledWith('foourl/foo/bar', {
@@ -245,9 +239,7 @@ describe('with custom headers', () => {
 
   describe('whith a function', () => {
     it('calls the function with default headers as parameters', async () => {
-      const dispatch = jest.fn()
       const headers = jest.fn(props => ({ ...props, foo: 'bar' }))
-
       const response = {
         ok: true,
         text: () => JSON.stringify({ foo: 'bar' }),
@@ -267,7 +259,6 @@ describe('with custom headers', () => {
         parseResponse: json => ({ json }),
       })
 
-      global.fetch.mockClear()
       await action(dispatch)
 
       expect(headers).toHaveBeenCalledWith({
@@ -290,8 +281,6 @@ describe('with custom headers', () => {
 
 describe('with debugRequests', () => {
   it('uses requestLogger function to log fetch params', async () => {
-    const dispatch = jest.fn()
-
     const action = apiAction({
       prefix: '@foo/BAR',
       path: '/foo/bar',
@@ -315,9 +304,6 @@ describe('with debugRequests', () => {
 })
 
 describe('with afterFailure', () => {
-  const dispatch = jest.fn()
-  const afterFailure = jest.fn()
-
   const action = apiAction({
     prefix: '@foo/BAR',
     baseUrl: 'foourl',
@@ -338,9 +324,7 @@ describe('with afterFailure', () => {
         },
       }
       global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
-      global.fetch.mockClear()
       await action(dispatch)
-      afterFailure.mockClear()
       expect(afterFailure).not.toBeCalled()
     })
   })
@@ -355,18 +339,13 @@ describe('with afterFailure', () => {
         },
       }
       global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
-      global.fetch.mockClear()
       await action(dispatch)
       expect(afterFailure).toBeCalled()
-      afterFailure.mockClear()
     })
   })
 })
 
 describe('with afterSuccess', () => {
-  const dispatch = jest.fn()
-  const afterSuccess = jest.fn()
-
   const action = apiAction({
     prefix: '@foo/BAR',
     baseUrl: 'foourl',
@@ -387,10 +366,8 @@ describe('with afterSuccess', () => {
         },
       }
       global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
-      global.fetch.mockClear()
       await action(dispatch)
       expect(afterSuccess).toBeCalled()
-      afterSuccess.mockClear()
     })
   })
 
@@ -404,18 +381,56 @@ describe('with afterSuccess', () => {
         },
       }
       global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
-      global.fetch.mockClear()
       await action(dispatch)
       expect(afterSuccess).not.toBeCalled()
-      afterSuccess.mockClear()
+    })
+  })
+})
+
+describe('with afterCreate', () => {
+  const options = {
+    prefix: '@foo/CREATE',
+    baseUrl: 'foourl',
+    path: '/foo/bar',
+    method: 'POST',
+    headers: { bar: 'foo' },
+    afterCreate,
+    parseResponse: json => ({ json }),
+  }
+  const action = apiAction(options)
+
+  describe('if request was of Create type and it succeeded', () => {
+    it('calls afterCreate function', async () => {
+      const response = {
+        ok: true,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      await action(dispatch)
+      expect(afterCreate).toBeCalled()
+    })
+  })
+
+  describe('if request was not of Create type', () => {
+    it('calls afterCreate function', async () => {
+      const response = {
+        ok: true,
+        text: () => JSON.stringify({ foo: 'bar' }),
+        headers: {
+          get: () => 'application/json',
+        },
+      }
+      global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+      await apiAction({ ...options, prefix: '@foo/BAR' })(dispatch)
+      expect(afterCreate).not.toBeCalled()
     })
   })
 })
 
 describe('with afterResponse', () => {
-  const dispatch = jest.fn()
-  const afterResponse = jest.fn()
-
   const action = apiAction({
     prefix: '@foo/BAR',
     baseUrl: 'foourl',
@@ -436,10 +451,8 @@ describe('with afterResponse', () => {
         },
       }
       global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
-      global.fetch.mockClear()
       await action(dispatch)
       expect(afterResponse).toBeCalled()
-      afterResponse.mockClear()
     })
   })
 
@@ -453,10 +466,8 @@ describe('with afterResponse', () => {
         },
       }
       global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
-      global.fetch.mockClear()
       await action(dispatch)
       expect(afterResponse).toBeCalled()
-      afterResponse.mockClear()
     })
   })
 })
