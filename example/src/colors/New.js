@@ -7,12 +7,13 @@ import Form from './Form'
 
 export default props => {
   const [color, setColor] = useState()
-  return (
+  return color ? (
+    <Redirect to={`/${color.id}`} />
+  ) : (
     <New
       name="colors"
       render={({ create, creating, error }) => (
         <Fragment>
-          {color && <Redirect to={`/${color.id}`} />}
           <h1>New color</h1>
           <Form onSubmit={create} submitting={creating} />
           <Link to="/">Back</Link>
