@@ -1,10 +1,11 @@
-
 ---
 name: Getting Started
 route: /
+order: 0
 ---
 
 # Getting Started
+
 
 ## Installation
 `yarn add croods react react-redux redux redux-thunk`
@@ -16,30 +17,27 @@ A simple "Hello world" would look like this:
 ```javascript
 // src/App.js
 
-import React from "react";
+import React from 'react'
 
-import { createReducer, List } from "croods";
-import { Provider as CroodsProvider } from "croods";
-import { Provider as ReduxProvider } from "react-redux";
+import { createReducer, List } from 'croods'
+import { Provider as CroodsProvider } from 'croods'
+import { Provider as ReduxProvider } from 'react-redux'
 
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import thunk from "redux-thunk";
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import thunk from 'redux-thunk'
 
-import "./App.css";
+import './App.css'
 
-
-const rootReducer = combineReducers({ beagle: createReducer("beagle") });
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const rootReducer = combineReducers({ beagle: createReducer('beagle') })
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export default props => (
   <ReduxProvider store={store}>
-    <CroodsProvider
-      baseUrl="https://dog.ceo/api/breed/beagle"
-      parseListResponse={({ message: list }) => ({ list })}
-    >
+    <CroodsProvider baseUrl="https://dog.ceo/api/breed/beagle">
       <List
         name="beagle"
         path="/images"
+        parseListResponse={({ message: list }) => ({ list })}
         render={list => (
           <div>
             <h1>Hello Beagles!</h1>
@@ -55,74 +53,76 @@ export default props => (
       />
     </CroodsProvider>
   </ReduxProvider>
-);
+)
 ```
-The sample code above is fetching the [Dog API](https://dog.ceo/dog-api/). to show a list of Beagle photos. Click [here](https://hello-beagles.herokuapp.com) to see it running, and [here]() to see the full code.
+
+The sample code above is fetching the [Dog API](https://dog.ceo/dog-api/) to show a list of Beagle photos. Click [here](https://hello-beagles.herokuapp.com) to see it running, and [here]() to see the full code.
 
 Now let's look through the code step by step.
 
 First we create the reducers and the store. For that, we use crood's [createReducer](http://linkto.docs), and the rest stays pretty much the same as you would in a regular redux app. `createReducer` will take care of creating all actions and reducers to interact with the external api.
+
 ```javascript
-import { createReducer, List } from "croods";
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import thunk from "redux-thunk";
+import { createReducer, List } from 'croods'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import thunk from 'redux-thunk'
 
-const rootReducer = combineReducers({ beagle: createReducer("beagle") });
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-
+const rootReducer = combineReducers({ beagle: createReducer('beagle') })
+const store = createStore(rootReducer, applyMiddleware(thunk))
 ```
 
 Then we create the regular redux provider, and within it, we nest CroodsProvider, passing as `baseUrl` prop the API's url.
 
 ```javascript
-
 export default props => (
   <ReduxProvider store={store}>
     <CroodsProvider
       baseUrl="https://dog.ceo/api/breed/beagle"
       parseListResponse={({ message: list }) => ({ list })}
-    >
-     
-    </CroodsProvider>
+    />
   </ReduxProvider>
-);
+)
 ```
+
 In `parseListResponse` prop, we are telling Croods how to handle API responses to our List component. In this example, our API returns a json like this:
+
 ```json
 {
     "status": "success",
     "message": [
         "https://images.dog.ceo/breeds/beagle/n02088364_10108.jpg",
         "https://images.dog.ceo/breeds/beagle/n02088364_10206.jpg"
-    ]}
+    ]
+
+}
 ```
+
 Given that the list we want is inside "messages", all we need to do is passing a function to extract that list from the response.
 
 ```javascript
 parseListResponse={({ message: list }) => ({ list })}
 ```
 
+
 Then we create our [List](http://linkto.docs) component: 
 ```javascript
  <List
-        name="beagle"
-        path="/images"
-        render={list => (
-          <div>
-            <h1>Hello Beagles!</h1>
-            <ul>
-              {list.map((item, index) => (
-                <li key={index}>
-                  <img src={item} alt="" />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      />
-
+  name="beagle"
+  path="/images"
+  render={list => (
+    <div>
+      <h1>Hello Beagles!</h1>
+      <ul>
+        {list.map((item, index) => (
+          <li key={index}>
+            <img src={item} alt="" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+/>
 ```
-- `name` defines the actions and reducers being used in the component, the "beagle" we created with `createReducer`. **IMPORTANT**: Whatever name you defined in `createReducer` must match with what you point in `name`.
-- `path` defines the endpoint relative to `baseUrl` passed to croods's provider. As we want `https://dog.ceo/api/breed/beagle/images`, we just need to pass it `/images`. 
-- The last prop is `render`, which, as the name implies, is a function defining the component's output. It receives the list as a parameter from croods's provider and must return a React element.
+- `name` defines the actions and reducers being used in the component, the "beagle" we created with `createReducer`. **IMPORTANT**: Whatever name you defined in `createReducer` must match the prop `name`.
+- `path` defines the endpoint relative to `baseUrl` passed to croods's provider. As we want `https://dog.ceo/api/breed/beagle/images`, we just need to pass it the value `/images`. 
+- The last prop is `render`, which, as the name implies, is a function defining the component's children. It receives the list as a parameter from croods's provider and must return a React element.

@@ -1,0 +1,58 @@
+---
+name: Info
+route: /info
+order: 9
+---
+
+# Info
+
+The Info component provides a way to fetch the info about a resource and render component using the resource info.
+This component does a `GET` request to the `path` and renders the render function.
+
+## API
+
+| Property      | Type          | Required | Default                  | Description                                                                                                                          |
+| ------------- | ------------- | -------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| id            | String/Number | true     | -                        | Ex: 1234 or '1234'                                                                                                                   |
+| name          | String        | true     | -                        | It must be equal to the reducer name set in your `rootReducer.js` and will be used as `path` if none is provided Ex: `baseUrl/name`. |
+| render        | Func          | true     | -                        | A function returning a React Node. Ex: (info = {}, props) -> < JSX />                                                                |
+| parentId      | String/Number | false    | -                        | Parent element's Id, for more specificity in changes.                                                                                |
+| path          | String        | false    | `/${name}/${id}`         | Ex: /foo/123                                                                                                                         |
+| renderError   | Func          | false    | Provider's renderError   | A function returning a React Node that will render when occurs an error. Ex: (error = {}) -> < JSX />                                |
+| renderLoading | Func          | false    | Provider's renderLoading | A function returning a React Node that will be rendered while wait the server response. Ex: () -> < JSX />                           |
+| disableCache  | Bool          | false    | false                    | Disable chache. When true, will force Croods to make a new API request each time the component renders.                              |
+
+## How to use
+
+Don't forget to add a reducer with the same name used here in your rootReducer, with **createReducer**
+
+```javascript
+import { Info } from 'croods'
+
+export default (
+  <Info
+    name="pets"
+    id="123"
+    // if path is different than /pets/${id}, you can set a custom path like so:
+    // path='/customPath'
+    render={info => <Component info={info} />}
+    renderError={error => <div>{error}</div>}
+    disableCache
+  />
+)
+
+```
+
+### render
+
+The render function receives the parameter **info** containing the response body.
+
+### renderError
+
+The renderError function is fired when the server response has a 4xx or 5xx status.
+It receives the `error` parameter containing the error message.
+
+## Example
+
+You can see a working sample of this component's usage [here](https://github.com/SeasonedSoftware/croods/blob/master/example/src/colors/Info.js).
+

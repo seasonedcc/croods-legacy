@@ -1,0 +1,72 @@
+---
+name: List
+route: /list
+order: 10
+---
+
+import { Playground } from 'docz'
+
+# List
+
+The List component provides a way to fetch a list of resources from an api, with options to show a loading indicator while the request is made and showing an error if the request fails.
+
+## API
+
+| Property      | Type          | Required | Default                  | Description                                                                                                                          |
+| ------------- | ------------- | -------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| name          | String        | true     | -                        | It must be equal to the reducer name set in your `rootReducer.js` and will be used as `path` if none is provided Ex: `baseUrl/name`. |
+| render        | Func          | true     | -                        | A function returning a React Node. Ex: ({ list }, props) -> < JSX />                                                                 |
+| renderError   | Func          | false    | Provider's renderError   | A function returning a React Node that will render when a request error occurs. Ex: (error = {}) -> < JSX />                                |
+| renderLoading | Func          | false    | Provider's renderLoading | A function returning a React Node that will be rendered while waiting for the server response. Ex: () -> < JSX />                           |  |
+| parentId      | String/Number | false    | -                        | Parent element's Id, for more specificity in changes.                                                                                |
+| path          | String        | false    | `/${name}`               | Ex: /foo                                                                                                                             |
+| disableCache  | Bool          | false    | false                    | Disable cache. When true, will force Croods to make a new API request each time the component renders.                              |
+
+## How to use
+
+Setup your (Provider)[https://croods-docz.netlify.com/provider] with your API `baseUrl`
+
+Setup the reducer:
+```javascript
+// src/store.js
+
+import { createReducer } from 'croods'
+
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import thunk from 'redux-thunk'
+
+const rootReducer = combineReducers({ pets: createReducer('pets') })
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
+```
+
+Then create your component:
+```javascript
+import { List } from 'croods'
+
+export default (
+  <List
+    name="pets"
+    render={list => <YourListComponent list={list} />}
+  />
+)
+```
+
+When this component is rendered, it will make a request `GET baseUrl/pets` and pass the body of the response to YourListComponent.
+
+### render
+
+The render function is used to receive the API response as a collection/array to be used to map through and render your resource's component.
+
+### renderError
+
+The renderError function is fired when the server response has a 4xx or 5xx status.
+It receives the `error` parameter containing the error message.
+
+### renderLoading
+
+The renderLoading function is fired while there is no response from server.
+
+## Example
+
+You can see a working example using this component in [here](https://github.com/SeasonedSoftware/croods/blob/master/example/src/colors/List.js).

@@ -1,0 +1,47 @@
+---
+name: Destroy
+route: /destroy
+---
+
+import { Playground } from 'docz'
+
+# Destroy
+
+The Destroy component provides an easy way to destroy a resource in the server, using the response as needed.
+
+## API
+
+| Property | Type          | Required | Default          | Description                                                                                                                          |
+| -------- | ------------- | -------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| name     | String        | true     | -                | It must be equal to the reducer name set in your `rootReducer.js` and will be used as `path` if none is provided Ex: `baseUrl/name`. |
+| id       | String/Number | true     | -                | It defines the ID of the resource to be destroyed, passing it in the url as defined in path.                                         |
+| render   | Func          | true     | -                | A function returning a React Node. Ex: ({ list }, props) -> < JSX />                                                                 |
+| parentId | String/Number | false    | -                | Parent element's ID, for nested resources.                                                                                           |
+| path     | String        | false    | `/${name}/${id}` | Ex: /foo/123                                                                                                                         |
+
+## How to use
+
+Don't forget to add a reducer with the same name used here in your rootReducer, with [create reducer](/create-reducer)
+
+```javascript
+import { Destroy } from 'croods'
+
+export default (
+  <Destroy
+    name="pets"
+    id="123"
+    // if path is different than /pets/${id}, you can set a custom path like so:
+    // path='/customPath'
+    render={destroy => <DestroyButton destroy={destroy} />}
+  />
+)
+```
+
+### render
+
+The render function is used to render a component passing to it a **destroy** function, and
+pass it to any component you like.
+
+## Example
+
+You can see a working example using this component in [here](https://github.com/SeasonedSoftware/croods/blob/master/example/src/colors/Destroy.js).

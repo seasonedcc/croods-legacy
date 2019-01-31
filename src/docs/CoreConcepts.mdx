@@ -1,0 +1,180 @@
+---
+name: Core Concepts
+route: /core-concepts
+order: 200
+---
+
+# Core Concepts
+
+Croods is a convenience tool that aims to reduce the boilerplate required when doing [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations with Redux.
+
+In order to know which one of Croods Component you will need for your task, think of your REST + HTTP method's structure:
+
+```md
+GET /resource/:id => Info
+GET /resource => List
+POST /resource => Create
+PUT /resource/id => Edit
+PUT /resource/id => Update
+DELETE /resource/id => Destroy
+```
+
+Then, for every resource you define with [createReducer](/create-reducer) you are going to have a matching "piece of state":
+
+```javascript
+// src/store.js
+
+import { createReducer } from 'croods'
+
+const rootReducer = combineReducers({
+  myCustomReducer = (state, action) => { foo: 'bar' },
+  users: createReducer('users'),
+  todos: createReducer('todos'),
+}),
+```
+
+You'll have the following store structure:
+
+```javascript
+{
+  myCustomReducer: { foo: 'bar' },
+  users: [
+    parentId: undefined,
+    state: {
+      // ... some properties here
+      info: null,
+      list: [],
+      // ... some other properties here
+    },
+  ],
+  todos: [
+    parentId: undefined,
+    state: {
+      // ... some properties here
+      info: null,
+      list: [],
+      // ... some other properties here
+    },
+  ],
+}
+```
+
+Whenever Croods is used, it is going to populate the resource's state with useful information so you can show data, errors and visual feedback for the requests. For instance, we want to **list** all users:
+
+```javascript
+<List
+  name="users" // it tells Croods we are using this piece of state
+  render={list => list.map(user => <span>{user.name}</span>)}
+/>
+```
+
+When this component is mounted, is dispatches these actions:
+
+```javascript
+// @users/FETCH_LIST_REQUEST
+// While fetching, the state will be:
+{
+  // myCustomReducer...,
+  users: [{
+    parentId: undefined,
+    state: {
+      // ...
+      list: [],
+      fetchingList: true,
+      listError: null,
+      // ...
+    },
+  }],
+  // todos...,
+}
+```
+
+If the request succeeds:
+
+```javascript
+// @users/FETCH_LIST_SUCCESS
+// resulting state
+{
+  // myCustomReducer...,
+  users: [{
+    parentId: undefined,
+    state: {
+      // ...
+      list: [{ id: 1, name: 'Foo' }, { id: 2, name: 'Bar' }],
+      fetchingList: false,
+      // ...
+    },
+  }],
+  // todos...,
+}
+```
+
+If the request fails:
+
+```javascript
+// @users/FETCH_LIST_FAILURE
+// resulting state
+{
+  // myCustomReducer...,
+  users: [{
+    parentId: undefined,
+    state: {
+      // ...
+      list: null,
+      fetchingList: false,
+      listError: 'some error',
+      // ...
+    },
+  }],
+  // todos...,
+}
+
+### parentId
+
+This prop is useful when you want to request a nested resource.
+Let's suppose you already fetched the latest 100 todos of your app:
+
+```javascript
+todos: [{
+  parentId: undefined,
+  state: {
+    list: [{ id: 1, title: 'Buy groceries' }, { id: 2, title: 'Meditate' }, ...],
+  },
+}],
+```
+
+Then you navigate to a user page and want to display the last 10 todos of that user.
+But if you go back you don't want to fetch the list of todos again, you want to have it cached so the page loads blazing fast. That's one of the places you'd use `parentId`:
+
+```javascript
+<List
+  name="todos"
+  path={`users/${user.id}/todos`}
+  parentId={user.id}
+  render={list => list.map(todo => <li>{todo.title}</li>)}
+/>
+```
+
+Let's take a look at the current state after the request:
+
+```javascript
+{
+  // myCustomReducer...,
+  // users...,
+  todos: [{
+    parentId: undefined,
+    state: {
+      // ...
+      list: [{ id: 1, title: 'Buy groceries' }, { id: 2, title: 'Meditate' }, ...],
+    },
+  }, {
+    parentId: 1,
+    state: {
+      // ...
+      list: [{ id: 6, name: 'Milk' }, { id: 18, name: 'Butter' }],
+      listPath: '/users/1/todos',
+      // ...
+    },
+  }],
+}
+```
