@@ -1,33 +1,29 @@
-import React, { Fragment } from 'react'
+import React, { useEffect } from 'react'
 import Link from 'react-router-dom/Link'
-import Redirect from 'react-router-dom/Redirect'
-import { Edit } from 'croods'
+import { connectCroods, useCroods } from 'croods'
 
 import Form from './Form'
 
-export default ({ match: { params } }) => {
+const Edit = ({ match: { params }, croodsState }) => {
   const { id } = params
+  console.log(croodsState)
+  const { updating, info } = croodsState
+  const { update, fetchInfo } = useCroods({ name: 'colors', id })
+  useEffect(() => {
+    (info && info.id === id) || fetchInfo(id)
+  }, [])
 
-  return (
-    <Edit
-      id={id}
-      name="colors"
-      render={({ info, update, updating, error }) => {
-        const { name } = info
-
-        return (
-          <Fragment>
-            <h1>{name}</h1>
-            <Form
-              onSubmit={update}
-              submitting={updating}
-              initialValues={info}
-            />
-            <Link to="/">Back</Link>
-          </Fragment>
-        )
-      }}
-      renderUpdated={({ id }) => <Redirect to={`/${id}`} />}
-    />
-  )
+  return info ? (
+    <>
+      <h1>{info.name}</h1>
+      <Form
+        onSubmit={() => update(id)}
+        submitting={updating}
+        initialValues={info}
+      />
+      <Link to="/">Back</Link>
+    </>
+  ) : 'Loading...'
 }
+
+export default connectCroods('colors')(Edit)

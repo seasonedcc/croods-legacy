@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Link from 'react-router-dom/Link'
 
 import Destroy from './Destroy'
@@ -24,7 +24,7 @@ export default ({ item }) => {
       ) : error ? (
         <span style={{ color: 'red' }}>{error}</span>
       ) : (
-        <Fragment>
+        <>
           <Link to={`/${id}/edit`}>Edit</Link>
           {' | '}
           <Destroy id={id} />
@@ -32,7 +32,7 @@ export default ({ item }) => {
           <Lighten {...item} />
           {' | '}
           <Darken {...item} />
-        </Fragment>
+        </>
       )}
     </div>
   )

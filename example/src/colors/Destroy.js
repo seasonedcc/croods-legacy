@@ -1,21 +1,17 @@
 import React from 'react'
-import { Destroy } from 'croods'
+import { useCroods } from 'croods'
 
-export default ({ id }) => (
-  <Destroy
-    id={id}
-    name="colors"
-    parseDestroyResponse={() => ({ destroyed: { id } })}
-    render={destroy => (
-      <a
-        href="#destroy"
-        onClick={event => {
-          event.preventDefault()
-          destroy()
-        }}
-      >
-        Delete
-      </a>
-    )}
-  />
-)
+export default ({ id }) => {
+  const { destroy } = useCroods({ name: 'colors' })
+  return (
+    <a
+      href="#destroy"
+      onClick={async event => {
+        event.preventDefault()
+        await destroy(id)
+      }}
+    >
+      Delete
+    </a>
+  )
+}
