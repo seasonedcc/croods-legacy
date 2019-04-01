@@ -19,7 +19,7 @@ export default props => {
           <Link to="/">Back</Link>
         </Fragment>
       )}
-      afterCreate={setColor}
+      afterCreate={({ created }) => setColor(created)}
     />
   )
 }
