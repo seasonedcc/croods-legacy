@@ -1,16 +1,19 @@
 {
   "presets": [
-    ["@babel/preset-env", {
-      "modules": false
-    }],
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ],
     "@babel/preset-react",
     "@babel/preset-flow",
     "@babel/preset-typescript"
   ],
   "plugins": [
     "syntax-async-functions",
-    "transform-async-to-generator",
-    "transform-regenerator",
+    "@babel/transform-async-to-generator",
+    "@babel/transform-regenerator",
     "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-function-bind"
   ]
