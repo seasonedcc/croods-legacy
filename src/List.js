@@ -1,7 +1,8 @@
-import { Component } from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import { useDidUpdate } from './hooks'
 import customPropTypes from './customPropTypes'
 import providerProps from './providerProps'
 import withOptions from './withOptions'
@@ -9,46 +10,24 @@ import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
 import renderIfPresent from './renderIfPresent'
 
-class List extends Component {
-  constructor(props) {
-    super(props)
+const List = props => {
+  const { render, list, listError, renderError } = props
+  const { actions, renderLoading, fetchingList } = props
+  const { parentId, path, listPath, disableCache } = props
 
-    const { list, parentId, path, listPath, actions, disableCache } = props
-
+  useEffect(() => {
     if (!list || parentId || path !== listPath || disableCache) {
       actions.fetchList(path)
     }
-  }
+  }, [])
+  useDidUpdate(() => {
+    actions.fetchList(path)
+  }, [parentId, path])
 
-  componentDidUpdate(prevProps) {
-    const { parentId, path, actions } = this.props
-    const { parentId: oldId, path: oldPath } = prevProps
-
-    const parentChanged = parentId && parentId.toString() !== oldId.toString()
-    const pathChanged = path && path.toString() !== oldPath.toString()
-
-    if (parentChanged || pathChanged) {
-      actions.fetchList(path)
-    }
-  }
-
-  renderLoading() {
-    const { renderLoading, list, fetchingList } = this.props
-
-    if (renderLoading && (!list || fetchingList)) {
-      return renderLoading({})
-    }
-  }
-
-  render() {
-    const { render, list, listError, renderError } = this.props
-
-    return (
-      renderIfPresent(renderError, listError) ||
-      this.renderLoading() ||
-      render(list, this.props)
-    )
-  }
+  return renderIfPresent(renderError, listError) ||
+    (renderLoading && (!list || fetchingList))
+    ? renderLoading({})
+    : render(list, props)
 }
 
 List.propTypes = {

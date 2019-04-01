@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import { usePrevious } from './hooks'
 import customPropTypes from './customPropTypes'
 import providerProps from './providerProps'
 import withOptions from './withOptions'
@@ -9,40 +10,24 @@ import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
 import renderIfPresent from './renderIfPresent'
 
-class New extends Component {
-  constructor(props) {
-    super(props)
-    const { createError, actions, renderCreated } = props
-    if (renderCreated) {
-      console.warn(
-        'renderCreated is deprecated and will be removed in future versions of Croods. Please, update your code to use afterCreate function instead. [Docs at: https://croods-docz.netlify.com/new]',
-      )
+const New = props => {
+  const { render, renderCreated, actions, created, creating } = props
+  const { createError: error } = props
+  const { create } = actions
+  const prevCreated = usePrevious(created)
+
+  useEffect(() => {
+    if ((prevCreated === undefined && error) || (created && prevCreated)) {
+      actions.resetCreateError()
     }
+  }, [created])
 
-    createError && actions.resetCreateError()
-  }
-
-  componentDidUpdate(prevProps) {
-    const { actions, created } = this.props
-    const { created: oldCreated } = prevProps
-
-    if (created && !oldCreated) {
-      actions.resetCreated()
-    }
-  }
-
-  render() {
-    const { render, renderCreated, actions, created, creating } = this.props
-    const { createError: error } = this.props
-    const { create } = actions
-
-    return (
-      <Fragment>
-        {renderIfPresent(renderCreated, created)}
-        {render({ create, creating, error }, this.props)}
-      </Fragment>
-    )
-  }
+  return (
+    <>
+      {renderIfPresent(renderCreated, created)}
+      {render({ create, creating, error }, props)}
+    </>
+  )
 }
 
 New.propTypes = {

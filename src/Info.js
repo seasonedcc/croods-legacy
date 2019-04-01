@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -11,30 +11,16 @@ import setOrFetchInfo from './setOrFetchInfo'
 import renderIfPresent from './renderIfPresent'
 import renderInfoLoading from './renderInfoLoading'
 
-class Info extends Component {
-  constructor(props) {
-    super(props)
+const Info = props => {
+  const { id, render, info, infoError, renderError } = props
+  useEffect(() => {
     setOrFetchInfo(props)
-  }
-
-  componentDidUpdate(prevProps) {
-    const { id } = this.props
-    const { id: oldId } = prevProps
-
-    if (id.toString() !== oldId.toString()) {
-      setOrFetchInfo(this.props)
-    }
-  }
-
-  render() {
-    const { render, info, infoError, renderError } = this.props
-
-    return (
-      renderIfPresent(renderError, infoError) ||
-      renderInfoLoading(this.props) ||
-      render(info, this.props)
-    )
-  }
+  }, [id.toString()])
+  return (
+    renderIfPresent(renderError, infoError) ||
+    renderInfoLoading(props) ||
+    render(info, props)
+  )
 }
 
 Info.propTypes = {

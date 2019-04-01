@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -7,24 +7,13 @@ import providerProps from './providerProps'
 import withOptions from './withOptions'
 import mapStateToProps from './mapStateToProps'
 import mapDispatchToProps from './mapDispatchToProps'
-import resetIfChanged from './resetIfChanged'
 
-class Destroy extends Component {
-  constructor(props) {
-    super(props)
-    resetIfChanged({ props, prevProps: {}, name: 'destroyed' })
-  }
-
-  componentDidUpdate(prevProps) {
-    resetIfChanged({ props: this.props, prevProps, name: 'destroyed' })
-  }
-
-  render() {
-    const { render, id, actions } = this.props
-    const destroy = () => actions.destroy(id)
-
-    return render(destroy, this.props)
-  }
+const Destroy = props => {
+  const { render, id, actions, destroyed } = props
+  useEffect(() => {
+    destroyed && destroyed.id === id && actions.resetDestroyed()
+  }, [destroyed])
+  return render(() => actions.destroy(id), props)
 }
 
 Destroy.propTypes = {

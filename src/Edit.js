@@ -1,7 +1,8 @@
-import { Component } from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import { useDidUpdate } from './hooks'
 import customPropTypes from './customPropTypes'
 import providerProps from './providerProps'
 import withOptions from './withOptions'
@@ -11,37 +12,24 @@ import setOrFetchInfo from './setOrFetchInfo'
 import renderIfPresent from './renderIfPresent'
 import renderInfoLoading from './renderInfoLoading'
 
-class Edit extends Component {
-  constructor(props) {
-    super(props)
+const Edit = props => {
+  const { id, render, actions, info, renderError, infoError } = props
+  const { updating, updateError: error, renderUpdated, updated } = props
+  const { update } = actions
+
+  useEffect(() => {
     setOrFetchInfo(props)
-  }
+  }, [id])
+  useDidUpdate(() => {
+    actions.resetUpdated()
+  }, [updated])
 
-  componentDidUpdate(prevProps) {
-    const { actions, updated, id } = this.props
-    const { updated: oldUpdated, id: oldId } = prevProps
-
-    if (id.toString() !== oldId.toString()) {
-      setOrFetchInfo(this.props)
-    }
-
-    if (updated && !oldUpdated) {
-      actions.resetUpdated()
-    }
-  }
-
-  render() {
-    const { render, actions, info, renderError, infoError } = this.props
-    const { updating, updateError: error, renderUpdated, updated } = this.props
-    const { update } = actions
-
-    return (
-      renderIfPresent(renderError, infoError) ||
-      renderInfoLoading(this.props) ||
-      renderIfPresent(renderUpdated, updated) ||
-      render({ info, update, updating, error }, this.props)
-    )
-  }
+  return (
+    renderIfPresent(renderError, infoError) ||
+    renderInfoLoading(props) ||
+    renderIfPresent(renderUpdated, updated) ||
+    render({ info, update, updating, error }, props)
+  )
 }
 
 Edit.propTypes = {
