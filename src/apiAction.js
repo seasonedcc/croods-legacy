@@ -1,5 +1,6 @@
 import humps from 'lodash-humps'
 
+import replace from 'lodash/replace'
 import snakeCase from './snakeCase'
 import parseError from './parseError'
 import requestLogger from './requestLogger'
@@ -99,8 +100,7 @@ const dispatchAction = async (dispatch, { debugRequests, ...options }) => {
   const { baseUrl, path, parentId, prefix, requestAttributes } = options
 
   dispatch({ parentId, type: `${prefix}_REQUEST`, ...requestAttributes })
-
-  const url = `${baseUrl}${path}`
+  const url = `${replace(baseUrl, /\/$/, '')}${path}`
   const fetchParams = await fetchOptions(options)
 
   debugRequests && requestLogger(url, fetchParams)
