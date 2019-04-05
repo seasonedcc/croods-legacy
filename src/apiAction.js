@@ -100,7 +100,7 @@ const dispatchAction = async (dispatch, { debugRequests, ...options }) => {
   const { baseUrl, path, parentId, prefix, requestAttributes } = options
 
   dispatch({ parentId, type: `${prefix}_REQUEST`, ...requestAttributes })
-  const url = `${replace(baseUrl, /\/$/, '')}${path}`
+  const url = replace(`${baseUrl}/${path}`, /[\/]{2,}/, '/')
   const fetchParams = await fetchOptions(options)
 
   debugRequests && requestLogger(url, fetchParams)
