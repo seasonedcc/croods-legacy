@@ -57,7 +57,7 @@ describe('with default GET method and successful text response', () => {
 
     const action = apiAction({
       prefix: '@foo/BAR',
-      path: '/foo/bar',
+      path: '//foo/bar',
       parseResponse: json => ({ json }),
     })
 
@@ -87,7 +87,7 @@ describe('with default GET method and failed JSON response', () => {
 
     const action = apiAction({
       prefix: '@foo/BAR',
-      path: '/foo/bar',
+      path: '//foo/bar',
       parseResponse: json => ({ json }),
     })
 
@@ -117,7 +117,7 @@ describe('with POST method and successful response', () => {
 
     const action = apiAction({
       prefix: '@foo/BAR',
-      path: '/foo/bar',
+      path: '//foo/bar',
       method: 'POST',
       params: { foo: 'bar' },
       parseResponse: json => ({ json }),
@@ -151,7 +151,7 @@ describe('with POST method and with newtwork error', () => {
 
     const action = apiAction({
       prefix: '@foo/BAR',
-      path: '/foo/bar',
+      path: '//foo/bar',
       method: 'POST',
       params: { foo: 'bar' },
       processResponse: (response, json) => ({ response, json }),
@@ -184,8 +184,8 @@ describe('with custom headers', () => {
 
       const action = apiAction({
         prefix: '@foo/BAR',
-        baseUrl: 'foourl',
-        path: '/foo/bar',
+        baseUrl: 'http://foourl/',
+        path: '//foo/bar',
         method: 'POST',
         headers: { bar: 'foo' },
         parseResponse: json => ({ json }),
@@ -193,7 +193,7 @@ describe('with custom headers', () => {
 
       await action(dispatch)
 
-      expect(global.fetch).toHaveBeenCalledWith('foourl/foo/bar', {
+      expect(global.fetch).toHaveBeenCalledWith('http://foourl/foo/bar', {
         credentials: undefined,
         headers: {
           Accept: 'application/json',
@@ -217,8 +217,8 @@ describe('with custom headers', () => {
 
       const action = apiAction({
         prefix: '@foo/BAR',
-        baseUrl: 'foourl',
-        path: '/foo/bar',
+        baseUrl: 'http://foourl/',
+        path: '//foo/bar',
         method: 'POST',
         headers: { Accept: 'foo' },
         parseResponse: json => ({ json }),
@@ -226,7 +226,7 @@ describe('with custom headers', () => {
 
       await action(dispatch)
 
-      expect(global.fetch).toHaveBeenCalledWith('foourl/foo/bar', {
+      expect(global.fetch).toHaveBeenCalledWith('http://foourl/foo/bar', {
         credentials: undefined,
         headers: {
           Accept: 'foo',
@@ -252,7 +252,7 @@ describe('with custom headers', () => {
 
       const action = apiAction({
         prefix: '@foo/BAR',
-        baseUrl: 'foourl',
+        baseUrl: 'foourl/',
         path: '/foo/bar',
         method: 'POST',
         headers,
@@ -283,7 +283,7 @@ describe('with debugRequests', () => {
   it('uses requestLogger function to log fetch params', async () => {
     const action = apiAction({
       prefix: '@foo/BAR',
-      path: '/foo/bar',
+      path: '//foo/bar',
       baseUrl: 'http://foo.com',
       parseResponse: json => ({ json }),
       debugRequests: true,
@@ -306,7 +306,7 @@ describe('with debugRequests', () => {
 describe('with afterFailure', () => {
   const action = apiAction({
     prefix: '@foo/BAR',
-    baseUrl: 'foourl',
+    baseUrl: 'https://foourl',
     path: '/foo/bar',
     method: 'POST',
     headers: { bar: 'foo' },
@@ -348,8 +348,8 @@ describe('with afterFailure', () => {
 describe('with afterSuccess', () => {
   const action = apiAction({
     prefix: '@foo/BAR',
-    baseUrl: 'foourl',
-    path: '/foo/bar',
+    baseUrl: 'foourl/',
+    path: '//foo/bar',
     method: 'POST',
     headers: { bar: 'foo' },
     afterSuccess,
@@ -391,7 +391,7 @@ describe('with afterCreate', () => {
   const options = {
     prefix: '@foo/CREATE',
     baseUrl: 'foourl',
-    path: '/foo/bar',
+    path: '//foo/bar',
     method: 'POST',
     headers: { bar: 'foo' },
     afterCreate,
@@ -434,7 +434,7 @@ describe('with afterResponse', () => {
   const action = apiAction({
     prefix: '@foo/BAR',
     baseUrl: 'foourl',
-    path: '/foo/bar',
+    path: '//foo/bar',
     method: 'POST',
     headers: { bar: 'foo' },
     afterResponse,

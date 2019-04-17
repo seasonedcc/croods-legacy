@@ -1,5 +1,6 @@
 import humps from 'lodash-humps'
 
+import replace from 'lodash/replace'
 import snakeCase from './snakeCase'
 import parseError from './parseError'
 import requestLogger from './requestLogger'
@@ -99,8 +100,8 @@ const dispatchAction = async (dispatch, { debugRequests, ...options }) => {
   const { baseUrl, path, parentId, prefix, requestAttributes } = options
 
   dispatch({ parentId, type: `${prefix}_REQUEST`, ...requestAttributes })
-
-  const url = `${baseUrl}${path}`
+  // remove all wrong slashes from the entire URL, like /// or //
+  const url = `${replace(baseUrl + path, /([^https?:]\/)\/+/g, '$1')}`
   const fetchParams = await fetchOptions(options)
 
   debugRequests && requestLogger(url, fetchParams)
