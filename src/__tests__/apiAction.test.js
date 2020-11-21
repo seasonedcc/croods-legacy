@@ -103,6 +103,36 @@ describe('with default GET method and failed JSON response', () => {
   })
 })
 
+describe('with JSON response error', () => {
+  it('dispatches the correct actions ', async () => {
+    const response = {
+      message: 'Failed to fetch',
+      stack: 'TypeError: Failed to fetch',
+    }
+
+    global.fetch = jest.fn(() => new Promise(resolve => resolve(response)))
+
+    const action = apiAction({
+      prefix: '@foo/BAR',
+      path: '//foo/bar',
+      parseResponse: json => ({ json }),
+    })
+
+    await action(dispatch)
+
+    expect(dispatch).toHaveBeenCalledTimes(2)
+    expect(dispatch).toHaveBeenCalledWith({ type: '@foo/BAR_REQUEST' })
+
+    expect(dispatch).toHaveBeenCalledWith({
+      error: {
+        id: 'unknownError',
+        message: 'Network error, please check your connection.',
+      },
+      type: '@foo/BAR_FAILURE',
+    })
+  })
+})
+
 describe('with POST method and successful response', () => {
   it('dispatches the correct actions', async () => {
     const response = {
