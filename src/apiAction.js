@@ -37,20 +37,22 @@ const fetchOptions = async ({
 }
 
 const jsonResponse = async response => {
+  if (!response || !response.text)
+    return {
+      id: 'unknownError',
+      message: 'Network error, please check your connection.',
+    }
+
   const body = await response.text()
   const contentType = response.headers.get('content-type')
 
-  let json
-  if (contentType && contentType.match(/application\/json/)) {
-    json = humps(JSON.parse(body))
-  } else {
-    json = {
-      id: `${response.status}`,
-      message: body,
-    }
-  }
+  if (contentType && contentType.match(/application\/json/))
+    return humps(JSON.parse(body))
 
-  return json
+  return {
+    id: `${response.status}`,
+    message: body,
+  }
 }
 
 const dispatchError = (dispatch, options) => async response => {
